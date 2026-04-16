@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cgw1br63sxp8y"]
+
+[ext_resource type="SpriteFrames" path="knight.png" id="1_klikn"]
+
+[sub_resource type="Gradient" id="Gradient_yyrx1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wycyw"]
+gradient = SubResource("Gradient_yyrx1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
+size = Vector2(87.83505, 20)
+
+[node name="Node2D" type="Node2D" unique_id=318383229]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
+position = Vector2(2207, 1825.0001)
+scale = Vector2(4.116481, 4.011282)
+
+[node name="MushroomPlayer" type="AnimatedSprite2D" parent="." unique_id=950934356]
+position = Vector2(2198, 1852)
+sprite_frames = ExtResource("1_klikn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MushroomPlayer" unique_id=1390356966]
+
+[node name="Sprite2D" type="Sprite2D" parent="MushroomPlayer" unique_id=1654041567]
+scale = Vector2(1.0073271, 1.009014)
+texture = SubResource("GradientTexture2D_wycyw")
+
+[node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
+scale = Vector2(1, 1.0010756)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
+position = Vector2(2206, 1972)
+scale = Vector2(50, 5)
+shape = SubResource("RectangleShape2D_mrooa")
+
+[node name="ColorRect" type="ColorRect" parent="BasePlatform" unique_id=1294128445]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.4162508, 1.353256, 0.7041575, 1)
