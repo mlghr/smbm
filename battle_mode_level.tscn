@@ -1,12 +1,8 @@
 [gd_scene format=3 uid="uid://cgw1br63sxp8y"]
 
+[ext_resource type="Script" uid="uid://bk23c15bgtoyp" path="res://player2.gd" id="1_wycyw"]
 [ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(87.83505, 20)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wycyw"]
 size = Vector2(2.0885534, 2.4636354)
@@ -73,12 +69,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
+size = Vector2(87.83505, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
+
 [node name="Node2D" type="Node2D" unique_id=318383229]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
 position = Vector2(0, -249)
 scale = Vector2(4.116481, 4.040177)
 zoom = Vector2(0.5, 0.5)
+
+[node name="CharacterBody2DPlayer1" type="CharacterBody2D" parent="." unique_id=848053509]
+position = Vector2(362, -76)
+script = ExtResource("2_yyrx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer1" unique_id=1390356966]
+position = Vector2(-2, 22)
+scale = Vector2(24.817766, -34.90482)
+shape = SubResource("RectangleShape2D_wycyw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer1" unique_id=1945011201]
+position = Vector2(1, -6)
+scale = Vector2(1.9200025, 2.0800014)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+
+[node name="CharacterBody2DPlayer2" type="CharacterBody2D" parent="." unique_id=740318060]
+position = Vector2(-396, -83)
+script = ExtResource("1_wycyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer2" unique_id=1139736101]
+position = Vector2(-2, 22)
+scale = Vector2(24.817766, -34.90482)
+shape = SubResource("RectangleShape2D_wycyw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer2" unique_id=1322968120]
+position = Vector2(1, -6)
+scale = Vector2(1.9200025, 2.0800014)
+sprite_frames = SubResource("SpriteFrames_0un5b")
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(0, 26)
@@ -91,20 +120,6 @@ shape = SubResource("RectangleShape2D_mrooa")
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
 scale = Vector2(1892.5675, 93.39949)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
-
-[node name="CharacterBody2DPlayer1" type="CharacterBody2D" parent="." unique_id=848053509]
-position = Vector2(-6, -98)
-script = ExtResource("2_yyrx1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer1" unique_id=1390356966]
-position = Vector2(-2, 22)
-scale = Vector2(24.817766, -34.90482)
-shape = SubResource("RectangleShape2D_wycyw")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer1" unique_id=1945011201]
-position = Vector2(1, -6)
-scale = Vector2(1.9200025, 2.0800014)
-sprite_frames = SubResource("SpriteFrames_0un5b")
 
 [node name="BasePlatform2" type="StaticBody2D" parent="." unique_id=1017787490]
 position = Vector2(-642, -153.00002)
