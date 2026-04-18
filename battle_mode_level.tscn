@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://cgw1br63sxp8y"]
+
+[ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
+[ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
+size = Vector2(87.83505, 20)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wycyw"]
+size = Vector2(2.0885534, 2.4636354)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrooa"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixhrj"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdaq3"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yech5"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoaat"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uon0r"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51r86"]
+atlas = ExtResource("2_wycyw")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0un5b"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrooa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixhrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdaq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yech5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoaat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uon0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51r86")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=318383229]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
+position = Vector2(0, -249)
+scale = Vector2(4.116481, 4.040177)
+zoom = Vector2(0.5, 0.5)
+
+[node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
+position = Vector2(0, 26)
+scale = Vector2(0.9989204, 0.87761146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
+scale = Vector2(50, 5)
+shape = SubResource("RectangleShape2D_mrooa")
+
+[node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
+scale = Vector2(1892.5675, 93.39949)
+texture = SubResource("PlaceholderTexture2D_yyrx1")
+
+[node name="CharacterBody2DPlayer1" type="CharacterBody2D" parent="." unique_id=848053509]
+position = Vector2(-6, -98)
+script = ExtResource("2_yyrx1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer1" unique_id=1390356966]
+position = Vector2(-2, 22)
+scale = Vector2(24.817766, -34.90482)
+shape = SubResource("RectangleShape2D_wycyw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer1" unique_id=1945011201]
+position = Vector2(1, -6)
+scale = Vector2(1.9200025, 2.0800014)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+
+[node name="BasePlatform2" type="StaticBody2D" parent="." unique_id=1017787490]
+position = Vector2(-642, -153.00002)
+scale = Vector2(0.18160085, 0.3857624)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform2" unique_id=641443091]
+scale = Vector2(21.988043, 3.2109141)
+shape = SubResource("RectangleShape2D_mrooa")
+
+[node name="Sprite2D" type="Sprite2D" parent="BasePlatform2" unique_id=56752120]
+scale = Vector2(1892.5675, 93.39949)
+texture = SubResource("PlaceholderTexture2D_yyrx1")
+
+[node name="BasePlatform3" type="StaticBody2D" parent="." unique_id=1738182305]
+position = Vector2(642, -153)
+scale = Vector2(0.182, 0.399)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform3" unique_id=1060925793]
+scale = Vector2(21.988043, 3.2109141)
+shape = SubResource("RectangleShape2D_mrooa")
+
+[node name="Sprite2D" type="Sprite2D" parent="BasePlatform3" unique_id=780167616]
+scale = Vector2(1892.5675, 93.39949)
+texture = SubResource("PlaceholderTexture2D_yyrx1")
