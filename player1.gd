@@ -10,16 +10,25 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Horizontal movement
+	# Horizontal movement (FIXED)
 	var direction = Input.get_axis("move_left", "move_right")
-	velocity.x = direction * speed
+	velocity.x = lerp(velocity.x, direction * speed, 0.2)
 
-	# Jump start
+	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 
-	# Variable jump height 
+	# Variable jump
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
-
+	
 	move_and_slide()
+	
+	# Push logic
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var other = collision.get_collider()
+
+		if other is CharacterBody2D:
+			var push_dir = (global_position - other.global_position).normalized()
+			velocity += push_dir * 1000
