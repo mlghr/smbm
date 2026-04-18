@@ -10,7 +10,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta	
 	
-	if is_on_floor() && abs(velocity.x) > 5:
+	if is_on_floor() && abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
 	else: $AnimatedSprite2D.play("Idle")
 		
