@@ -119,7 +119,7 @@ scale = Vector2(1892.5675, 93.39949)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
 [node name="BasePlatform3" type="StaticBody2D" parent="." unique_id=1738182305]
-position = Vector2(642, -153)
+position = Vector2(642, -153.00002)
 scale = Vector2(0.182, 0.399)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform3" unique_id=1060925793]
@@ -127,5 +127,17 @@ scale = Vector2(21.988043, 3.2109141)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform3" unique_id=780167616]
+scale = Vector2(1892.5675, 93.39949)
+texture = SubResource("PlaceholderTexture2D_yyrx1")
+
+[node name="BasePlatform4" type="StaticBody2D" parent="." unique_id=144762596]
+position = Vector2(-5, -285)
+scale = Vector2(0.24000227, 0.3256085)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform4" unique_id=1902866732]
+scale = Vector2(21.988043, 3.2109141)
+shape = SubResource("RectangleShape2D_mrooa")
+
+[node name="Sprite2D" type="Sprite2D" parent="BasePlatform4" unique_id=1903032124]
 scale = Vector2(1892.5675, 93.39949)
 texture = SubResource("PlaceholderTexture2D_yyrx1")

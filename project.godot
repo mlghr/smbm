@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SMB"
+config/name="SMBM"
 run/main_scene="uid://cgw1br63sxp8y"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
