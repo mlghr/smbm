@@ -8,9 +8,13 @@ var jump_cut_multiplier = 0.6
 func _physics_process(delta):
 	# Gravity
 	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Horizontal movement (FIXED)
+		velocity.y += gravity * delta	
+	
+	if is_on_floor() && abs(velocity.x) > 5:
+		$AnimatedSprite2D.play("Run")
+	else: $AnimatedSprite2D.play("Idle")
+		
+	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = lerp(velocity.x, direction * speed, 0.2)
 
@@ -30,5 +34,5 @@ func _physics_process(delta):
 		var other = collision.get_collider()
 
 		if other is CharacterBody2D:
-			var push_dir = (global_position - other.global_position).normalized()
-			velocity += push_dir * 1000
+			var push_dir = sign(global_position.x - other.global_position.x)
+			velocity.x += push_dir * 800
