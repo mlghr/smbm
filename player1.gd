@@ -13,11 +13,16 @@ func _physics_process(delta):
 	if is_on_floor() && abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
 	else: $AnimatedSprite2D.play("Idle")
-		
+	
 	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = lerp(velocity.x, direction * speed, 0.2)
 
+	if direction < 0:
+		$AnimatedSprite2D.flip_h = false
+	if direction > 0:
+		$AnimatedSprite2D.flip_h = true
+	
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity

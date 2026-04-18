@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wycyw"]
-size = Vector2(2.1322074, 1.948155)
+size = Vector2(2.1322074, 1.9781381)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nf06b"]
 atlas = ExtResource("2_wycyw")
@@ -181,7 +181,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(87.83505, 20)
+size = Vector2(87.83505, 18.88776)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
 
@@ -193,12 +193,12 @@ scale = Vector2(4.116481, 4.040177)
 zoom = Vector2(0.5, 0.5)
 
 [node name="CharacterBody2DPlayer1" type="CharacterBody2D" parent="." unique_id=848053509]
-position = Vector2(362, -76)
+position = Vector2(363, -81)
 script = ExtResource("2_yyrx1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer1" unique_id=1390356966]
-position = Vector2(-2, 25.5)
-scale = Vector2(24.817766, -34.90482)
+position = Vector2(-2, 28)
+scale = Vector2(24.818, -41.635)
 shape = SubResource("RectangleShape2D_wycyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer1" unique_id=1945011201]
@@ -211,8 +211,8 @@ position = Vector2(-396, -75)
 script = ExtResource("1_wycyw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer2" unique_id=1139736101]
-position = Vector2(-1.458313, 25)
-scale = Vector2(24.817766, -34.90482)
+position = Vector2(-1.458313, 31.11111)
+scale = Vector2(24.817766, -41.63524)
 shape = SubResource("RectangleShape2D_wycyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer2" unique_id=1322968120]
@@ -226,7 +226,8 @@ position = Vector2(0, 26)
 scale = Vector2(0.9989204, 0.87761146)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
-scale = Vector2(50, 5)
+position = Vector2(0, 2.7806015)
+scale = Vector2(49.999996, 5)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
