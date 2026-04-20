@@ -9,52 +9,67 @@ var is_dead = false
 var death_played = false
 
 func _physics_process(delta):
-
-	# death state
 	if is_dead:
-		velocity = Vector2.ZERO
-		move_and_slide()
-
-		# play death animation only once
-		if not death_played:
-			death_played = true
-			$AnimatedSprite2D.play("Die")
-
+		handle_death()
 		return
 
-	# gravity
+	apply_gravity(delta)
+	handle_input()
+	handle_jump()
+	move_and_slide()
+	handle_collisions()
+	update_animation()
+
+# -------------------------
+# core systems (inputs, etc.).
+# -------------------------
+
+func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
 
-	# movement
+func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = lerp(velocity.x, direction * speed, 0.2)
 
-	# flip sprite
 	if direction < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif direction > 0:
 		$AnimatedSprite2D.flip_h = true
 
-	# animations (only when alive)
-	if is_on_floor() and abs(velocity.x) > 100:
-		$AnimatedSprite2D.play("Run")
-	else:
-		$AnimatedSprite2D.play("Idle")
-
-	# jump
+func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
+# -------------------------
+# animation
+# -------------------------
+
+func update_animation():
+	if is_on_floor() and abs(velocity.x) > 100:
+		$AnimatedSprite2D.play("Run")
+	else:
+		$AnimatedSprite2D.play("Idle")
+
+func handle_death():
+	velocity = Vector2.ZERO
 	move_and_slide()
 
-	# collisions
+	if not death_played:
+		death_played = true
+		$AnimatedSprite2D.play("Die")
+
+# -------------------------
+# collisions
+# -------------------------
+
+func handle_collisions():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var other = collision.get_collider()
@@ -64,9 +79,12 @@ func _physics_process(delta):
 			return
 
 		if other is CharacterBody2D:
-			var normal = collision.get_normal()
+			handle_push(collision, other)
 
-			if abs(normal.x) > 0.9:
-				if abs(global_position.y - other.global_position.y) < 10:
-					var push_dir = sign(global_position.x - other.global_position.x)
-					velocity.x += push_dir * 400
+func handle_push(collision, other):
+	var normal = collision.get_normal()
+
+	if abs(normal.x) > 0.9:
+		if abs(global_position.y - other.global_position.y) < 10:
+			var push_dir = sign(global_position.x - other.global_position.x)
+			velocity.x += push_dir * 400
