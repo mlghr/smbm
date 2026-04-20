@@ -10,7 +10,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
 radius = 30.0
-height = 90.0
+height = 60.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nf06b"]
 atlas = ExtResource("2_wycyw")
@@ -186,7 +186,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eoaat"]
 radius = 30.0
-height = 90.0
+height = 60.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uon0r"]
 radius = 40.0
