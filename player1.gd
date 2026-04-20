@@ -11,15 +11,15 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Stop downward velocity when grounded (prevents bounce)
+	# Stop downward velocity when grounded, prevents bounce
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
 
-	# Horizontal movement (smoothed)
+	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = lerp(velocity.x, direction * speed, 0.2)
 
-	# Flip sprite
+	# flip sprite
 	if direction < 0:
 		$AnimatedSprite2D.flip_h = false
 	elif direction > 0:
