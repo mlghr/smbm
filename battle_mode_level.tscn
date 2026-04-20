@@ -349,42 +349,42 @@ position = Vector2(0, -249)
 scale = Vector2(4.116481, 4.040177)
 zoom = Vector2(0.75, 0.75)
 
-[node name="CharacterBody2DPlayer1" type="CharacterBody2D" parent="." unique_id=848053509]
+[node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509]
 position = Vector2(363, -80)
 script = ExtResource("2_yyrx1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer1" unique_id=1390356966]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
 position = Vector2(0, 30)
 shape = SubResource("CapsuleShape2D_yech5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer1" unique_id=1945011201]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 
-[node name="CharacterBody2DPlayer2" type="CharacterBody2D" parent="." unique_id=740318060]
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060]
 position = Vector2(-396, -80)
 script = ExtResource("1_wycyw")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DPlayer2" unique_id=41822332]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
 position = Vector2(-2, 28)
 shape = SubResource("CapsuleShape2D_eoaat")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DPlayer2" unique_id=1322968120]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Idle"
 
-[node name="CharacterBody2DSkeleton" type="CharacterBody2D" parent="." unique_id=576498550]
+[node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550]
 position = Vector2(3, -363)
 script = ExtResource("5_yech5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2DSkeleton" unique_id=498977481]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton" unique_id=498977481]
 position = Vector2(10.000001, 10)
 shape = SubResource("CapsuleShape2D_uon0r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2DSkeleton" unique_id=828676942]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Skeleton" unique_id=828676942]
 position = Vector2(6, -13)
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_quifu")
