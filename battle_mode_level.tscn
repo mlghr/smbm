@@ -336,8 +336,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(87.83505, 18.88776)
+size = Vector2(99.99899, 50)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
 
@@ -349,7 +351,7 @@ position = Vector2(0, -249)
 scale = Vector2(4.116481, 4.040177)
 zoom = Vector2(0.75, 0.75)
 
-[node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509]
+[node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(363, -80)
 script = ExtResource("2_yyrx1")
 
@@ -362,7 +364,7 @@ position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 
-[node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060]
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
 position = Vector2(-396, -80)
 script = ExtResource("1_wycyw")
 
@@ -376,7 +378,7 @@ scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Idle"
 
-[node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550]
+[node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550 groups=["enemy"]]
 position = Vector2(3, -363)
 script = ExtResource("5_yech5")
 
@@ -393,10 +395,11 @@ animation = &"Idle"
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(0, 26)
 scale = Vector2(1, 0.879)
+physics_material_override = SubResource("PhysicsMaterial_yech5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
-position = Vector2(0, 2.7806015)
-scale = Vector2(49.999996, 5)
+position = Vector2(-2.0000002, -2.2753088)
+scale = Vector2(18.920002, 1.819112)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
@@ -408,7 +411,8 @@ position = Vector2(-642, -153.00002)
 scale = Vector2(0.18160085, 0.3857624)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPlatform" unique_id=641443091]
-scale = Vector2(21.988043, 3.2109141)
+position = Vector2(5.506582, -5.184499)
+scale = Vector2(19.583538, 2.0287795)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftPlatform" unique_id=56752120]
@@ -419,8 +423,9 @@ texture = SubResource("PlaceholderTexture2D_yyrx1")
 position = Vector2(642, -153.00002)
 scale = Vector2(0.182, 0.399)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPlatform" unique_id=1060925793]
-scale = Vector2(21.988043, 3.2109141)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPlatform" unique_id=635549192]
+position = Vector2(5.4945188, -7.5187597)
+scale = Vector2(18.7044, 1.72802)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightPlatform" unique_id=780167616]
@@ -431,8 +436,9 @@ texture = SubResource("PlaceholderTexture2D_yyrx1")
 position = Vector2(-5, -285)
 scale = Vector2(0.24000227, 0.3256085)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPlatform" unique_id=1902866732]
-scale = Vector2(21.988043, 3.2109141)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPlatform" unique_id=1099840487]
+position = Vector2(4.1764526, -3.071167)
+scale = Vector2(18.916885, 2.0287795)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="TopPlatform" unique_id=1903032124]

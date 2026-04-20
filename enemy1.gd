@@ -7,9 +7,10 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	
-	if is_on_floor() && abs(velocity.x) > 100:
+	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Walk")
-	else: $AnimatedSprite2D.play("Idle")
+	else:
+		$AnimatedSprite2D.play("Idle")
 	
 	velocity.x = 200
 	
@@ -19,6 +20,11 @@ func _physics_process(delta):
 		var collision = get_slide_collision(i)
 		var other = collision.get_collider()
 
+		# kill player
+		if other.is_in_group("player"):
+			other.queue_free()
+
+		# push behavior
 		if other is CharacterBody2D:
 			var push_dir = sign(global_position.x - other.global_position.x)
 			velocity.x += push_dir * 600
