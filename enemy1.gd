@@ -21,8 +21,8 @@ func _physics_process(delta):
 		var other = collision.get_collider()
 
 		# kill player
-		if other.is_in_group("player"):
-			other.queue_free()
+		#if other.is_in_group("player"):
+			#other.queue_free()
 
 		# push behavior
 		if other is CharacterBody2D:

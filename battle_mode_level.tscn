@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgw1br63sxp8y"]
 
 [ext_resource type="Script" uid="uid://bk23c15bgtoyp" path="res://player2.gd" id="1_wycyw"]
+[ext_resource type="Texture2D" uid="uid://do2x6n7y2gjss" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Die.png" id="2_eoaat"]
 [ext_resource type="Texture2D" uid="uid://d2xf871oqe5k2" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="2_mrooa"]
 [ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
@@ -11,6 +12,66 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
 radius = 30.0
 height = 60.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quifu"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scslj"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sswk"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7apsq"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sgmt"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp1fg"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt8ep"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x816"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(560, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t4v2"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(640, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4foe"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(720, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ngtq"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(800, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4ucb"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(880, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8828e"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(960, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snalg"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(1040, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y31c5"]
+atlas = ExtResource("2_eoaat")
+region = Rect2(1120, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nf06b"]
 atlas = ExtResource("2_wycyw")
@@ -102,6 +163,56 @@ region = Rect2(480, 0, 80, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0un5b"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quifu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scslj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sswk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7apsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sgmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp1fg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt8ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x816")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t4v2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4foe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ngtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4ucb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8828e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snalg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y31c5")
+}],
+"loop": true,
+"name": &"Die",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_nf06b")
@@ -363,6 +474,7 @@ shape = SubResource("CapsuleShape2D_yech5")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Die"
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
 position = Vector2(-396, -80)
@@ -376,7 +488,7 @@ shape = SubResource("CapsuleShape2D_eoaat")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Idle"
+animation = &"Die"
 
 [node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550 groups=["enemy"]]
 position = Vector2(3, -363)

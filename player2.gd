@@ -4,6 +4,7 @@ var speed = 600
 var jump_velocity = -700
 var gravity = 1500
 var jump_cut_multiplier = 0.6
+var is_dead = false
 
 func _physics_process(delta):
 	# Apply gravity
@@ -27,7 +28,9 @@ func _physics_process(delta):
 	# Animations
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
-	else:
+	elif is_dead:
+		$AnimatedSprite2D.play("Die")
+	else: 
 		$AnimatedSprite2D.play("Idle")
 
 	# Jump
@@ -44,6 +47,9 @@ func _physics_process(delta):
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var other = collision.get_collider()
+		
+		if other.is_in_group("enemy"):
+			is_dead = true
 
 		if other is CharacterBody2D:
 			var normal = collision.get_normal()
