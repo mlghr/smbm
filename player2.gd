@@ -5,6 +5,7 @@ var jump_velocity = -700
 var gravity = 1500
 var jump_cut_multiplier = 0.6
 
+var standing_on_body = false
 var is_dead = false
 var death_played = false
 
@@ -84,6 +85,27 @@ func handle_collisions():
 func handle_push(collision, other):
 	var normal = collision.get_normal()
 
+	# -------------------------
+	# vertical stacking (standing on another player)
+	# -------------------------
+	if normal.y < -0.9:
+		standing_on_body = true
+
+		# require stronger alignment so side overlap doesn't interfere
+		if abs(global_position.x - other.global_position.x) < 20:
+			
+			# carry horizontally using position (not velocity)
+			global_position.x += other.velocity.x * get_physics_process_delta_time()
+
+			# push upward if bottom player jumps
+			if other.velocity.y < 0 and velocity.y >= 0:
+				velocity.y = other.velocity.y
+
+		return  # IMPORTANT: skip side push when stacked
+
+	# -------------------------
+	# side push
+	# -------------------------
 	if abs(normal.x) > 0.9:
 		if abs(global_position.y - other.global_position.y) < 10:
 			var push_dir = sign(global_position.x - other.global_position.x)

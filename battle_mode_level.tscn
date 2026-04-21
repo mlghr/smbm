@@ -461,16 +461,25 @@ size = Vector2(20, 1000)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uon0r"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0un5b"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_51r86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uon0r"]
+size = Vector2(40, 40)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_51r86"]
+size = Vector2(60, 60)
+
 [node name="Node2D" type="Node2D" unique_id=318383229]
 position = Vector2(-30, 99)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
-position = Vector2(0, -249)
+position = Vector2(30, -400)
 scale = Vector2(4.116481, 4.040177)
-zoom = Vector2(0.75, 0.75)
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
-position = Vector2(363, -80)
+position = Vector2(363, -110)
 script = ExtResource("2_yyrx1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
@@ -484,11 +493,11 @@ sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Die"
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
-position = Vector2(-396, -80)
+position = Vector2(-396, -110)
 script = ExtResource("1_wycyw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
-position = Vector2(-2, 28)
+position = Vector2(1, 31)
 shape = SubResource("CapsuleShape2D_eoaat")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
@@ -506,13 +515,12 @@ position = Vector2(10.000001, 10)
 shape = SubResource("CapsuleShape2D_uon0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Skeleton" unique_id=828676942]
-position = Vector2(6, -13)
+position = Vector2(6, -12)
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_quifu")
 animation = &"Idle"
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
-position = Vector2(0, 26)
 scale = Vector2(1, 0.879)
 physics_material_override = SubResource("PhysicsMaterial_yech5")
 
@@ -525,42 +533,16 @@ shape = SubResource("RectangleShape2D_mrooa")
 scale = Vector2(1892.5675, 93.39949)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
-[node name="LeftPlatform" type="StaticBody2D" parent="." unique_id=1017787490]
-position = Vector2(-642, -162)
-scale = Vector2(0.18160085, 0.3857624)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftPlatform" unique_id=641443091]
-position = Vector2(5.506582, -5.184499)
-scale = Vector2(19.583538, 2.0287795)
-shape = SubResource("RectangleShape2D_mrooa")
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftPlatform" unique_id=56752120]
-scale = Vector2(1892.5675, 93.39949)
-texture = SubResource("PlaceholderTexture2D_yyrx1")
-
-[node name="RightPlatform" type="StaticBody2D" parent="." unique_id=1738182305]
-position = Vector2(642.00006, -160)
-scale = Vector2(0.182, 0.399)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightPlatform" unique_id=635549192]
-position = Vector2(5.4945188, -7.5187597)
-scale = Vector2(18.7044, 1.72802)
-shape = SubResource("RectangleShape2D_mrooa")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightPlatform" unique_id=780167616]
-scale = Vector2(1892.5675, 93.39949)
-texture = SubResource("PlaceholderTexture2D_yyrx1")
-
-[node name="TopPlatform" type="StaticBody2D" parent="." unique_id=144762596]
+[node name="MiddlePlatform" type="StaticBody2D" parent="." unique_id=144762596]
 position = Vector2(-5, -285)
 scale = Vector2(0.24000227, 0.3256085)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPlatform" unique_id=1099840487]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlatform" unique_id=1099840487]
 position = Vector2(4.1764526, -3.071167)
 scale = Vector2(18.916885, 2.0287795)
 shape = SubResource("RectangleShape2D_mrooa")
 
-[node name="Sprite2D" type="Sprite2D" parent="TopPlatform" unique_id=1903032124]
+[node name="Sprite2D" type="Sprite2D" parent="MiddlePlatform" unique_id=1903032124]
 scale = Vector2(1892.5675, 93.39949)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
@@ -576,6 +558,7 @@ shape = SubResource("RectangleShape2D_eoaat")
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=1111959600]
+visible = false
 position = Vector2(933, -438)
 physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
@@ -583,3 +566,149 @@ physics_material_override = SubResource("PhysicsMaterial_uon0r")
 shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
+
+[node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=1343212116]
+position = Vector2(-660, -180)
+physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="Block1" type="StaticBody2D" parent="LowLeftPlatform" unique_id=1614997662]
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block1" unique_id=531251481]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block1" unique_id=1532000897]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block2" type="StaticBody2D" parent="LowLeftPlatform" unique_id=764269220]
+position = Vector2(60, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block2" unique_id=676747418]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block2" unique_id=185150411]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block3" type="StaticBody2D" parent="LowLeftPlatform" unique_id=1643664576]
+position = Vector2(120, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block3" unique_id=1341060318]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block3" unique_id=860180219]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block4" type="StaticBody2D" parent="LowLeftPlatform" unique_id=480431904]
+position = Vector2(180, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block4" unique_id=98094708]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block4" unique_id=497557099]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block5" type="StaticBody2D" parent="LowLeftPlatform" unique_id=1717566458]
+position = Vector2(240, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block5" unique_id=856372930]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block5" unique_id=1451563966]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block6" type="StaticBody2D" parent="LowLeftPlatform" unique_id=681833544]
+position = Vector2(300, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block6" unique_id=211813150]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block6" unique_id=504782558]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block7" type="StaticBody2D" parent="LowLeftPlatform" unique_id=40780859]
+position = Vector2(360, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowLeftPlatform/Block7" unique_id=1997981229]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowLeftPlatform/Block7" unique_id=581083489]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="LowRightPlatform" type="StaticBody2D" parent="." unique_id=1719131060]
+position = Vector2(400, -180)
+physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="Block1" type="StaticBody2D" parent="LowRightPlatform" unique_id=900110032]
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block1" unique_id=261389273]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block1" unique_id=914212596]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block2" type="StaticBody2D" parent="LowRightPlatform" unique_id=1587538716]
+position = Vector2(60, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block2" unique_id=14133235]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block2" unique_id=97721645]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block3" type="StaticBody2D" parent="LowRightPlatform" unique_id=261284065]
+position = Vector2(120, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block3" unique_id=1392922236]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block3" unique_id=1826245534]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block4" type="StaticBody2D" parent="LowRightPlatform" unique_id=1727964676]
+position = Vector2(180, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block4" unique_id=1171538295]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block4" unique_id=1011311316]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block5" type="StaticBody2D" parent="LowRightPlatform" unique_id=2112798589]
+position = Vector2(240, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block5" unique_id=678707673]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block5" unique_id=2055876290]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block6" type="StaticBody2D" parent="LowRightPlatform" unique_id=457935192]
+position = Vector2(300, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block6" unique_id=2053609703]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block6" unique_id=1593090910]
+texture = SubResource("PlaceholderTexture2D_51r86")
+
+[node name="Block7" type="StaticBody2D" parent="LowRightPlatform" unique_id=59758347]
+position = Vector2(360, 0)
+physics_material_override = SubResource("PhysicsMaterial_51r86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowRightPlatform/Block7" unique_id=376369509]
+shape = SubResource("RectangleShape2D_uon0r")
+
+[node name="Sprite2D" type="Sprite2D" parent="LowRightPlatform/Block7" unique_id=1979030116]
+texture = SubResource("PlaceholderTexture2D_51r86")
