@@ -453,7 +453,7 @@ animations = [{
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(1500, 60)
+size = Vector2(1594, 60)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
 size = Vector2(1600, 60)
@@ -530,9 +530,12 @@ position = Vector2(8, 0)
 physics_material_override = SubResource("PhysicsMaterial_yech5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
+position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
+position = Vector2(6.5, 0)
+scale = Vector2(1.008125, 1)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1471239991]
@@ -541,7 +544,7 @@ scale = Vector2(0.99999994, 1)
 physics_material_override = SubResource("PhysicsMaterial_eoaat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1405387256]
-position = Vector2(234.00009, 7)
+position = Vector2(180.00003, 5)
 shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
@@ -551,7 +554,7 @@ position = Vector2(920, -440)
 physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
-position = Vector2(-171, 10)
+position = Vector2(-109, 15)
 shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
