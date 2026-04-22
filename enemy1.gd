@@ -26,3 +26,12 @@ func _physics_process(delta):
 		if abs(normal.x) > 0.9:
 			direction *= -1
 			$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
+			
+		# use attack animation if close to player
+		var players = get_tree().get_nodes_in_group("player")
+		print(players)
+		var closest_player = 
+			
+		#if distance < 200:
+			#$AnimatedSprite2D.play("Attack")
+			

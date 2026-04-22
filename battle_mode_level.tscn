@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="6_eoaat"]
 [ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://platformer_jumping/jump_10.wav" id="7_0un5b"]
 [ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="7_uon0r"]
+[ext_resource type="Texture2D" uid="uid://cmpxjoso3nr4l" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
 
@@ -306,6 +307,46 @@ height = 60.0
 radius = 40.0
 height = 104.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd1ar"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yyr7j"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2ip7"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rome0"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72n4p"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00h3v"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtmq4"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vronh"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifcy0"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17j3k"]
+atlas = ExtResource("8_hevgv")
+region = Rect2(864, 0, 96, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a22dx"]
 atlas = ExtResource("6_eoaat")
 region = Rect2(0, 0, 96, 64)
@@ -380,6 +421,41 @@ region = Rect2(864, 0, 96, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_quifu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd1ar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yyr7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2ip7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rome0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72n4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00h3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtmq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vronh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifcy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17j3k")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 30.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a22dx")
@@ -524,6 +600,7 @@ position = Vector2(16, -11)
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_quifu")
 animation = &"Idle"
+frame_progress = 0.5781943
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(8, 0)
