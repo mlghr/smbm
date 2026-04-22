@@ -599,8 +599,7 @@ shape = SubResource("CapsuleShape2D_uon0r")
 position = Vector2(16, -11)
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_quifu")
-animation = &"Idle"
-frame_progress = 0.5781943
+animation = &"Attack"
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(8, 0)
