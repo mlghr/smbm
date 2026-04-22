@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 600
+var speed = 550
 var jump_velocity = -800
 var gravity = 1500
 var jump_cut_multiplier = 0.6
@@ -44,10 +44,11 @@ func handle_input():
 func handle_jump():
 	if Input.is_action_just_pressed("jump2") and is_on_floor():
 		velocity.y = jump_velocity
+		$AudioStreamPlayer2D.play()
 
 	if Input.is_action_just_released("jump2") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
-
+		
 # -------------------------
 # animation
 # -------------------------

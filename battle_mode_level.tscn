@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
 [ext_resource type="Script" uid="uid://cv3bbj8n740c0" path="res://enemy1.gd" id="5_yech5"]
 [ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="6_eoaat"]
+[ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://platformer_jumping/jump_10.wav" id="7_0un5b"]
 [ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="7_uon0r"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://block.tscn" id="9_uon0r"]
+[ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
 radius = 30.0
@@ -451,10 +453,10 @@ animations = [{
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(1446, 60)
+size = Vector2(1500, 60)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
-size = Vector2(2000, 60)
+size = Vector2(1600, 60)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoaat"]
 
@@ -469,7 +471,7 @@ size = Vector2(20, 1000)
 position = Vector2(-30, 98)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
-position = Vector2(0, -400)
+position = Vector2(0, -504)
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(363, -91)
@@ -485,6 +487,11 @@ scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Die"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=126059197]
+position = Vector2(-363, -413)
+stream = ExtResource("7_0un5b")
+volume_db = -15.0
+
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
 position = Vector2(-396, -93)
 script = ExtResource("1_wycyw")
@@ -498,6 +505,11 @@ position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Die"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1340814021]
+position = Vector2(-363, -413)
+stream = ExtResource("7_0un5b")
+volume_db = -15.0
 
 [node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550 groups=["enemy"]]
 position = Vector2(29, -493)
@@ -514,19 +526,17 @@ sprite_frames = SubResource("SpriteFrames_quifu")
 animation = &"Idle"
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
+position = Vector2(8, 0)
 physics_material_override = SubResource("PhysicsMaterial_yech5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
-position = Vector2(30, 0)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
-position = Vector2(30.49997, 0)
-scale = Vector2(0.72449994, 1)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1471239991]
-position = Vector2(-938.00006, -440)
+position = Vector2(-960, -440)
 scale = Vector2(0.99999994, 1)
 physics_material_override = SubResource("PhysicsMaterial_eoaat")
 
@@ -537,7 +547,7 @@ shape = SubResource("RectangleShape2D_eoaat")
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=1111959600]
-position = Vector2(933, -440)
+position = Vector2(920, -440)
 physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
@@ -550,37 +560,37 @@ shape = SubResource("RectangleShape2D_eoaat")
 position = Vector2(-120, -400)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
-[node name="Block1" parent="MiddleCenterPlatform" unique_id=1671074503 instance=ExtResource("9_uon0r")]
+[node name="Block1" parent="MiddleCenterPlatform" unique_id=1732023892 instance=ExtResource("9_uon0r")]
+position = Vector2(-120, 0)
 
-[node name="Block2" parent="MiddleCenterPlatform" unique_id=45624421 instance=ExtResource("9_uon0r")]
+[node name="Block2" parent="MiddleCenterPlatform" unique_id=676860851 instance=ExtResource("9_uon0r")]
+position = Vector2(-60, 0)
+
+[node name="Block3" parent="MiddleCenterPlatform" unique_id=1671074503 instance=ExtResource("9_uon0r")]
+
+[node name="Block4" parent="MiddleCenterPlatform" unique_id=45624421 instance=ExtResource("9_uon0r")]
 position = Vector2(60, 0)
 
-[node name="Block3" parent="MiddleCenterPlatform" unique_id=1589314970 instance=ExtResource("9_uon0r")]
+[node name="Block5" parent="MiddleCenterPlatform" unique_id=1589314970 instance=ExtResource("9_uon0r")]
 position = Vector2(120, 0)
-
-[node name="Block4" parent="MiddleCenterPlatform" unique_id=1604192554 instance=ExtResource("9_uon0r")]
-position = Vector2(240, 0)
-
-[node name="Block5" parent="MiddleCenterPlatform" unique_id=1947334263 instance=ExtResource("9_uon0r")]
-position = Vector2(300, 0)
 
 [node name="Block6" parent="MiddleCenterPlatform" unique_id=2065272587 instance=ExtResource("9_uon0r")]
 position = Vector2(180, 0)
 
-[node name="Block7" parent="MiddleCenterPlatform" unique_id=676860851 instance=ExtResource("9_uon0r")]
-position = Vector2(-60, 0)
+[node name="Block7" parent="MiddleCenterPlatform" unique_id=1604192554 instance=ExtResource("9_uon0r")]
+position = Vector2(240, 0)
 
-[node name="Block8" parent="MiddleCenterPlatform" unique_id=1023063651 instance=ExtResource("9_uon0r")]
+[node name="Block8" parent="MiddleCenterPlatform" unique_id=1947334263 instance=ExtResource("9_uon0r")]
+position = Vector2(300, 0)
+
+[node name="Block9" parent="MiddleCenterPlatform" unique_id=1023063651 instance=ExtResource("9_uon0r")]
 position = Vector2(360, 0)
-
-[node name="Block9" parent="MiddleCenterPlatform" unique_id=1732023892 instance=ExtResource("9_uon0r")]
-position = Vector2(-120, 0)
 
 [node name="Block10" parent="MiddleCenterPlatform" unique_id=1546870743 instance=ExtResource("9_uon0r")]
 position = Vector2(420, 0)
 
 [node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=1343212116]
-position = Vector2(-600, -180)
+position = Vector2(-648, -180)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
 [node name="Block1" parent="LowLeftPlatform" unique_id=402579789 instance=ExtResource("9_uon0r")]
@@ -610,7 +620,7 @@ position = Vector2(360, 0)
 position = Vector2(420, 0)
 
 [node name="LowRightPlatform" type="StaticBody2D" parent="." unique_id=1719131060]
-position = Vector2(360, -180)
+position = Vector2(376, -180)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
 [node name="Block1" parent="LowRightPlatform" unique_id=1632921447 instance=ExtResource("9_uon0r")]
@@ -638,3 +648,9 @@ position = Vector2(-60, 0)
 
 [node name="Block9" parent="LowRightPlatform" unique_id=771180093 instance=ExtResource("9_uon0r")]
 position = Vector2(-120, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
+position = Vector2(0, -504)
+stream = ExtResource("11_0un5b")
+volume_db = -3.0
+autoplay = true
