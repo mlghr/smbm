@@ -1,11 +1,9 @@
 [gd_scene format=3 uid="uid://do7vngfuokk5"]
 
 [ext_resource type="Script" uid="uid://bglb6hd8h4hey" path="res://bump.gd" id="1_2wby2"]
+[ext_resource type="Texture2D" uid="uid://d3ooc8ljgno86" path="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Stone/Photoreal_Stone_03-512x512.png" id="2_xfwl5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wby2"]
-size = Vector2(60, 60)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ab6iy"]
 size = Vector2(60, 60)
 
 [node name="StaticBody2D" type="StaticBody2D" unique_id=1671074503]
@@ -15,4 +13,6 @@ script = ExtResource("1_2wby2")
 shape = SubResource("RectangleShape2D_2wby2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945790155]
-texture = SubResource("PlaceholderTexture2D_ab6iy")
+texture = ExtResource("2_xfwl5")
+region_enabled = true
+region_rect = Rect2(-4, -4, 520, 512)
