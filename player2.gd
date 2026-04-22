@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 600
-var jump_velocity = -700
+var jump_velocity = -800
 var gravity = 1500
 var jump_cut_multiplier = 0.6
 
@@ -74,11 +74,19 @@ func handle_collisions():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var other = collision.get_collider()
+		var normal = collision.get_normal()
 
+		# hit block from below
+		if normal.y > 0.9:
+			if other.has_method("bump"):
+				other.bump()
+
+		# enemy hit
 		if other.is_in_group("enemy"):
 			is_dead = true
 			return
 
+		# player interactions
 		if other is CharacterBody2D:
 			handle_push(collision, other)
 
@@ -101,7 +109,7 @@ func handle_push(collision, other):
 			if other.velocity.y < 0 and velocity.y >= 0:
 				velocity.y = other.velocity.y
 
-		return  # IMPORTANT: skip side push when stacked
+		return  # skip side push when stacked
 
 	# -------------------------
 	# side push

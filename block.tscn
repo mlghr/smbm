@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://do7vngfuokk5"]
+
+[ext_resource type="Script" uid="uid://bglb6hd8h4hey" path="res://bump.gd" id="1_2wby2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2wby2"]
+size = Vector2(60, 60)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ab6iy"]
+size = Vector2(60, 60)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=1671074503]
+script = ExtResource("1_2wby2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958430341]
+shape = SubResource("RectangleShape2D_2wby2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945790155]
+texture = SubResource("PlaceholderTexture2D_ab6iy")
