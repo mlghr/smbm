@@ -25,7 +25,7 @@ func spawn_skeleton():
 	if spawn_points.is_empty():
 		print("no spawn points found")
 		return
-
+	
 	var point = spawn_points.pick_random()
 	var skeleton = skeleton_scene.instantiate()
 	
@@ -33,6 +33,11 @@ func spawn_skeleton():
 	
 	add_child(skeleton)
 
+	if point.name == "SpawnPoint2":
+		skeleton.direction = -1
+		var sprite = skeleton.get_node("AnimatedSprite2D")
+		sprite.flip_h = true
+			
 # -------------------------
 # input for testing
 # -------------------------

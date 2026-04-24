@@ -327,10 +327,10 @@ position = Vector2(0, -504)
 position = Vector2(0, -853)
 
 [node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(-700, 0)
+position = Vector2(-700, 150)
 
 [node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(700, 0)
+position = Vector2(700, 150)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
