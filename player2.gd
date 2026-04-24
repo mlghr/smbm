@@ -150,9 +150,4 @@ func handle_screen_wrap():
 	if global_position.x < left_bound - sprite_width:
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
-		global_position.x -= width		
-
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		print("hit enemy via area, player 2")
-		is_dead = true
+		global_position.x -= width

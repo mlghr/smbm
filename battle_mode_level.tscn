@@ -364,10 +364,6 @@ position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
 
-[node name="Hitbox" type="Area2D" parent="Player1" unique_id=663815794]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/Hitbox" unique_id=1740306776]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
 position = Vector2(0, 30)
 shape = SubResource("CapsuleShape2D_yech5")
@@ -390,10 +386,6 @@ sprite_frames = SubResource("SpriteFrames_0un5b")
 position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
-
-[node name="Hitbox" type="Area2D" parent="Player2" unique_id=93697861]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/Hitbox" unique_id=1860248996]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
 position = Vector2(1, 31)
@@ -605,5 +597,3 @@ stream = ExtResource("11_0un5b")
 volume_db = -3.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
-[connection signal="body_entered" from="Player1/Hitbox" to="Player1" method="_on_hitbox_body_entered"]
-[connection signal="body_entered" from="Player2/Hitbox" to="Player2" method="_on_hitbox_body_entered"]
