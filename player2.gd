@@ -5,9 +5,13 @@ var jump_velocity = -800
 var gravity = 1500
 var jump_cut_multiplier = 0.6
 
+
 var standing_on_body = false
 var is_dead = false
 var death_played = false
+
+
+
 
 func _physics_process(delta):
 	if is_dead:
@@ -20,6 +24,7 @@ func _physics_process(delta):
 	move_and_slide()
 	handle_collisions()
 	update_animation()
+
 
 # -------------------------
 # core systems, inputs, etc.
