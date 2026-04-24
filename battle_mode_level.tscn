@@ -1,15 +1,12 @@
 [gd_scene format=3 uid="uid://cgw1br63sxp8y"]
 
+[ext_resource type="Script" uid="uid://d1ktsos6rffgp" path="res://manager_script.gd" id="1_1x66t"]
 [ext_resource type="Script" uid="uid://bk23c15bgtoyp" path="res://player2.gd" id="1_wycyw"]
 [ext_resource type="Texture2D" uid="uid://do2x6n7y2gjss" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Die.png" id="2_eoaat"]
 [ext_resource type="Texture2D" uid="uid://d2xf871oqe5k2" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="2_mrooa"]
 [ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
-[ext_resource type="Script" uid="uid://cv3bbj8n740c0" path="res://enemy1.gd" id="5_yech5"]
-[ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="6_eoaat"]
 [ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://platformer_jumping/jump_10.wav" id="7_0un5b"]
-[ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="7_uon0r"]
-[ext_resource type="Texture2D" uid="uid://cmpxjoso3nr4l" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
 
@@ -303,229 +300,6 @@ animations = [{
 radius = 30.0
 height = 60.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uon0r"]
-radius = 40.0
-height = 104.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sd1ar"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(0, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yyr7j"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(96, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2ip7"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(192, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rome0"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(288, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_72n4p"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(384, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_00h3v"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(480, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rtmq4"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(576, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vronh"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(672, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ifcy0"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(768, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_17j3k"]
-atlas = ExtResource("8_hevgv")
-region = Rect2(864, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a22dx"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(0, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtxc7"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(96, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbvug"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(192, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_10dar"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(288, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgx1w"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(384, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s10r6"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(480, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv6cm"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(576, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4cmxt"]
-atlas = ExtResource("6_eoaat")
-region = Rect2(672, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dxa7v"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(0, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o0p6m"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(96, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ajf7"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(192, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t6f61"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(288, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7chv1"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(384, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1pf2"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(480, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n6ngu"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(576, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qm5ik"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(672, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5sm0m"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(768, 0, 96, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c3714"]
-atlas = ExtResource("7_uon0r")
-region = Rect2(864, 0, 96, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_quifu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sd1ar")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yyr7j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j2ip7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rome0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_72n4p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_00h3v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rtmq4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vronh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ifcy0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_17j3k")
-}],
-"loop": true,
-"name": &"Attack",
-"speed": 30.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a22dx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dtxc7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbvug")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_10dar")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kgx1w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s10r6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yv6cm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4cmxt")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dxa7v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o0p6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ajf7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t6f61")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7chv1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r1pf2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n6ngu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qm5ik")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5sm0m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c3714")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 12.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
@@ -545,9 +319,20 @@ size = Vector2(20, 1000)
 
 [node name="Node2D" type="Node2D" unique_id=318383229]
 position = Vector2(-30, 98)
+script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
 position = Vector2(0, -504)
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
+position = Vector2(-674, -720)
+
+[node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=652347040]
+position = Vector2(0, -56)
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
+wait_time = 3.0
+autostart = true
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(363, -91)
@@ -587,20 +372,6 @@ position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
 
-[node name="Skeleton" type="CharacterBody2D" parent="." unique_id=576498550 groups=["enemy"]]
-position = Vector2(29, -493)
-script = ExtResource("5_yech5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton" unique_id=498977481]
-position = Vector2(10.000001, 10)
-shape = SubResource("CapsuleShape2D_uon0r")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Skeleton" unique_id=828676942]
-position = Vector2(16, -11)
-scale = Vector2(2.0085523, 2.2612581)
-sprite_frames = SubResource("SpriteFrames_quifu")
-animation = &"Attack"
-
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(8, 0)
 physics_material_override = SubResource("PhysicsMaterial_yech5")
@@ -635,6 +406,66 @@ shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
 
+[node name="TopLeftPlatform" type="StaticBody2D" parent="." unique_id=188120156]
+position = Vector2(-584, -600)
+physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="Block1" parent="TopLeftPlatform" unique_id=1671074503 instance=ExtResource("9_uon0r")]
+position = Vector2(-120, 0)
+
+[node name="Block2" parent="TopLeftPlatform" unique_id=1394850703 instance=ExtResource("9_uon0r")]
+position = Vector2(-60, 0)
+
+[node name="Block3" parent="TopLeftPlatform" unique_id=1429378405 instance=ExtResource("9_uon0r")]
+
+[node name="Block4" parent="TopLeftPlatform" unique_id=73984971 instance=ExtResource("9_uon0r")]
+position = Vector2(60, 0)
+
+[node name="Block5" parent="TopLeftPlatform" unique_id=1619153182 instance=ExtResource("9_uon0r")]
+position = Vector2(120, 0)
+
+[node name="Block6" parent="TopLeftPlatform" unique_id=358733716 instance=ExtResource("9_uon0r")]
+position = Vector2(180, 0)
+
+[node name="Block7" parent="TopLeftPlatform" unique_id=2045939569 instance=ExtResource("9_uon0r")]
+position = Vector2(240, 0)
+
+[node name="Block8" parent="TopLeftPlatform" unique_id=1905983873 instance=ExtResource("9_uon0r")]
+position = Vector2(300, 0)
+
+[node name="Block9" parent="TopLeftPlatform" unique_id=1344981352 instance=ExtResource("9_uon0r")]
+position = Vector2(360, 0)
+
+[node name="TopRightPlatform" type="StaticBody2D" parent="." unique_id=1258461033]
+position = Vector2(376, -600)
+physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="Block1" parent="TopRightPlatform" unique_id=1824490285 instance=ExtResource("9_uon0r")]
+position = Vector2(-120, 0)
+
+[node name="Block2" parent="TopRightPlatform" unique_id=1951445579 instance=ExtResource("9_uon0r")]
+position = Vector2(-60, 0)
+
+[node name="Block3" parent="TopRightPlatform" unique_id=353197658 instance=ExtResource("9_uon0r")]
+
+[node name="Block4" parent="TopRightPlatform" unique_id=610559692 instance=ExtResource("9_uon0r")]
+position = Vector2(60, 0)
+
+[node name="Block5" parent="TopRightPlatform" unique_id=108526550 instance=ExtResource("9_uon0r")]
+position = Vector2(120, 0)
+
+[node name="Block6" parent="TopRightPlatform" unique_id=812332163 instance=ExtResource("9_uon0r")]
+position = Vector2(180, 0)
+
+[node name="Block7" parent="TopRightPlatform" unique_id=1971512583 instance=ExtResource("9_uon0r")]
+position = Vector2(240, 0)
+
+[node name="Block8" parent="TopRightPlatform" unique_id=718830720 instance=ExtResource("9_uon0r")]
+position = Vector2(300, 0)
+
+[node name="Block9" parent="TopRightPlatform" unique_id=347656003 instance=ExtResource("9_uon0r")]
+position = Vector2(360, 0)
+
 [node name="MiddleCenterPlatform" type="StaticBody2D" parent="." unique_id=119142186]
 position = Vector2(-120, -400)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
@@ -645,7 +476,7 @@ position = Vector2(-120, 0)
 [node name="Block2" parent="MiddleCenterPlatform" unique_id=676860851 instance=ExtResource("9_uon0r")]
 position = Vector2(-60, 0)
 
-[node name="Block3" parent="MiddleCenterPlatform" unique_id=1671074503 instance=ExtResource("9_uon0r")]
+[node name="Block3" parent="MiddleCenterPlatform" unique_id=398793171 instance=ExtResource("9_uon0r")]
 
 [node name="Block4" parent="MiddleCenterPlatform" unique_id=45624421 instance=ExtResource("9_uon0r")]
 position = Vector2(60, 0)
@@ -668,67 +499,69 @@ position = Vector2(360, 0)
 [node name="Block10" parent="MiddleCenterPlatform" unique_id=1546870743 instance=ExtResource("9_uon0r")]
 position = Vector2(420, 0)
 
-[node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=1343212116]
-position = Vector2(-648, -180)
+[node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=2053860559]
+position = Vector2(-584, -190)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
-[node name="Block1" parent="LowLeftPlatform" unique_id=402579789 instance=ExtResource("9_uon0r")]
-
-[node name="Block2" parent="LowLeftPlatform" unique_id=1900287436 instance=ExtResource("9_uon0r")]
-position = Vector2(60, 0)
-
-[node name="Block3" parent="LowLeftPlatform" unique_id=251698014 instance=ExtResource("9_uon0r")]
-position = Vector2(120, 0)
-
-[node name="Block4" parent="LowLeftPlatform" unique_id=1497009915 instance=ExtResource("9_uon0r")]
-position = Vector2(240, 0)
-
-[node name="Block5" parent="LowLeftPlatform" unique_id=1156533135 instance=ExtResource("9_uon0r")]
-position = Vector2(300, 0)
-
-[node name="Block6" parent="LowLeftPlatform" unique_id=1925451877 instance=ExtResource("9_uon0r")]
-position = Vector2(180, 0)
-
-[node name="Block7" parent="LowLeftPlatform" unique_id=1202151958 instance=ExtResource("9_uon0r")]
-position = Vector2(-60, 0)
-
-[node name="Block8" parent="LowLeftPlatform" unique_id=1844829936 instance=ExtResource("9_uon0r")]
-position = Vector2(360, 0)
-
-[node name="Block9" parent="LowLeftPlatform" unique_id=543175927 instance=ExtResource("9_uon0r")]
-position = Vector2(420, 0)
-
-[node name="LowRightPlatform" type="StaticBody2D" parent="." unique_id=1719131060]
-position = Vector2(376, -180)
-physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="Block1" parent="LowRightPlatform" unique_id=1632921447 instance=ExtResource("9_uon0r")]
-
-[node name="Block2" parent="LowRightPlatform" unique_id=1309740487 instance=ExtResource("9_uon0r")]
-position = Vector2(60, 0)
-
-[node name="Block3" parent="LowRightPlatform" unique_id=1717060893 instance=ExtResource("9_uon0r")]
-position = Vector2(120, 0)
-
-[node name="Block4" parent="LowRightPlatform" unique_id=67235750 instance=ExtResource("9_uon0r")]
-position = Vector2(240, 0)
-
-[node name="Block5" parent="LowRightPlatform" unique_id=730040456 instance=ExtResource("9_uon0r")]
-position = Vector2(300, 0)
-
-[node name="Block6" parent="LowRightPlatform" unique_id=1673982488 instance=ExtResource("9_uon0r")]
-position = Vector2(180, 0)
-
-[node name="Block7" parent="LowRightPlatform" unique_id=1549441693 instance=ExtResource("9_uon0r")]
-position = Vector2(360, 0)
-
-[node name="Block8" parent="LowRightPlatform" unique_id=895345951 instance=ExtResource("9_uon0r")]
-position = Vector2(-60, 0)
-
-[node name="Block9" parent="LowRightPlatform" unique_id=771180093 instance=ExtResource("9_uon0r")]
+[node name="Block1" parent="LowLeftPlatform" unique_id=1015326016 instance=ExtResource("9_uon0r")]
 position = Vector2(-120, 0)
+
+[node name="Block2" parent="LowLeftPlatform" unique_id=2114385300 instance=ExtResource("9_uon0r")]
+position = Vector2(-60, 0)
+
+[node name="Block3" parent="LowLeftPlatform" unique_id=190039930 instance=ExtResource("9_uon0r")]
+
+[node name="Block4" parent="LowLeftPlatform" unique_id=1590485198 instance=ExtResource("9_uon0r")]
+position = Vector2(60, 0)
+
+[node name="Block5" parent="LowLeftPlatform" unique_id=2038801213 instance=ExtResource("9_uon0r")]
+position = Vector2(120, 0)
+
+[node name="Block6" parent="LowLeftPlatform" unique_id=328897623 instance=ExtResource("9_uon0r")]
+position = Vector2(180, 0)
+
+[node name="Block7" parent="LowLeftPlatform" unique_id=293789497 instance=ExtResource("9_uon0r")]
+position = Vector2(240, 0)
+
+[node name="Block8" parent="LowLeftPlatform" unique_id=756169817 instance=ExtResource("9_uon0r")]
+position = Vector2(300, 0)
+
+[node name="Block9" parent="LowLeftPlatform" unique_id=1963287990 instance=ExtResource("9_uon0r")]
+position = Vector2(360, 0)
+
+[node name="LowRightPlatform" type="StaticBody2D" parent="." unique_id=543035003]
+position = Vector2(376, -190)
+physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="Block1" parent="LowRightPlatform" unique_id=2114525421 instance=ExtResource("9_uon0r")]
+position = Vector2(-120, 0)
+
+[node name="Block2" parent="LowRightPlatform" unique_id=254944872 instance=ExtResource("9_uon0r")]
+position = Vector2(-60, 0)
+
+[node name="Block3" parent="LowRightPlatform" unique_id=2141383111 instance=ExtResource("9_uon0r")]
+
+[node name="Block4" parent="LowRightPlatform" unique_id=953512946 instance=ExtResource("9_uon0r")]
+position = Vector2(60, 0)
+
+[node name="Block5" parent="LowRightPlatform" unique_id=2046257487 instance=ExtResource("9_uon0r")]
+position = Vector2(120, 0)
+
+[node name="Block6" parent="LowRightPlatform" unique_id=1918971294 instance=ExtResource("9_uon0r")]
+position = Vector2(180, 0)
+
+[node name="Block7" parent="LowRightPlatform" unique_id=1554086678 instance=ExtResource("9_uon0r")]
+position = Vector2(240, 0)
+
+[node name="Block8" parent="LowRightPlatform" unique_id=1214186064 instance=ExtResource("9_uon0r")]
+position = Vector2(300, 0)
+
+[node name="Block9" parent="LowRightPlatform" unique_id=1352367559 instance=ExtResource("9_uon0r")]
+position = Vector2(360, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
 position = Vector2(0, -504)
 stream = ExtResource("11_0un5b")
 volume_db = -3.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
