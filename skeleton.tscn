@@ -5,10 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="3_rwpf0"]
 [ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="4_ew5mc"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft6oh"]
-radius = 50.0
-height = 105.45
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd1ar"]
 atlas = ExtResource("2_ymvsc")
 region = Rect2(0, 0, 96, 64)
@@ -228,14 +224,25 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=133764709]
-script = ExtResource("1_uaaco")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft6oh"]
+radius = 44.49
+height = 108.27
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
-position = Vector2(0, 24)
-shape = SubResource("CapsuleShape2D_ft6oh")
+[node name="Skeleton" type="CharacterBody2D" unique_id=133764709]
+safe_margin = 0.8
+script = ExtResource("1_uaaco")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336369097]
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Attack"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=34382789]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
+position = Vector2(0, 20)
+shape = SubResource("CapsuleShape2D_ft6oh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
+position = Vector2(0, 20)
+shape = SubResource("CapsuleShape2D_ft6oh")
