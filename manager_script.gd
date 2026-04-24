@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var skeleton_scene = preload("res://Skeleton.tscn")
+@onready var skeleton_scene = preload("res://skeleton.tscn")
 @onready var spawn_points = $SpawnPoints.get_children()
 
 # settings
@@ -46,5 +46,5 @@ func _input(event):
 # -------------------------
 
 func _on_SpawnTimer_timeout():
-	print("timeout fired")
+	print("skeleton spawned")
 	spawn_skeleton()

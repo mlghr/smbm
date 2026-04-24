@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="4_ew5mc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft6oh"]
-radius = 40.0
+radius = 50.0
 height = 105.45
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd1ar"]

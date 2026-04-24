@@ -318,17 +318,19 @@ size = Vector2(20, 1000)
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0un5b"]
 
 [node name="Node2D" type="Node2D" unique_id=318383229]
-position = Vector2(-30, 98)
 script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
 position = Vector2(0, -504)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
-position = Vector2(-674, -720)
+position = Vector2(0, -853)
 
 [node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(0, -56)
+position = Vector2(-700, 0)
+
+[node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=922515098]
+position = Vector2(700, 0)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
