@@ -15,7 +15,6 @@ func _ready():
 	if has_node("SpawnTimer"):
 		$SpawnTimer.wait_time = spawn_interval
 		$SpawnTimer.start()
-		print("timer fired")
 
 # -------------------------
 # spawn logic
@@ -23,7 +22,6 @@ func _ready():
 
 func spawn_skeleton():
 	if spawn_points.is_empty():
-		print("no spawn points found")
 		return
 	
 	var point = spawn_points.pick_random()
@@ -51,5 +49,4 @@ func _input(event):
 # -------------------------
 
 func _on_SpawnTimer_timeout():
-	print("skeleton spawned")
 	spawn_skeleton()
