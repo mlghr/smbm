@@ -327,10 +327,10 @@ position = Vector2(0, -504)
 position = Vector2(0, -853)
 
 [node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(-700, 150)
+position = Vector2(-450, 150)
 
 [node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(700, 150)
+position = Vector2(450, 150)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
@@ -387,28 +387,26 @@ scale = Vector2(1.0040625, 1)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
 
 [node name="LeftWall" type="StaticBody2D" parent="." unique_id=1471239991]
-position = Vector2(-960, -440)
+position = Vector2(-510, -400)
 scale = Vector2(0.99999994, 1)
 physics_material_override = SubResource("PhysicsMaterial_eoaat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1405387256]
-position = Vector2(180.00003, 5)
 shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
 
 [node name="RightWall" type="StaticBody2D" parent="." unique_id=1111959600]
-position = Vector2(920, -440)
+position = Vector2(510, -400)
 physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
-position = Vector2(-109, 15)
 shape = SubResource("RectangleShape2D_eoaat")
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
 
 [node name="TopLeftPlatform" type="StaticBody2D" parent="." unique_id=188120156]
-position = Vector2(-240, -600)
+position = Vector2(-150, -600)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
 [node name="Block1" parent="TopLeftPlatform" unique_id=1671074503 instance=ExtResource("9_uon0r")]
@@ -438,7 +436,7 @@ position = Vector2(-420, 0)
 position = Vector2(-480, 0)
 
 [node name="TopRightPlatform" type="StaticBody2D" parent="." unique_id=1258461033]
-position = Vector2(240, -600)
+position = Vector2(150, -600)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
 
 [node name="Block1" parent="TopRightPlatform" unique_id=1824490285 instance=ExtResource("9_uon0r")]
@@ -496,22 +494,22 @@ position = Vector2(-210, 0)
 position = Vector2(-150, 0)
 
 [node name="Block12" parent="MiddleCenterPlatform" unique_id=397979722 instance=ExtResource("9_uon0r")]
-position = Vector2(-600, 0)
+position = Vector2(-390, 0)
 
 [node name="Block13" parent="MiddleCenterPlatform" unique_id=715351200 instance=ExtResource("9_uon0r")]
-position = Vector2(-540, 0)
+position = Vector2(-510, 0)
 
 [node name="Block14" parent="MiddleCenterPlatform" unique_id=1432904902 instance=ExtResource("9_uon0r")]
-position = Vector2(-480, 0)
+position = Vector2(-450, 0)
 
 [node name="Block15" parent="MiddleCenterPlatform" unique_id=1177165406 instance=ExtResource("9_uon0r")]
-position = Vector2(480, 0)
+position = Vector2(450, 0)
 
 [node name="Block16" parent="MiddleCenterPlatform" unique_id=1867673705 instance=ExtResource("9_uon0r")]
-position = Vector2(540, 0)
+position = Vector2(510, 0)
 
 [node name="Block17" parent="MiddleCenterPlatform" unique_id=973395444 instance=ExtResource("9_uon0r")]
-position = Vector2(600, 0)
+position = Vector2(390, 0)
 
 [node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=2053860559]
 position = Vector2(-150, -190)
