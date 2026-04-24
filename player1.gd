@@ -19,7 +19,14 @@ func _physics_process(delta):
 	handle_jump()
 	move_and_slide()
 	handle_collisions()
+	handle_screen_wrap()
 	update_animation()
+
+func _process(delta):
+	# keep wrap sprite in sync
+	$WrapSprite.animation = $AnimatedSprite2D.animation
+	$WrapSprite.frame = $AnimatedSprite2D.frame
+	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h
 
 # -------------------------
 # core systems, inputs, etc.
@@ -84,6 +91,7 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
+			print("hit enemy")
 			is_dead = true
 			return
 
@@ -94,28 +102,57 @@ func handle_collisions():
 func handle_push(collision, other):
 	var normal = collision.get_normal()
 
-	# -------------------------
 	# vertical stacking (standing on another player)
-	# -------------------------
 	if normal.y < -0.9:
 		standing_on_body = true
 
-		# require stronger alignment so side overlap doesn't interfere
 		if abs(global_position.x - other.global_position.x) < 20:
-			
-			# carry horizontally using position (not velocity)
 			global_position.x += other.velocity.x * get_physics_process_delta_time()
 
-			# push upward if bottom player jumps
 			if other.velocity.y < 0 and velocity.y >= 0:
 				velocity.y = other.velocity.y
 
-		return  # skip side push when stacked
+		return
 
-	# -------------------------
 	# side push
-	# -------------------------
 	if abs(normal.x) > 0.9:
 		if abs(global_position.y - other.global_position.y) < 10:
 			var push_dir = sign(global_position.x - other.global_position.x)
 			velocity.x += push_dir * 400
+
+# -------------------------
+# screen wrap, allows peeking
+# -------------------------
+
+func handle_screen_wrap():
+	var left_bound = -510
+	var right_bound = 510
+	var width = right_bound - left_bound
+
+	var sprite_width = 60
+
+	# hide ghost by default
+	$WrapSprite.visible = false
+
+	# approaching left edge
+	if global_position.x < left_bound + sprite_width:
+		$WrapSprite.visible = true
+		$WrapSprite.global_position = global_position
+		$WrapSprite.global_position.x += width
+
+	# approaching right edge
+	elif global_position.x > right_bound - sprite_width:
+		$WrapSprite.visible = true
+		$WrapSprite.global_position = global_position
+		$WrapSprite.global_position.x -= width
+
+	# actual teleport (off-screen)
+	if global_position.x < left_bound - sprite_width:
+		global_position.x += width
+	elif global_position.x > right_bound + sprite_width:
+		global_position.x -= width
+				
+func _on_hitbox_body_entered(body):
+	if body.is_in_group("enemy"):
+		print("hit enemy via area, player 1")
+		is_dead = true

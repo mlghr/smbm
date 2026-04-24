@@ -10,10 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
-radius = 30.0
-height = 60.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_quifu"]
 atlas = ExtResource("2_eoaat")
 region = Rect2(0, 0, 80, 64)
@@ -296,6 +292,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
+radius = 30.0
+height = 60.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eoaat"]
 radius = 30.0
 height = 60.0
@@ -321,7 +321,8 @@ size = Vector2(20, 1000)
 script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
-position = Vector2(0, -504)
+position = Vector2(0, -423)
+zoom = Vector2(1.25, 1.25)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
 position = Vector2(0, -853)
@@ -332,6 +333,12 @@ position = Vector2(-450, 150)
 [node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=922515098]
 position = Vector2(450, 150)
 
+[node name="TransferPoints" type="Node2D" parent="." unique_id=310315353]
+
+[node name="TransferPoint1" type="Node2D" parent="TransferPoints" unique_id=347603037]
+
+[node name="TransferPoint2" type="Node2D" parent="TransferPoints" unique_id=1856988630]
+
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
 autostart = true
@@ -340,13 +347,15 @@ autostart = true
 position = Vector2(363, -91)
 script = ExtResource("2_yyrx1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
-position = Vector2(0, 30)
-shape = SubResource("CapsuleShape2D_yech5")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Die"
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=544028563]
+position = Vector2(1, -6)
+scale = Vector2(1.772, 2.08)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 animation = &"Die"
 
@@ -355,23 +364,40 @@ position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
 
+[node name="Hitbox" type="Area2D" parent="Player1" unique_id=663815794]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/Hitbox" unique_id=1740306776]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
+position = Vector2(0, 30)
+shape = SubResource("CapsuleShape2D_yech5")
+
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
 position = Vector2(-396, -93)
 script = ExtResource("1_wycyw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
-position = Vector2(1, 31)
-shape = SubResource("CapsuleShape2D_eoaat")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 
+[node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=556946459]
+position = Vector2(1, -6)
+scale = Vector2(1.773, 2.08)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1340814021]
 position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
+
+[node name="Hitbox" type="Area2D" parent="Player2" unique_id=93697861]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/Hitbox" unique_id=1860248996]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
+position = Vector2(1, 31)
+shape = SubResource("CapsuleShape2D_eoaat")
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
 position = Vector2(8, 0)
@@ -393,6 +419,7 @@ physics_material_override = SubResource("PhysicsMaterial_eoaat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1405387256]
 shape = SubResource("RectangleShape2D_eoaat")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
 
@@ -402,6 +429,7 @@ physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
 shape = SubResource("RectangleShape2D_eoaat")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
 
@@ -577,3 +605,5 @@ stream = ExtResource("11_0un5b")
 volume_db = -3.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="body_entered" from="Player1/Hitbox" to="Player1" method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Player2/Hitbox" to="Player2" method="_on_hitbox_body_entered"]
