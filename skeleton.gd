@@ -38,6 +38,11 @@ func handle_collisions():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var normal = collision.get_normal()
+		var other = collision.get_collider()
+		
+		if other.is_in_group("player"):
+			print("enemy hit player")
+			other.is_dead = true
 
 		# turn around on wall hit
 		if abs(normal.x) > 0.9:
