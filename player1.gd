@@ -18,6 +18,7 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	move_and_slide()
+	handle_dash()
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
@@ -55,6 +56,11 @@ func handle_jump():
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
+
+func handle_dash():
+	if Input.is_action_just_pressed("dash"):
+		velocity.x = velocity.x * 3
+		$AudioStreamPlayer2D.play()
 
 # -------------------------
 # animation
