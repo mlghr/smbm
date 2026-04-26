@@ -89,6 +89,5 @@ func update_animation():
 			$AnimatedSprite2D.play("Idle")
 
 func teleport_to(target: Node2D):
-	print("teleporting to:", target.global_position)
 	global_position = target.global_position
 	velocity = Vector2.ZERO

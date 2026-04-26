@@ -7,7 +7,7 @@ extends Node2D
 # settings
 var spawn_on_start = true
 var spawn_interval = 3.0 # seconds 
-var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
+var spawn_active = false # press escape to toggle skeletons spawning for debug purposes
 
 func _ready():
 	if spawn_on_start:
