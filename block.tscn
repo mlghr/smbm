@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wby2"]
 size = Vector2(60, 60)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_im0tn"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_im0tn"]
 size = Vector2(60, 60)
 
@@ -15,5 +17,7 @@ script = ExtResource("1_2wby2")
 shape = SubResource("RectangleShape2D_2wby2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945790155]
+modulate = Color(0.18911925, 0.61280733, 0.9840571, 1)
+material = SubResource("CanvasItemMaterial_im0tn")
 texture = SubResource("PlaceholderTexture2D_im0tn")
 region_rect = Rect2(-4, -4, 520, 512)

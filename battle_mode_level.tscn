@@ -391,7 +391,7 @@ position = Vector2(0, 30)
 shape = SubResource("CapsuleShape2D_yech5")
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
-position = Vector2(-396, -93)
+position = Vector2(-372, -93)
 script = ExtResource("1_wycyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
@@ -422,6 +422,7 @@ position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_mrooa")
 
 [node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
+modulate = Color(0.1882353, 0.6117647, 0.9843137, 1)
 position = Vector2(3.2499478, 0)
 scale = Vector2(1.0040625, 1)
 texture = SubResource("PlaceholderTexture2D_yyrx1")
