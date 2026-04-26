@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://d1ktsos6rffgp" path="res://manager_script.gd" id="1_1x66t"]
 [ext_resource type="Script" uid="uid://bk23c15bgtoyp" path="res://player2.gd" id="1_wycyw"]
+[ext_resource type="Script" uid="uid://qiyfkhnatoo8" path="res://transfer_point_left.gd" id="2_51r86"]
 [ext_resource type="Texture2D" uid="uid://do2x6n7y2gjss" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Die.png" id="2_eoaat"]
 [ext_resource type="Texture2D" uid="uid://d2xf871oqe5k2" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Run.png" id="2_mrooa"]
 [ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://player1.gd" id="2_yyrx1"]
+[ext_resource type="Script" uid="uid://yy4h304wpbs4" path="res://transfer_point_right.gd" id="3_0un5b"]
 [ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://platformer_jumping/jump_10.wav" id="7_0un5b"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
+radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quifu"]
 atlas = ExtResource("2_eoaat")
@@ -317,6 +322,11 @@ size = Vector2(20, 1000)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0un5b"]
 
+[sub_resource type="SystemFont" id="SystemFont_uon0r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_51r86"]
+font = SubResource("SystemFont_uon0r")
+
 [node name="Node2D" type="Node2D" unique_id=318383229]
 script = ExtResource("1_1x66t")
 
@@ -327,17 +337,28 @@ zoom = Vector2(1.25, 1.25)
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
 position = Vector2(0, -853)
 
-[node name="SpawnPoint1" type="Node2D" parent="SpawnPoints" unique_id=652347040]
+[node name="SpawnPointLeft" type="Node2D" parent="SpawnPoints" unique_id=652347040]
 position = Vector2(-450, 150)
 
-[node name="SpawnPoint2" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(450, 150)
+[node name="SpawnPointRight" type="Node2D" parent="SpawnPoints" unique_id=922515098]
+position = Vector2(450, 158)
 
 [node name="TransferPoints" type="Node2D" parent="." unique_id=310315353]
+position = Vector2(0, -853)
 
-[node name="TransferPoint1" type="Node2D" parent="TransferPoints" unique_id=347603037]
+[node name="TransferPointLeft" type="Area2D" parent="TransferPoints" unique_id=976885269 groups=["transfer_points"]]
+position = Vector2(-446, 760)
+script = ExtResource("2_51r86")
 
-[node name="TransferPoint2" type="Node2D" parent="TransferPoints" unique_id=1856988630]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointLeft" unique_id=1038083063]
+shape = SubResource("CircleShape2D_0un5b")
+
+[node name="TransferPointRight" type="Area2D" parent="TransferPoints" unique_id=580964577 groups=["transfer_points"]]
+position = Vector2(442, 760)
+script = ExtResource("3_0un5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointRight" unique_id=1037004946]
+shape = SubResource("CircleShape2D_0un5b")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
@@ -411,7 +432,6 @@ physics_material_override = SubResource("PhysicsMaterial_eoaat")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1405387256]
 shape = SubResource("RectangleShape2D_eoaat")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
 
@@ -421,7 +441,6 @@ physics_material_override = SubResource("PhysicsMaterial_uon0r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
 shape = SubResource("RectangleShape2D_eoaat")
-disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
 
@@ -596,4 +615,14 @@ position = Vector2(0, -504)
 stream = ExtResource("11_0un5b")
 volume_db = -3.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1012483302]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1364828226]
+offset_right = 64.0
+offset_bottom = 23.0
+text = "You Win"
+label_settings = SubResource("LabelSettings_51r86")
+
+[connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
+[connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

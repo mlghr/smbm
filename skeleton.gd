@@ -40,14 +40,13 @@ func handle_collisions():
 		var normal = collision.get_normal()
 		var other = collision.get_collider()
 		
-		if other.is_in_group("player"):
-			print("enemy hit player")
-			other.is_dead = true
-
 		# turn around on wall hit
 		if abs(normal.x) > 0.9:
 			direction *= -1
 			$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
+
+		if other.is_in_group("player"):
+			other.is_dead = true
 
 # -------------------------
 # player tracking
@@ -88,3 +87,8 @@ func update_animation():
 	else:
 		if $AnimatedSprite2D.animation != "Idle":
 			$AnimatedSprite2D.play("Idle")
+
+func teleport_to(target: Node2D):
+	print("teleporting to:", target.global_position)
+	global_position = target.global_position
+	velocity = Vector2.ZERO

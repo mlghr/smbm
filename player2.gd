@@ -91,7 +91,6 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			print("Enemy hit")
 			is_dead = true
 			return
 

@@ -97,12 +97,11 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			print("hit enemy")
 			is_dead = true
 			return
 
 		# player interactions
-		if other is CharacterBody2D:
+		if other.is_in_group("player"):
 			handle_push(collision, other)
 
 func handle_push(collision, other):

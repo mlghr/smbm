@@ -228,7 +228,7 @@ animations = [{
 radius = 44.49
 height = 108.27
 
-[node name="Skeleton" type="CharacterBody2D" unique_id=133764709]
+[node name="Skeleton" type="CharacterBody2D" unique_id=133764709 groups=["enemy"]]
 safe_margin = 0.8
 script = ExtResource("1_uaaco")
 
