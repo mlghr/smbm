@@ -6,12 +6,18 @@ var direction = 1
 
 var closest_player = null
 var closest_distance = INF
+var is_stunned = false
+var stun_played = false
 
 # distances for player tracking
 var dx = 0
 var dy = 0
 
 func _physics_process(delta):
+	if is_stunned:
+		handle_stunned()
+		return
+	
 	apply_gravity(delta)
 	move_enemy()
 	move_and_slide()
@@ -54,6 +60,8 @@ func handle_collisions():
 
 		if other.is_in_group("player"):
 			other.is_dead = true
+			is_stunned = true
+			
 
 # -------------------------
 # player tracking
@@ -91,9 +99,15 @@ func update_animation():
 	if is_on_floor() and abs(velocity.x) > 100:
 		if $AnimatedSprite2D.animation != "Walk":
 			$AnimatedSprite2D.play("Walk")
-	else:
-		if $AnimatedSprite2D.animation != "Idle":
-			$AnimatedSprite2D.play("Idle")
+			
+func handle_stunned():
+	velocity = Vector2.ZERO
+	move_and_slide()
+
+	if not stun_played:
+		print("playing stun animation")
+		stun_played = true
+		$AnimatedSprite2D.play("Die")
 			
 func handle_screen_wrap():
 	var left_bound = -540
