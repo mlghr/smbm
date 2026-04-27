@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 550
-var jump_velocity = -800
+var jump_velocity = -905
 var gravity = 1500
 var jump_cut_multiplier = 0.6
 
@@ -17,8 +17,8 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	handle_input()
 	handle_jump()
-	move_and_slide()
 	handle_dash()
+	move_and_slide()
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
@@ -36,6 +36,9 @@ func _process(delta):
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		if velocity.y > 0:
+			velocity.y = (velocity.y * velocity.y)/(velocity.y * .92)
+			pass
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
@@ -130,8 +133,8 @@ func handle_push(collision, other):
 # -------------------------
 
 func handle_screen_wrap():
-	var left_bound = -510
-	var right_bound = 510
+	var left_bound = -540
+	var right_bound = 540
 	var width = right_bound - left_bound
 
 	var sprite_width = 60

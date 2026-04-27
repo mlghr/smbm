@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 550
-var jump_velocity = -800
+var jump_velocity = -905
 var gravity = 1500
 var jump_cut_multiplier = 0.6
 
@@ -124,8 +124,8 @@ func handle_push(collision, other):
 # -------------------------
 
 func handle_screen_wrap():
-	var left_bound = -510
-	var right_bound = 510
+	var left_bound = -540
+	var right_bound = 540
 	var width = right_bound - left_bound
 
 	var sprite_width = 60
