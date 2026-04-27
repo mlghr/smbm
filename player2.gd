@@ -8,12 +8,14 @@ var jump_cut_multiplier = 0.6
 var standing_on_body = false
 var is_dead = false
 var death_played = false
+var is_game_start = true
 
 func _physics_process(delta):
 	if is_dead:
 		handle_death()
 		return
-
+		
+	#flip_sprite_at_start()
 	apply_gravity(delta)
 	handle_input()
 	handle_jump()
@@ -23,11 +25,20 @@ func _physics_process(delta):
 	update_animation()
 
 func _process(delta):
+	$AnimatedSprite2D.flip_h = true
 	# keep wrap sprite in sync
 	$WrapSprite.animation = $AnimatedSprite2D.animation
 	$WrapSprite.frame = $AnimatedSprite2D.frame
-	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h
-
+	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h	
+	
+#func flip_sprite_at_start():
+	#if is_game_start:
+		#print('setting sprite flip')
+		#$AnimatedSprite2D.flip_h = false
+		#$WrapSprite.flip_h = false
+		#is_game_start = false
+	#print(is_game_start)
+	
 # -------------------------
 # core systems, inputs, etc.
 # -------------------------

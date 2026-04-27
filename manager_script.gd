@@ -36,6 +36,7 @@ func spawn_skeleton():
 	add_child(skeleton)
 	skeleton_count += 1
 
+	# turn the sprite if going through the right transfer since default faces right
 	if point.name == "SpawnPointRight":
 		skeleton.direction = -1
 		var sprite = skeleton.get_node("AnimatedSprite2D")
