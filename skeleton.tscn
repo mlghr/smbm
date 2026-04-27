@@ -232,6 +232,11 @@ height = 108.27
 safe_margin = 0.8
 script = ExtResource("1_uaaco")
 
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1283754499]
+scale = Vector2(2.261, 2.261)
+sprite_frames = SubResource("SpriteFrames_x6jny")
+animation = &"Attack"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336369097]
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_x6jny")

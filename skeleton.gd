@@ -16,8 +16,15 @@ func _physics_process(delta):
 	move_enemy()
 	move_and_slide()
 	handle_collisions()
+	handle_screen_wrap()
 	find_closest_player()
 	update_animation()
+	
+func _process(delta):
+	# keep wrap sprite in sync
+	$WrapSprite.animation = $AnimatedSprite2D.animation
+	$WrapSprite.frame = $AnimatedSprite2D.frame
+	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h
 
 # -------------------------
 # movement
@@ -87,6 +94,34 @@ func update_animation():
 	else:
 		if $AnimatedSprite2D.animation != "Idle":
 			$AnimatedSprite2D.play("Idle")
+			
+func handle_screen_wrap():
+	var left_bound = -540
+	var right_bound = 540
+	var width = right_bound - left_bound
+
+	var sprite_width = 60
+
+	# hide ghost by default
+	$WrapSprite.visible = false
+
+	# approaching left edge
+	if global_position.x < left_bound + sprite_width:
+		$WrapSprite.visible = true
+		$WrapSprite.global_position = global_position
+		$WrapSprite.global_position.x += width
+
+	# approaching right edge
+	elif global_position.x > right_bound - sprite_width:
+		$WrapSprite.visible = true
+		$WrapSprite.global_position = global_position
+		$WrapSprite.global_position.x -= width
+
+	# actual teleport (off-screen)
+	if global_position.x < left_bound - sprite_width:
+		global_position.x += width
+	elif global_position.x > right_bound + sprite_width:
+		global_position.x -= width
 
 func teleport_to(target: Node2D):
 	global_position = target.global_position

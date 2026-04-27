@@ -7,7 +7,9 @@ extends Node2D
 # settings
 var spawn_on_start = true
 var spawn_interval = 3.0 # seconds 
-var spawn_active = false # press escape to toggle skeletons spawning for debug purposes
+var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
+
+var skeleton_count = 0
 
 func _ready():
 	if spawn_on_start:
@@ -23,7 +25,7 @@ func _ready():
 # -------------------------
 
 func spawn_skeleton():
-	if spawn_points.is_empty() or spawn_active == false:
+	if spawn_points.is_empty() or spawn_active == false or skeleton_count >= 3:
 		return
 	
 	var point = spawn_points.pick_random()
@@ -32,6 +34,7 @@ func spawn_skeleton():
 	skeleton.global_position = point.global_position
 	
 	add_child(skeleton)
+	skeleton_count += 1
 
 	if point.name == "SpawnPointRight":
 		skeleton.direction = -1
