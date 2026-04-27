@@ -61,7 +61,7 @@ func handle_collisions():
 		if other.is_in_group("player"):
 			other.is_dead = true
 			is_stunned = true
-			
+			$CollisionShape2D.disabled = true
 
 # -------------------------
 # player tracking

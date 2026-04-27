@@ -340,9 +340,7 @@ frame_progress = 1.0
 position = Vector2(-13, 0)
 scale = Vector2(2.0085523, 2.2612581)
 sprite_frames = SubResource("SpriteFrames_x6jny")
-animation = &"Die"
-frame = 7
-frame_progress = 0.61223185
+animation = &"Walk"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=34382789]
 

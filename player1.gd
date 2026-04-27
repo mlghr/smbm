@@ -81,6 +81,7 @@ func handle_death():
 
 	if not death_played:
 		death_played = true
+		$CollisionShape2D.disabled = true
 		$AnimatedSprite2D.play("Die")
 
 # -------------------------
