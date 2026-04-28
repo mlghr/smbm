@@ -2,6 +2,17 @@
 
 Battle mode on every drug
 
+## Canonical gameplay paths
+
+Use folder-based gameplay files as the source of truth:
+
+- Main scene: `scenes/levels/battle_mode_level.tscn`
+- Manager system: `scripts/systems/manager_script.gd`
+- Enemy scene: `scenes/actors/enemy/skeleton.tscn`
+- Bump block scene: `scenes/props/block.tscn`
+
+Avoid creating duplicate gameplay scenes/scripts at repo root.
+
 ## Remaining Features for MVP
 
 - [ ] Fix player bump mechanic

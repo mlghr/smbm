@@ -36,5 +36,6 @@ Keep root focused on project configuration and onboarding:
 ## Notes
 
 - Avoid placing new gameplay files at repo root.
+- Use folder paths in scene/script references (for example `res://scenes/...` and `res://scripts/...`).
 - Keep third-party packs isolated from gameplay scenes/scripts.
 - Move files through Godot editor so references remain valid.
