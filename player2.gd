@@ -6,10 +6,11 @@ var gravity = 1500
 var jump_cut_multiplier = 0.6
 
 var standing_on_body = false
-var is_dead = false
 var death_played = false
+var is_dead = false
 # allows manual changing of state for stuns
 var is_on_ground = true
+var is_stunned = false
 
 func _physics_process(delta):
 	if is_dead:
@@ -19,10 +20,11 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	handle_input()
 	handle_jump()
+	handle_dash()
 	move_and_slide()
 	is_on_ground = is_on_floor()
 	handle_collisions()
-	handle_screen_wrap()	
+	handle_screen_wrap()
 	update_animation()
 
 func _process(delta):
@@ -47,29 +49,44 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left2", "move_right2")
-	velocity.x = lerp(velocity.x, direction * speed, 0.2)
+	
+	if not is_stunned:
+		velocity.x = lerp(velocity.x, direction * speed, 0.2)
+		
+		if direction < 0:
+			$AnimatedSprite2D.flip_h = false
+		elif direction > 0:
+			$AnimatedSprite2D.flip_h = true
 
-	if direction < 0:
-		$AnimatedSprite2D.flip_h = false
-	elif direction > 0:
-		$AnimatedSprite2D.flip_h = true
-
-func handle_jump():
-	if Input.is_action_just_pressed("jump2") and is_on_ground:
+func handle_jump():	
+	if Input.is_action_just_pressed("jump2") and is_on_ground and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
 	if Input.is_action_just_released("jump2") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
+func handle_dash():
+	if Input.is_action_just_pressed("dash"):
+		velocity.x = velocity.x * 3
+		$AudioStreamPlayer2D.play()
+
 # -------------------------
 # animation
 # -------------------------
 
 func update_animation():
+	if is_stunned:
+		print("in stun animation")
+		$AnimatedSprite2D.play("Stun")
+		return
+	
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
+		return
+		
 	else:
+		print('idling')
 		$AnimatedSprite2D.play("Idle")
 
 func handle_death():
@@ -102,7 +119,7 @@ func handle_collisions():
 			return
 
 		# player interactions
-		if other is CharacterBody2D:
+		if other.is_in_group("player"):
 			handle_push(collision, other)
 
 func handle_push(collision, other):
@@ -126,12 +143,16 @@ func handle_push(collision, other):
 			var push_dir = sign(global_position.x - other.global_position.x)
 			velocity.x += push_dir * 400
 			
-			
 func handle_bump_stun():
 	is_on_ground = false
+	is_stunned = true
+	print('start stun')
 	velocity.y = -300
+	
 	$AnimatedSprite2D.play("Stun")
-
+	await get_tree().create_timer(2).timeout
+	is_stunned = false
+	print('end stun')
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------

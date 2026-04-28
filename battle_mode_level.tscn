@@ -505,6 +505,8 @@ script = ExtResource("2_yyrx1")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Stun"
+frame_progress = 0.49975547
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=544028563]
 position = Vector2(1, -6)

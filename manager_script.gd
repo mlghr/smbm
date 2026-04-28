@@ -5,9 +5,9 @@ extends Node2D
 @onready var transfer_points = $TransferPoints.get_children()
 
 # settings
-var spawn_on_start = true
+var spawn_on_start = false
 var spawn_interval = 3.0 # seconds 
-var spawn_active = false # press escape to toggle skeletons spawning for debug purposes
+var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
 
 var skeleton_count = 0
 

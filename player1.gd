@@ -49,15 +49,17 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
-	velocity.x = lerp(velocity.x, direction * speed, 0.2)
+	
+	if not is_stunned:
+		velocity.x = lerp(velocity.x, direction * speed, 0.2)
+		
+		if direction < 0:
+			$AnimatedSprite2D.flip_h = false
+		elif direction > 0:
+			$AnimatedSprite2D.flip_h = true
 
-	if direction < 0:
-		$AnimatedSprite2D.flip_h = false
-	elif direction > 0:
-		$AnimatedSprite2D.flip_h = true
-
-func handle_jump():
-	if Input.is_action_just_pressed("jump") and is_on_ground:
+func handle_jump():	
+	if Input.is_action_just_pressed("jump") and is_on_ground and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
@@ -74,10 +76,17 @@ func handle_dash():
 # -------------------------
 
 func update_animation():
+	if is_stunned:
+		print("in stun animation")
+		$AnimatedSprite2D.play("Stun")
+		return
+	
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
+		return
 		
 	else:
+		print('idling')
 		$AnimatedSprite2D.play("Idle")
 
 func handle_death():
@@ -137,11 +146,13 @@ func handle_push(collision, other):
 func handle_bump_stun():
 	is_on_ground = false
 	is_stunned = true
+	print('start stun')
 	velocity.y = -300
-	$AnimatedSprite2D.play("Stun")
 	
-	await get_tree().create_timer(0.5).timeout
+	$AnimatedSprite2D.play("Stun")
+	await get_tree().create_timer(2).timeout
 	is_stunned = false
+	print('end stun')
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------
