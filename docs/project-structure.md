@@ -1,6 +1,6 @@
 # Project Structure
 
-This file defines the intended organization for the SMBM Godot project.
+This file defines the intended organization for SMBM
 
 ## Root
 
