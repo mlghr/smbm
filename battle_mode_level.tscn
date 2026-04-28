@@ -536,9 +536,6 @@ position = Vector2(-210, 0)
 [node name="Block11" parent="MiddleCenterPlatform" unique_id=2108391923 instance=ExtResource("9_uon0r")]
 position = Vector2(-150, 0)
 
-[node name="Block12" parent="MiddleCenterPlatform" unique_id=397979722 instance=ExtResource("9_uon0r")]
-position = Vector2(-390, 0)
-
 [node name="Block13" parent="MiddleCenterPlatform" unique_id=715351200 instance=ExtResource("9_uon0r")]
 position = Vector2(-510, 0)
 
@@ -550,9 +547,6 @@ position = Vector2(450, 0)
 
 [node name="Block16" parent="MiddleCenterPlatform" unique_id=1867673705 instance=ExtResource("9_uon0r")]
 position = Vector2(510, 0)
-
-[node name="Block17" parent="MiddleCenterPlatform" unique_id=973395444 instance=ExtResource("9_uon0r")]
-position = Vector2(390, 0)
 
 [node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=2053860559]
 position = Vector2(-150, -190)

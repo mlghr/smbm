@@ -6,14 +6,22 @@ var original_y = 0
 func _ready():
 	original_y = position.y
 
-func bump():
+func bump(player):
 	if is_bumping:
 		return
 	
 	is_bumping = true
-
 	var tween = create_tween()
 	tween.tween_property(self, "position:y", original_y - 20, 0.08)
+	
+	var players = get_tree().get_nodes_in_group("player")
+	for p in players:
+		if not is_same(player, p) and p.has_method("handle_bump_stun"):
+			var x_distance = abs(global_position.x - p.global_position.x)
+			var y_distance = abs(global_position.x - p.global_position.x)
+			if x_distance <= 60 and y_distance <= 60:
+				p.handle_bump_stun()
+				print("Player bumped!")
 	tween.tween_property(self, "position:y", original_y, 0.12)
 
 	tween.finished.connect(func():

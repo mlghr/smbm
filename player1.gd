@@ -8,6 +8,8 @@ var jump_cut_multiplier = 0.6
 var standing_on_body = false
 var is_dead = false
 var death_played = false
+# allows manual changing of state for stuns
+var is_on_ground = true
 
 func _physics_process(delta):
 	if is_dead:
@@ -19,6 +21,7 @@ func _physics_process(delta):
 	handle_jump()
 	handle_dash()
 	move_and_slide()
+	is_on_ground = is_on_floor()
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
@@ -53,7 +56,7 @@ func handle_input():
 		$AnimatedSprite2D.flip_h = true
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_ground:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
@@ -97,7 +100,7 @@ func handle_collisions():
 		# hit block from below
 		if normal.y > 0.9:
 			if other.has_method("bump"):
-				other.bump()
+				other.bump(self)
 
 		# enemy hit
 		if other.is_in_group("enemy"):
@@ -128,7 +131,10 @@ func handle_push(collision, other):
 		if abs(global_position.y - other.global_position.y) < 10:
 			var push_dir = sign(global_position.x - other.global_position.x)
 			velocity.x += push_dir * 400
-
+			
+func handle_bump_stun():
+	is_on_ground = false
+	velocity.y = -300
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------

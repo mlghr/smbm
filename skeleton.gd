@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+# at 300 speed he hits wall, aggresive speed?
+const SPEED = 200
 var gravity = 1500
 var direction = 1
 
@@ -39,6 +40,7 @@ func _process(delta):
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
 
 func move_enemy():
 	velocity.x = direction * SPEED

@@ -25,8 +25,9 @@ func _physics_process(delta):
 
 func apply_gravity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
-
+		velocity.y +=  gravity * delta
+		velocity.y = (velocity.y * velocity.y)/(velocity.y * .92)
+	
 func move_enemy():
 	velocity.x = direction * SPEED
 
@@ -83,3 +84,4 @@ func update_animation():
 	else:
 		if $AnimatedSprite2D.animation != "Idle":
 			$AnimatedSprite2D.play("Idle")
+			
