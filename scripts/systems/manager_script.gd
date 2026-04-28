@@ -53,7 +53,7 @@ func _input(event):
 		spawn_skeleton()
 	if event.is_action_pressed("toggle_spawn"): # press escape
 		spawn_active = !spawn_active
-	if event.is_action_pressed("kill_all_enemies"):
+	if event.is_action_pressed("kill_all_enemies"): # press backspace
 		for skeleton in skeleton_group.duplicate():
 			if is_instance_valid(skeleton):
 				skeleton.queue_free()
