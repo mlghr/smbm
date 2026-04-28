@@ -145,9 +145,10 @@ func handle_bump_stun():
 	is_on_ground = false
 	is_stunned = true
 	velocity.y = -300
+	velocity.x = 0
 	
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.75).timeout
 	is_stunned = false
 # -------------------------
 # screen wrap, allows peeking
