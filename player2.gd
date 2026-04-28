@@ -130,7 +130,7 @@ func handle_push(collision, other):
 func handle_bump_stun():
 	is_on_ground = false
 	velocity.y = -300
-
+	$AnimatedSprite2D.play("Stun")
 
 # -------------------------
 # screen wrap, allows peeking

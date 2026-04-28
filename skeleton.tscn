@@ -311,7 +311,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c3714")
 }],
-"loop": true,
+"loop": false,
 "name": &"Walk",
 "speed": 12.0
 }, {
@@ -332,9 +332,7 @@ script = ExtResource("1_uaaco")
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1283754499]
 scale = Vector2(2.261, 2.261)
 sprite_frames = SubResource("SpriteFrames_x6jny")
-animation = &"Die"
-frame = 12
-frame_progress = 1.0
+animation = &"Walk"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336369097]
 position = Vector2(-13, 0)

@@ -6,10 +6,11 @@ var gravity = 1500
 var jump_cut_multiplier = 0.6
 
 var standing_on_body = false
-var is_dead = false
 var death_played = false
+var is_dead = false
 # allows manual changing of state for stuns
 var is_on_ground = true
+var is_stunned = false
 
 func _physics_process(delta):
 	if is_dead:
@@ -75,6 +76,7 @@ func handle_dash():
 func update_animation():
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
+		
 	else:
 		$AnimatedSprite2D.play("Idle")
 
@@ -134,7 +136,12 @@ func handle_push(collision, other):
 			
 func handle_bump_stun():
 	is_on_ground = false
+	is_stunned = true
 	velocity.y = -300
+	$AnimatedSprite2D.play("Stun")
+	
+	await get_tree().create_timer(0.5).timeout
+	is_stunned = false
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------

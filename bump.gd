@@ -18,9 +18,6 @@ func bump(player):
 	var players = get_tree().get_nodes_in_group("player")
 	for p in players:
 		if not is_same(player, p) and p.has_method("handle_bump_stun"):
-			var x_distance = abs(global_position.x - p.global_position.x)
-			var y_distance = abs(global_position.y - p.global_position.y)
-			print("distance:", global_position.distance_to(p.global_position))
 			if global_position.distance_to(p.global_position) <= BUMP_RADIUS:
 				p.handle_bump_stun()
 				print("Player bumped!")

@@ -41,7 +41,6 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-
 func move_enemy():
 	velocity.x = direction * SPEED
 
@@ -93,14 +92,12 @@ func find_closest_player():
 
 func update_animation():
 	# use x + y proximity instead of circular distance
-	if closest_player and dx < 200 and dy < 80:
+	if closest_player and !closest_player.is_dead and dx < 200 and dy < 80:
 		if $AnimatedSprite2D.animation != "Attack":
 			$AnimatedSprite2D.play("Attack")
 		return
-
-	if is_on_floor() and abs(velocity.x) > 100:
-		if $AnimatedSprite2D.animation != "Walk":
-			$AnimatedSprite2D.play("Walk")
+	else:
+		$AnimatedSprite2D.play("Walk")
 			
 func handle_stunned():
 	velocity = Vector2.ZERO
