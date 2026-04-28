@@ -10,6 +10,7 @@ var spawn_interval = 3.0 # seconds
 var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
 
 var skeleton_count = 0
+var skeleton_group = []
 
 func _ready():
 	if spawn_on_start:
@@ -35,6 +36,7 @@ func spawn_skeleton():
 	
 	add_child(skeleton)
 	skeleton_count += 1
+	skeleton_group.append(skeleton)
 
 	# turn the sprite if going through the right transfer since default faces right
 	if point.name == "SpawnPointRight":
@@ -51,6 +53,12 @@ func _input(event):
 		spawn_skeleton()
 	if event.is_action_pressed("toggle_spawn"): # press escape
 		spawn_active = !spawn_active
+	if event.is_action_pressed("kill_all_enemies"):
+		for skeleton in skeleton_group.duplicate():
+			if is_instance_valid(skeleton):
+				skeleton.queue_free()
+		skeleton_group.clear()
+		skeleton_count = 0
 
 # -------------------------
 # timer
