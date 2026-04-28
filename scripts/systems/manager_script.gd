@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var skeleton_scene = preload("res://skeleton.tscn")
+@onready var skeleton_scene = preload("res://scenes/actors/enemy/skeleton.tscn")
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
 

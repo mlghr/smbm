@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://iafhafvmij0f"]
 
-[ext_resource type="Script" uid="uid://dejvtkf6ro7qj" path="res://skeleton.gd" id="1_uaaco"]
-[ext_resource type="Texture2D" uid="uid://cmpxjoso3nr4l" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="2_ymvsc"]
-[ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="3_rwpf0"]
-[ext_resource type="Texture2D" uid="uid://byxjxrtnbyrco" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png" id="3_uaaco"]
-[ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="4_ew5mc"]
+[ext_resource type="Script" uid="uid://dejvtkf6ro7qj" path="res://scripts/actors/enemy/skeleton.gd" id="1_uaaco"]
+[ext_resource type="Texture2D" uid="uid://cmpxjoso3nr4l" path="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="2_ymvsc"]
+[ext_resource type="Texture2D" uid="uid://fflbbsddwoif" path="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Idle.png" id="3_rwpf0"]
+[ext_resource type="Texture2D" uid="uid://byxjxrtnbyrco" path="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png" id="3_uaaco"]
+[ext_resource type="Texture2D" uid="uid://dc28kkniow4c8" path="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Walk.png" id="4_ew5mc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd1ar"]
 atlas = ExtResource("2_ymvsc")
