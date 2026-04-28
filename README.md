@@ -1,40 +1,25 @@
 # SMBM
 
-Godot 4.6 local multiplayer prototype.
+Battle mode on every drug
 
-## Current project state
+## Remaining Features for MVP
 
-- Main scene: `res://scenes/levels/battle_mode_level.tscn`
-- Gameplay scripts are organized under `scripts/`.
-- Third-party content is organized under `assets/third_party/`.
-- Audio used by gameplay is under `assets/audio/`.
+- [ ] Fix player bump mechanic
 
-## Recommended structure
+- Push distance
+- Slide feel
 
-Use this target layout over time:
+- [ ] Enemy stun on block hit
 
-- `scenes/` for `.tscn` gameplay scenes
-- `scripts/` for `.gd` gameplay code
-- `assets/third_party/` for imported packs
-- `assets/audio/` for SFX/music used by gameplay
-- `docs/` for project notes and migration checklists
+- Animation
+- Crumple/flip upside down
 
-See `docs/project-structure.md` and `docs/migration-checklist.md`.
-
-## Important: moving files safely
-
-Move and rename files in the Godot editor FileSystem dock (not Finder/terminal) so references update automatically.
-
-After each batch of moves:
-
-1. Open key scenes and check for missing scripts/resources.
-2. Run the game and test movement/spawn flow.
-3. Search scripts for hardcoded `res://` strings and update any stale paths.
-
-Canonical gameplay paths:
-
-- Spawn manager: `scripts/systems/manager_script.gd`
-- Player scripts: `scripts/actors/player/player1.gd`, `scripts/actors/player/player2.gd`
-- Enemy script: `scripts/actors/enemy/skeleton.gd`
-- Enemy scene: `scenes/actors/enemy/skeleton.tscn`
-- Block prop scene: `scenes/props/block.tscn`
+- [ ] Add win conditions
+  - Resource victory
+    - Create coin prop
+      - Give physics (velocity.x, gravity)
+    - Animate coin
+    - Sound effect when acquire coin
+    - Spawn coin on enemy kill
+  - Last player standing
+    - [ ] Check player_count state every frame. If player_count == 1, display win screen
