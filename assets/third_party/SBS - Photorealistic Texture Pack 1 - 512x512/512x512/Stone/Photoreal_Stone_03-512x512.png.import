@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3ooc8ljgno86"
-path="res://.godot/imported/Photoreal_Stone_03-512x512.png-29b00d2a861860daec224a1e13740a16.ctex"
+path="res://.godot/imported/Photoreal_Stone_03-512x512.png-2743644bcde4aee9747b61be81e98468.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Stone/Photoreal_Stone_03-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Stone_03-512x512.png-29b00d2a861860daec224a1e13740a16.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Stone/Photoreal_Stone_03-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Stone_03-512x512.png-2743644bcde4aee9747b61be81e98468.ctex"]
 
 [params]
 

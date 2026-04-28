@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5j0fpxbmdfw1"
-path="res://.godot/imported/Photoreal_Tile_05-512x512.png-276a8f4da7ed01742ce3e6d80a73a159.ctex"
+path="res://.godot/imported/Photoreal_Tile_05-512x512.png-98e4f1561cefb4eacba007f02b775307.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Tile/Photoreal_Tile_05-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Tile_05-512x512.png-276a8f4da7ed01742ce3e6d80a73a159.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Tile/Photoreal_Tile_05-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Tile_05-512x512.png-98e4f1561cefb4eacba007f02b775307.ctex"]
 
 [params]
 

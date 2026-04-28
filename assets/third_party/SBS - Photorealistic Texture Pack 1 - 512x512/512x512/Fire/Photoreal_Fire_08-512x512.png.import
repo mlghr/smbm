@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8j23mo6e6qb"
-path="res://.godot/imported/Photoreal_Fire_08-512x512.png-51825e1c0e5c82ef528f9acc1df0a127.ctex"
+path="res://.godot/imported/Photoreal_Fire_08-512x512.png-7a08d49555549e181dcc721bbce7756d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Fire/Photoreal_Fire_08-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Fire_08-512x512.png-51825e1c0e5c82ef528f9acc1df0a127.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Fire/Photoreal_Fire_08-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Fire_08-512x512.png-7a08d49555549e181dcc721bbce7756d.ctex"]
 
 [params]
 

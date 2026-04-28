@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxv55mtmtley0"
-path="res://.godot/imported/Photoreal_Grass_04-512x512.png-3c4a30b334691f558f8de9dd4677e6f6.ctex"
+path="res://.godot/imported/Photoreal_Grass_04-512x512.png-a5526278309e140b90d4b3d09f440a62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Grass/Photoreal_Grass_04-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Grass_04-512x512.png-3c4a30b334691f558f8de9dd4677e6f6.ctex"]
+source_file="res://assets/third_party/Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Grass/Photoreal_Grass_04-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Grass_04-512x512.png-a5526278309e140b90d4b3d09f440a62.ctex"]
 
 [params]
 

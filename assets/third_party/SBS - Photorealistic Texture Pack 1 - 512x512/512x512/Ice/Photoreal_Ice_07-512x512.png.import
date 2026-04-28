@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbbk46kyc3muu"
-path="res://.godot/imported/Photoreal_Ice_07-512x512.png-6c07337d63c0a137b3df5c44bf4e5fcb.ctex"
+path="res://.godot/imported/Photoreal_Ice_07-512x512.png-affb4009507f55e2401767ffcb3eb8a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Ice/Photoreal_Ice_07-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Ice_07-512x512.png-6c07337d63c0a137b3df5c44bf4e5fcb.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Ice/Photoreal_Ice_07-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Ice_07-512x512.png-affb4009507f55e2401767ffcb3eb8a0.ctex"]
 
 [params]
 

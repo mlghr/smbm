@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byxjxrtnbyrco"
-path="res://.godot/imported/Skeleton_01_White_Die.png-7ef67995756ee334ec42fbfa7a8a6ec1.ctex"
+path="res://.godot/imported/Skeleton_01_White_Die.png-2e5db09f251f746554cfe72c738eba5f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png"
-dest_files=["res://.godot/imported/Skeleton_01_White_Die.png-7ef67995756ee334ec42fbfa7a8a6ec1.ctex"]
+source_file="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Die.png"
+dest_files=["res://.godot/imported/Skeleton_01_White_Die.png-2e5db09f251f746554cfe72c738eba5f.ctex"]
 
 [params]
 

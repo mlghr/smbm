@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcw10o7ibqocx"
-path="res://.godot/imported/Photoreal_Metal_05-512x512.png-36f31ff3f3008cd17b7265f4ec73dce7.ctex"
+path="res://.godot/imported/Photoreal_Metal_05-512x512.png-4b320755ab84cd412e7af8ad1d9e12da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Metal/Photoreal_Metal_05-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Metal_05-512x512.png-36f31ff3f3008cd17b7265f4ec73dce7.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Metal/Photoreal_Metal_05-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Metal_05-512x512.png-4b320755ab84cd412e7af8ad1d9e12da.ctex"]
 
 [params]
 

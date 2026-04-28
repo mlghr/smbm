@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4sdyjrh2rv3e"
-path="res://.godot/imported/Skeleton_01_Yellow_Die.png-5bc97538bee1a441d3ff5ca8a265bd93.ctex"
+path="res://.godot/imported/Skeleton_01_Yellow_Die.png-5b31f799d6a25a3be707baed75116b27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_Yellow/Skeleton_With_VFX/Skeleton_01_Yellow_Die.png"
-dest_files=["res://.godot/imported/Skeleton_01_Yellow_Die.png-5bc97538bee1a441d3ff5ca8a265bd93.ctex"]
+source_file="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_Yellow/Skeleton_With_VFX/Skeleton_01_Yellow_Die.png"
+dest_files=["res://.godot/imported/Skeleton_01_Yellow_Die.png-5b31f799d6a25a3be707baed75116b27.ctex"]
 
 [params]
 

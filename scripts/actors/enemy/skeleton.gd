@@ -104,7 +104,6 @@ func handle_stunned():
 	move_and_slide()
 
 	if not stun_played:
-		print("playing stun animation")
 		stun_played = true
 		$AnimatedSprite2D.play("Die")
 			

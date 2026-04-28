@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://iskaq2awq4x6"
-path="res://.godot/imported/Photoreal_Wood_05-512x512.png-88aeb69b95f34544442f8290be9033b9.ctex"
+path="res://.godot/imported/Photoreal_Wood_05-512x512.png-6efa12ee98b1459cbba2ac0b6c8ae51a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Wood/Photoreal_Wood_05-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Wood_05-512x512.png-88aeb69b95f34544442f8290be9033b9.ctex"]
+source_file="res://assets/third_party/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Wood/Photoreal_Wood_05-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Wood_05-512x512.png-6efa12ee98b1459cbba2ac0b6c8ae51a.ctex"]
 
 [params]
 

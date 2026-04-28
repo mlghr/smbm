@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://8xcfjmtf0xxq"
-path="res://.godot/imported/jump_10.wav-1fa8653f8ee3a68356d82b4553249d0a.sample"
+path="res://.godot/imported/jump_10.wav-501cdbd2f978d2b85edc1790a605842e.sample"
 
 [deps]
 
-source_file="res://platformer_jumping/jump_10.wav"
-dest_files=["res://.godot/imported/jump_10.wav-1fa8653f8ee3a68356d82b4553249d0a.sample"]
+source_file="res://assets/audio/platformer_jumping/jump_10.wav"
+dest_files=["res://.godot/imported/jump_10.wav-501cdbd2f978d2b85edc1790a605842e.sample"]
 
 [params]
 

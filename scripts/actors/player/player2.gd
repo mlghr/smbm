@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 550
+var speed = 350
 var jump_velocity = -905
 var gravity = 1500
 var jump_cut_multiplier = 0.6
@@ -77,7 +77,6 @@ func handle_dash():
 
 func update_animation():
 	if is_stunned:
-		print("in stun animation")
 		$AnimatedSprite2D.play("Stun")
 		return
 	
@@ -86,7 +85,6 @@ func update_animation():
 		return
 		
 	else:
-		print('idling')
 		$AnimatedSprite2D.play("Idle")
 
 func handle_death():
@@ -146,13 +144,11 @@ func handle_push(collision, other):
 func handle_bump_stun():
 	is_on_ground = false
 	is_stunned = true
-	print('start stun')
 	velocity.y = -300
 	
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(2).timeout
 	is_stunned = false
-	print('end stun')
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------

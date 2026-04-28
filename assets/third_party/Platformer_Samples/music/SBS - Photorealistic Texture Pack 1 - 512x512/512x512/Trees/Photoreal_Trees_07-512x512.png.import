@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8ouilee5sm8i"
-path="res://.godot/imported/Photoreal_Trees_07-512x512.png-fee147106032bcb3d4cd7d096fc50d72.ctex"
+path="res://.godot/imported/Photoreal_Trees_07-512x512.png-e7fb31712300a618f3576152534fbb53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Trees/Photoreal_Trees_07-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Trees_07-512x512.png-fee147106032bcb3d4cd7d096fc50d72.ctex"]
+source_file="res://assets/third_party/Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Trees/Photoreal_Trees_07-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Trees_07-512x512.png-e7fb31712300a618f3576152534fbb53.ctex"]
 
 [params]
 

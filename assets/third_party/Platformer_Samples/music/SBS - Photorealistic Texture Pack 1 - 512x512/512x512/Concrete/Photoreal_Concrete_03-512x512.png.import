@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cxhbes7kjn4eq"
-path="res://.godot/imported/Photoreal_Concrete_03-512x512.png-1ad4fcf0df337df9381ef73b51dcc523.ctex"
+path="res://.godot/imported/Photoreal_Concrete_03-512x512.png-9fc57112f96f158aed36703fd1b8361f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Concrete/Photoreal_Concrete_03-512x512.png"
-dest_files=["res://.godot/imported/Photoreal_Concrete_03-512x512.png-1ad4fcf0df337df9381ef73b51dcc523.ctex"]
+source_file="res://assets/third_party/Platformer_Samples/music/SBS - Photorealistic Texture Pack 1 - 512x512/512x512/Concrete/Photoreal_Concrete_03-512x512.png"
+dest_files=["res://.godot/imported/Photoreal_Concrete_03-512x512.png-9fc57112f96f158aed36703fd1b8361f.ctex"]
 
 [params]
 

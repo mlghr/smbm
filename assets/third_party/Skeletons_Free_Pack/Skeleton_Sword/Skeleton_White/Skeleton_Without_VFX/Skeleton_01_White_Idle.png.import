@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck5gb0xqdkrhx"
-path="res://.godot/imported/Skeleton_01_White_Idle.png-51fac27ec7d8227a03989d809094194e.ctex"
+path="res://.godot/imported/Skeleton_01_White_Idle.png-3a3a170c99504897c1e0b3721e53ba8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png"
-dest_files=["res://.godot/imported/Skeleton_01_White_Idle.png-51fac27ec7d8227a03989d809094194e.ctex"]
+source_file="res://assets/third_party/Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_Without_VFX/Skeleton_01_White_Idle.png"
+dest_files=["res://.godot/imported/Skeleton_01_White_Idle.png-3a3a170c99504897c1e0b3721e53ba8f.ctex"]
 
 [params]
 
