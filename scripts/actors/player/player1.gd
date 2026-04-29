@@ -20,6 +20,7 @@ var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 
+
 func _physics_process(delta):
 	if is_dead:
 		handle_death()
@@ -44,6 +45,7 @@ func _physics_process(delta):
 	handle_screen_wrap()
 	update_animation()
 
+
 func _process(_delta):
 	# keep wrap sprite in sync
 	$WrapSprite.animation = $AnimatedSprite2D.animation
@@ -54,37 +56,40 @@ func _process(_delta):
 # core systems, inputs, etc.
 # -------------------------
 
+
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y > 0:
-			velocity.y = (velocity.y * velocity.y)/(velocity.y * .92)
-			pass
+			velocity.y = (velocity.y * velocity.y) / (velocity.y * .92)
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
+
 
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
-	
+
 	if not is_stunned:
 		velocity.x = lerp(velocity.x, direction * speed, control)
-		
+
 		if direction < 0:
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
 
-func handle_jump():	
+
+func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_ground and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
+
 
 func handle_dash():
 	if Input.is_action_just_pressed("dash"):
@@ -95,17 +100,19 @@ func handle_dash():
 # animation
 # -------------------------
 
+
 func update_animation():
 	if is_stunned:
 		$AnimatedSprite2D.play("Stun")
 		return
-	
+
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
 		return
-		
+
 	else:
 		$AnimatedSprite2D.play("Idle")
+
 
 func handle_death():
 	velocity = Vector2.ZERO
@@ -119,6 +126,7 @@ func handle_death():
 # -------------------------
 # collisions
 # -------------------------
+
 
 func handle_collisions():
 	for i in range(get_slide_collision_count()):
@@ -139,6 +147,7 @@ func handle_collisions():
 		# player interactions
 		if other.is_in_group("player"):
 			handle_push(collision, other)
+
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()
@@ -178,10 +187,12 @@ func handle_push(collision, other):
 			if other.has_method("apply_player_bump"):
 				other.apply_player_bump(-push_dir)
 
+
 func apply_player_bump(push_dir):
 	last_player_bump_time = Time.get_ticks_msec() / 1000.0
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
+
 
 func receive_carrier_motion(carrier_velocity, delta):
 	# Immediate follow keeps stacked colliders from pinning the carrier.
@@ -196,7 +207,8 @@ func receive_carrier_motion(carrier_velocity, delta):
 		carried_velocity.y = carrier_velocity.y
 		if velocity.y >= carrier_velocity.y:
 			velocity.y = carrier_velocity.y
-			
+
+
 func handle_bump_stun(bump_direction):
 	is_on_ground = false
 	is_stunned = true
@@ -209,14 +221,15 @@ func handle_bump_stun(bump_direction):
 	else:
 		velocity.x = randi_range(90, 250)
 		print(velocity.x)
-	
+
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(0.5).timeout
 	is_stunned = false
-	
+
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------
+
 
 func handle_screen_wrap():
 	var left_bound = -540

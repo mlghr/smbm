@@ -6,15 +6,17 @@ var BUMP_RADIUS = 95
 var block_midpoint = null
 var bump_direction = null # left or right
 
+
 func _ready():
 	original_y = position.y
 
+
 func bump(player):
 	block_midpoint = global_position.x
-	
+
 	if is_bumping:
 		return
-	
+
 	is_bumping = true
 	var tween = create_tween()
 	tween.tween_property(self, "position:y", original_y - 20, 0.08)
@@ -34,10 +36,11 @@ func bump(player):
 		print(e)
 		if global_position.distance_to(e.global_position) <= BUMP_RADIUS + 25:
 			e.handle_bump_stun()
-			print("bumped enemy ")
+			print("bumped enemy")
 
 	tween.tween_property(self, "position:y", original_y, 0.12)
 
-	tween.finished.connect(func():
-		is_bumping = false
+	tween.finished.connect(
+		func():
+			is_bumping = false
 	)

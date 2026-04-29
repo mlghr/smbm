@@ -6,11 +6,12 @@ extends Node2D
 
 # settings
 var spawn_on_start = false
-var spawn_interval = 3.0 # seconds 
+var spawn_interval = 3.0 # seconds
 var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
 
 var skeleton_count = 0
 var skeleton_group = []
+
 
 func _ready():
 	if spawn_on_start:
@@ -25,15 +26,16 @@ func _ready():
 # spawn logic
 # -------------------------
 
+
 func spawn_skeleton():
 	if spawn_points.is_empty() or spawn_active == false or skeleton_count >= 3:
 		return
-	
+
 	var point = spawn_points.pick_random()
 	var skeleton = skeleton_scene.instantiate()
-	
+
 	skeleton.global_position = point.global_position
-	
+
 	add_child(skeleton)
 	skeleton_count += 1
 	skeleton_group.append(skeleton)
@@ -43,13 +45,14 @@ func spawn_skeleton():
 		skeleton.direction = -1
 		var sprite = skeleton.get_node("AnimatedSprite2D")
 		sprite.flip_h = true
-			
+
 # -------------------------
 # input for testing
 # -------------------------
 
+
 func _input(event):
-	if event.is_action_pressed("test_spawn"):  # press tab
+	if event.is_action_pressed("test_spawn"): # press tab
 		spawn_skeleton()
 	if event.is_action_pressed("toggle_spawn"): # press escape
 		spawn_active = !spawn_active
@@ -63,6 +66,7 @@ func _input(event):
 # -------------------------
 # timer
 # -------------------------
+
 
 func _on_SpawnTimer_timeout():
 	spawn_skeleton()
