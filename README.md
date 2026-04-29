@@ -19,6 +19,7 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
 
 - Push distance
 - Slide feel
+- Dusty/movement animation
 
 - [ ] Enemy stun on block hit
 
@@ -33,4 +34,4 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
     - Sound effect when acquire coin
     - Spawn coin on enemy kill
   - Last player standing
-    - [ ] Check player_count state every frame. If player_count == 1, display win screen
+    - Check player_count state every frame. If player_count == 1, display win screen
