@@ -9,6 +9,7 @@ var closest_player = null
 var closest_distance = INF
 var is_stunned = false
 var stun_played = false
+var is_on_ground = true
 
 # distances for player tracking
 var dx = 0
@@ -134,6 +135,16 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
+
+func handle_bump_stun():
+	is_on_ground = false
+	is_stunned = true
+	velocity.y = -300
+	velocity.x = 0
+	
+	$AnimatedSprite2D.play("Stun")
+	await get_tree().create_timer(0.5).timeout
+	is_stunned = false
 
 func teleport_to(target: Node2D):
 	global_position = target.global_position

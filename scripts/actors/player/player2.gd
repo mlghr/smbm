@@ -212,10 +212,10 @@ func handle_bump_stun(bump_direction):
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(0.5).timeout
 	is_stunned = false
+	
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------
-
 func handle_screen_wrap():
 	var left_bound = -540
 	var right_bound = 540
