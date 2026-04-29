@@ -204,12 +204,14 @@ func handle_bump_stun(bump_direction):
 	velocity.x = 0
 
 	if bump_direction == "left":
-		velocity.x = -70
+		velocity.x = randi_range(90, 250)
+		print(velocity.x)
 	else:
-		velocity.x = 70
+		velocity.x = randi_range(90, 250)
+		print(velocity.x)
 	
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(0.5).timeout
 	is_stunned = false
 # -------------------------
 # screen wrap, allows peeking
