@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dbwb5ynid4ct1"]
+[gd_scene format=3 uid="uid://m08ybr6lb41w"]
 
 [ext_resource type="Script" path="res://skeleton.gd" id="1_uaaco"]
 [ext_resource type="Texture2D" path="res://Skeletons_Free_Pack/Skeleton_Sword/Skeleton_White/Skeleton_With_VFX/Skeleton_01_White_Attack1.png" id="2_ymvsc"]

@@ -2,8 +2,13 @@ extends CharacterBody2D
 
 var speed = 350
 var jump_velocity = -905
-var gravity = 1500
+const gravity = 1500
 var jump_cut_multiplier = 0.6
+const NORMAL_CONTROL = 0.2
+const SLIDE_CONTROL = 0.04
+const PLAYER_BUMP_FORCE = 420.0
+const PLAYER_BUMP_COOLDOWN = 0.15
+const PLAYER_BUMP_SLIDE_TIME = 0.25
 
 var standing_on_body = false
 var death_played = false
@@ -11,13 +16,25 @@ var is_dead = false
 # allows manual changing of state for stuns
 var is_on_ground = true
 var is_stunned = false
+var bump_slide_time_left = 0.0
+var last_player_bump_time = -10.0
+var carried_velocity = Vector2.ZERO
 
 func _physics_process(delta):
 	if is_dead:
 		handle_death()
 		return
 
+	# Apply carry from a player underneath us from the previous frame.
+	# This lets the lower player move/jump freely while still carrying the upper one.
+	if carried_velocity != Vector2.ZERO:
+		global_position += carried_velocity * delta
+	carried_velocity = Vector2.ZERO
+	standing_on_body = false
+
 	apply_gravity(delta)
+	if bump_slide_time_left > 0.0:
+		bump_slide_time_left = max(0.0, bump_slide_time_left - delta)
 	handle_input()
 	handle_jump()
 	handle_dash()
@@ -27,7 +44,7 @@ func _physics_process(delta):
 	handle_screen_wrap()
 	update_animation()
 
-func _process(delta):
+func _process(_delta):
 	# keep wrap sprite in sync
 	$WrapSprite.animation = $AnimatedSprite2D.animation
 	$WrapSprite.frame = $AnimatedSprite2D.frame
@@ -49,9 +66,12 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left2", "move_right2")
+	var control = NORMAL_CONTROL
+	if bump_slide_time_left > 0.0:
+		control = SLIDE_CONTROL
 	
 	if not is_stunned:
-		velocity.x = lerp(velocity.x, direction * speed, 0.2)
+		velocity.x = lerp(velocity.x, direction * speed, control)
 		
 		if direction < 0:
 			$AnimatedSprite2D.flip_h = false
@@ -122,31 +142,71 @@ func handle_collisions():
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()
-
+	
 	# vertical stacking (standing on another player)
 	if normal.y < -0.9:
 		standing_on_body = true
 
-		if abs(global_position.x - other.global_position.x) < 20:
-			global_position.x += other.velocity.x * get_physics_process_delta_time()
+		# Ride the player underneath like a moving platform.
+		if abs(global_position.x - other.global_position.x) < 24:
+			carried_velocity.x = other.velocity.x
 
-			if other.velocity.y < 0 and velocity.y >= 0:
-				velocity.y = other.velocity.y
+		# If the bottom player jumps up into us, keep us attached so we don't "pin" them.
+		if other.velocity.y < 0 and velocity.y >= 0:
+			velocity.y = other.velocity.y
+		return
 
+	# Someone is standing on us: explicitly pass our motion up to them.
+	if normal.y > 0.9:
+		if other.has_method("receive_carrier_motion"):
+			other.receive_carrier_motion(velocity, get_physics_process_delta_time())
 		return
 
 	# side push
 	if abs(normal.x) > 0.9:
 		if abs(global_position.y - other.global_position.y) < 10:
+			var now = Time.get_ticks_msec() / 1000.0
+			if now - last_player_bump_time < PLAYER_BUMP_COOLDOWN:
+				return
+
 			var push_dir = sign(global_position.x - other.global_position.x)
-			velocity.x += push_dir * 400
+			if push_dir == 0:
+				push_dir = sign(-normal.x)
+
+			apply_player_bump(push_dir)
+			if other.has_method("apply_player_bump"):
+				other.apply_player_bump(-push_dir)
+
+func apply_player_bump(push_dir):
+	last_player_bump_time = Time.get_ticks_msec() / 1000.0
+	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
+	velocity.x = push_dir * PLAYER_BUMP_FORCE
+
+func receive_carrier_motion(carrier_velocity, delta):
+	# Immediate follow keeps stacked colliders from pinning the carrier.
+	global_position.x += carrier_velocity.x * delta
+	carried_velocity.x = carrier_velocity.x
+	# Match carrier horizontal motion so rider damping does not drag the bottom player.
+	# Keep player agency by blending in local input so they can walk/jump off.
+	var direction = Input.get_axis("move_left2", "move_right2")
+	velocity.x = carrier_velocity.x + direction * speed * 0.75
+	if carrier_velocity.y < 0:
+		global_position.y += carrier_velocity.y * delta
+		carried_velocity.y = carrier_velocity.y
+		if velocity.y >= carrier_velocity.y:
+			velocity.y = carrier_velocity.y
 			
-func handle_bump_stun():
+func handle_bump_stun(bump_direction):
 	is_on_ground = false
 	is_stunned = true
-	velocity.y = -300
+	velocity.y = -400
 	velocity.x = 0
 	
+	if bump_direction == "left":
+		velocity.x = -70
+	else: 
+		velocity.x = 70
+		
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(0.75).timeout
 	is_stunned = false

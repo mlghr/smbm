@@ -20,6 +20,16 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[file_customization]
+
+folder_colors={
+"res://scripts/actors/": "orange",
+"res://scripts/actors/enemy/": "red",
+"res://scripts/actors/player/": "blue",
+"res://scripts/systems/": "yellow",
+"res://scripts/world/": "green"
+}
+
 [global_group]
 
 player=""
