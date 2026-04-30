@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://detk8n44dy8jg" path="res://assets/third_party/Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Stun.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://scenes/props/block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://assets/third_party/Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
+[ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/inert_block.tscn" id="13_57e15"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 radius = 40.0
@@ -725,21 +726,12 @@ position = Vector2(-300, 0)
 [node name="Block7" parent="TopLeftPlatform" unique_id=2045939569 instance=ExtResource("9_uon0r")]
 position = Vector2(-360, 0)
 
-[node name="Block8" parent="TopLeftPlatform" unique_id=1905983873 instance=ExtResource("9_uon0r")]
+[node name="inert_block" parent="TopLeftPlatform" unique_id=185624255 instance=ExtResource("13_57e15")]
 position = Vector2(-420, 0)
-
-[node name="Block9" parent="TopLeftPlatform" unique_id=1344981352 instance=ExtResource("9_uon0r")]
-position = Vector2(-480, 0)
 
 [node name="TopRightPlatform" type="StaticBody2D" parent="." unique_id=1258461033]
 position = Vector2(150, -600)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="Block1" parent="TopRightPlatform" unique_id=1824490285 instance=ExtResource("9_uon0r")]
-position = Vector2(480, 0)
-
-[node name="Block2" parent="TopRightPlatform" unique_id=1951445579 instance=ExtResource("9_uon0r")]
-position = Vector2(420, 0)
 
 [node name="Block3" parent="TopRightPlatform" unique_id=353197658 instance=ExtResource("9_uon0r")]
 
@@ -761,9 +753,15 @@ position = Vector2(300, 0)
 [node name="Block9" parent="TopRightPlatform" unique_id=347656003 instance=ExtResource("9_uon0r")]
 position = Vector2(360, 0)
 
+[node name="inert_block" parent="TopRightPlatform" unique_id=1557199568 instance=ExtResource("13_57e15")]
+position = Vector2(420, 0)
+
 [node name="MiddleCenterPlatform" type="StaticBody2D" parent="." unique_id=119142186]
 position = Vector2(0, -400)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
+
+[node name="inert_block2" parent="MiddleCenterPlatform" unique_id=1202361196 instance=ExtResource("13_57e15")]
+position = Vector2(-570, 0)
 
 [node name="Block1" parent="MiddleCenterPlatform" unique_id=1732023892 instance=ExtResource("9_uon0r")]
 position = Vector2(-90, 0)
@@ -801,6 +799,9 @@ position = Vector2(450, 0)
 [node name="Block16" parent="MiddleCenterPlatform" unique_id=1867673705 instance=ExtResource("9_uon0r")]
 position = Vector2(510, 0)
 
+[node name="inert_block" parent="MiddleCenterPlatform" unique_id=152213990 instance=ExtResource("13_57e15")]
+position = Vector2(570, 0)
+
 [node name="LowLeftPlatform" type="StaticBody2D" parent="." unique_id=2053860559]
 position = Vector2(-150, -190)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
@@ -825,21 +826,12 @@ position = Vector2(-300, 0)
 [node name="Block7" parent="LowLeftPlatform" unique_id=293789497 instance=ExtResource("9_uon0r")]
 position = Vector2(-360, 0)
 
-[node name="Block8" parent="LowLeftPlatform" unique_id=756169817 instance=ExtResource("9_uon0r")]
+[node name="inert_block" parent="LowLeftPlatform" unique_id=927907649 instance=ExtResource("13_57e15")]
 position = Vector2(-420, 0)
-
-[node name="Block9" parent="LowLeftPlatform" unique_id=1963287990 instance=ExtResource("9_uon0r")]
-position = Vector2(-480, 0)
 
 [node name="LowRightPlatform" type="StaticBody2D" parent="." unique_id=543035003]
 position = Vector2(150, -190)
 physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="Block1" parent="LowRightPlatform" unique_id=2114525421 instance=ExtResource("9_uon0r")]
-position = Vector2(480, 0)
-
-[node name="Block2" parent="LowRightPlatform" unique_id=254944872 instance=ExtResource("9_uon0r")]
-position = Vector2(420, 0)
 
 [node name="Block3" parent="LowRightPlatform" unique_id=2141383111 instance=ExtResource("9_uon0r")]
 
@@ -860,6 +852,9 @@ position = Vector2(300, 0)
 
 [node name="Block9" parent="LowRightPlatform" unique_id=1352367559 instance=ExtResource("9_uon0r")]
 position = Vector2(360, 0)
+
+[node name="inert_block" parent="LowRightPlatform" unique_id=1121664231 instance=ExtResource("13_57e15")]
+position = Vector2(420, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
 position = Vector2(0, -504)

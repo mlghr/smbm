@@ -4,6 +4,7 @@ extends Node2D
 @onready var slime_scene = preload("res://scenes/actors/enemy/slime.tscn")
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
+@onready var blocks = get_tree().get_nodes_in_group("blocks")
 
 # settings
 var spawn_on_start = false
@@ -17,7 +18,24 @@ var slime_count: int = 0
 var slime_group: Array[CharacterBody2D] = []
 
 
+var block_count = 0
+
+
 func _ready():
+	#----------------------------
+	# grumpy bumpy start of game
+	#----------------------------
+	
+	for b in blocks:
+		block_count =+ 1
+	print(block_count)
+	print(blocks)
+
+		
+		
+	block_count = blocks.size()
+	print(block_count)
+	
 	if spawn_on_start:
 		spawn_skeleton()
 		spawn_slime()
