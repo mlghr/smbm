@@ -83,6 +83,7 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
+
 func handle_crouch():
 	if Input.is_action_just_pressed("crouch") and is_on_ground and not is_stunned:
 		is_crouching = true
@@ -91,8 +92,6 @@ func handle_crouch():
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
 		$AnimatedSprite2D.play("Stand")
-			
-	
 
 func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_ground and not is_stunned:
@@ -123,6 +122,7 @@ func update_animation():
 		return
 	if is_crouching:
 		$AnimatedSprite2D.play("Crouch_Idle")
+		return
 
 	else:
 		$AnimatedSprite2D.play("Idle")
