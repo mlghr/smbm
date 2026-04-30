@@ -5,6 +5,7 @@ var original_y = 0
 var BUMP_RADIUS = 95
 var block_midpoint = null
 var bump_direction = null # left or right
+var is_grumpy = false
 
 
 func _ready():
@@ -13,10 +14,12 @@ func _ready():
 
 func bump(player):
 	block_midpoint = global_position.x
+	
+	if self.is_grumpy:
+		bump_grump(player)
 
 	if is_bumping:
 		return
-
 	is_bumping = true
 	var tween = create_tween()
 	tween.tween_property(self, "position:y", original_y - 20, 0.08)
@@ -44,4 +47,23 @@ func bump(player):
 			is_bumping = false
 	)
 func set_grumpy():
-	pass
+	self.is_grumpy = true;
+	$Sprite2D.modulate = Color.RED
+	
+func bump_grump(player):
+	is_grumpy = false
+	var start_block = self.golbal_position.x
+	var row = self.get_parent().get_children()
+	var x_values = []
+	for b in row:
+		x_values.append(b.global_position.x)
+	x_values.sort()
+	print(x_values)
+	
+	
+	
+	# L R bump
+	# if null return
+	# else bump L R
+	
+	

@@ -28,8 +28,10 @@ func _ready():
 	
 	for b in blocks:
 		block_count =+ 1
-	print(block_count)
-	print(blocks)
+		#b.modulate = Color(0.188, 0.612, 0.984)
+	blocks[randi_range(0, 39)].set_grumpy()
+	
+
 
 		
 		
