@@ -626,7 +626,7 @@ script = ExtResource("2_yyrx1")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Stand"
+animation = &"Crouch"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=544028563]
 position = Vector2(1, -6)
@@ -651,7 +651,7 @@ script = ExtResource("1_wycyw")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Crouch"
+animation = &"Crouch_Idle"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=556946459]
 position = Vector2(1, -6)

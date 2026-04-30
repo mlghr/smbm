@@ -87,10 +87,14 @@ func handle_input():
 func handle_crouch():
 	if Input.is_action_just_pressed("crouch") and is_on_ground and not is_stunned:
 		is_crouching = true
+		$CollisionShape2D.shape.height = 40
+		$CollisionShape2D.position = Vector2(0, 40)
 		$AnimatedSprite2D.play("Crouch")
 		
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
+		$CollisionShape2D.shape.height = 65
+		$CollisionShape2D.position = Vector2(0, 28)
 		$AnimatedSprite2D.play("Stand")
 
 func handle_jump():
