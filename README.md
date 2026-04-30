@@ -18,30 +18,6 @@ If you need to re-install or repair the hook later, run:
 ./devtools/install-git-hooks.sh
 ```
 
-### Optional: shell helper
-
-If you want a convenient local command for formatting, add this to `~/.zshrc`:
-
-```bash
-fmtgd() {
-  local repo="$HOME/smbm"
-  if [[ -x "$repo/devtools/format.sh" ]]; then
-    (cd "$repo" && ./devtools/format.sh "$@")
-  else
-    echo "devtools/format.sh not found or not executable in $repo" >&2
-    return 1
-  fi
-}
-```
-
-Then reload your shell with:
-
-```bash
-source ~/.zshrc
-```
-
-This is optional; the git hook does not require it.
-
 ## Canonical gameplay paths
 
 Use folder-based gameplay files as the source of truth:

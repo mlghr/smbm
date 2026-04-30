@@ -3,6 +3,13 @@ set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
 
+echo "Starting hook" > /tmp/hook.log
 ./devtools/format.sh
-
-git diff --name-only -- '*.gd' | grep -E '\.gd$' | xargs -r git add
+echo "After format" >> /tmp/hook.log
+changed_files=$(git diff --name-only -- '*.gd' | grep -E '\.gd$' || true)
+if [[ -n "$changed_files" ]]; then
+  while IFS= read -r file; do
+    git add -- "$file"
+  done <<< "$changed_files"
+fi
+ echo "After add" >> /tmp/hook.log

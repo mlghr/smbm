@@ -13,6 +13,4 @@ if [[ ! -e "$target" ]]; then
   exit 1
 fi
 
-echo "Formatting GDScript files under '$target' using '$binary'..."
-find "$target" -name '*.gd' -type f -exec "$binary" {} +
-echo "Done."
+find "$target" -name '*.gd' -type f -exec "$binary" {} + >/dev/null
