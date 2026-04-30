@@ -16,9 +16,11 @@ var is_dead = false
 # allows manual changing of state for stuns
 var is_on_ground = true
 var is_stunned = false
+var is_crouching = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
+
 
 
 func _physics_process(delta):
@@ -39,6 +41,7 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	handle_dash()
+	handle_crouch()
 	move_and_slide()
 	is_on_ground = is_on_floor()
 	handle_collisions()
@@ -80,7 +83,16 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
-
+func handle_crouch():
+	if Input.is_action_just_pressed("crouch") and is_on_ground and not is_stunned:
+		is_crouching = true
+		$AnimatedSprite2D.play("Crouch")
+		
+	if Input.is_action_just_released("crouch"):
+		is_crouching = false
+		$AnimatedSprite2D.play("Stand")
+			
+	
 
 func handle_jump():
 	if Input.is_action_just_pressed("jump") and is_on_ground and not is_stunned:
@@ -109,6 +121,8 @@ func update_animation():
 	if is_on_floor() and abs(velocity.x) > 100:
 		$AnimatedSprite2D.play("Run")
 		return
+	if is_crouching:
+		$AnimatedSprite2D.play("Crouch_Idle")
 
 	else:
 		$AnimatedSprite2D.play("Idle")

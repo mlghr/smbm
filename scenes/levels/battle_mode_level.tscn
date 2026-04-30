@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://fhxuf5uel5sc" path="res://assets/third_party/Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="2_wycyw"]
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://scripts/actors/player/player1.gd" id="2_yyrx1"]
 [ext_resource type="Script" uid="uid://yy4h304wpbs4" path="res://scripts/world/transfer_point_right.gd" id="3_0un5b"]
+[ext_resource type="Texture2D" uid="uid://b4pm3y6b05ben" path="res://assets/Custom/Mushroom-Crouch.png" id="5_mrb0h"]
 [ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://assets/audio/platformer_jumping/jump_10.wav" id="7_0un5b"]
 [ext_resource type="Texture2D" uid="uid://detk8n44dy8jg" path="res://assets/third_party/Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Stun.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://scenes/props/block.tscn" id="9_uon0r"]
@@ -15,6 +16,38 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 radius = 40.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57e15"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b30rr"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uw3q"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nev3j"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nycbh"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lkky"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq05o"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrb0h"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(480, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_quifu"]
 atlas = ExtResource("2_eoaat")
@@ -136,6 +169,34 @@ region = Rect2(480, 0, 80, 64)
 atlas = ExtResource("2_mrooa")
 region = Rect2(560, 0, 80, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_b04q7"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhl70"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uibux"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iybc8"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8calg"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_namkm"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0xqe"]
+atlas = ExtResource("5_mrb0h")
+region = Rect2(0, 0, 80, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_a22dx"]
 atlas = ExtResource("8_hevgv")
 region = Rect2(0, 0, 80, 64)
@@ -238,6 +299,40 @@ region = Rect2(480, 0, 80, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0un5b"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57e15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b30rr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uw3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nev3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nycbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lkky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq05o")
+}],
+"loop": false,
+"name": &"Crouch",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrb0h")
+}],
+"loop": false,
+"name": &"Crouch_Idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_quifu")
@@ -345,6 +440,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_b04q7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhl70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uibux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iybc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8calg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_namkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0xqe")
+}],
+"loop": false,
+"name": &"Stand",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a22dx")
 }, {
 "duration": 1.0,
@@ -430,12 +551,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
-radius = 30.0
-height = 60.0
+radius = 20.0
+height = 65.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eoaat"]
-radius = 30.0
-height = 60.0
+radius = 20.0
+height = 65.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
 
@@ -505,12 +626,11 @@ script = ExtResource("2_yyrx1")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Stun"
-frame_progress = 0.49975547
+animation = &"Stand"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=544028563]
 position = Vector2(1, -6)
-scale = Vector2(1.772, 2.08)
+scale = Vector2(1.92, 2.08)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=126059197]
@@ -520,7 +640,7 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
-position = Vector2(0, 30)
+position = Vector2(0, 28)
 shape = SubResource("CapsuleShape2D_yech5")
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
@@ -531,6 +651,7 @@ script = ExtResource("1_wycyw")
 position = Vector2(1, -6)
 scale = Vector2(1.9200025, 2.0800014)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Crouch"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=556946459]
 position = Vector2(1, -6)
@@ -544,7 +665,7 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
-position = Vector2(1, 31)
+position = Vector2(0, 28)
 shape = SubResource("CapsuleShape2D_eoaat")
 
 [node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]

@@ -93,7 +93,7 @@ func handle_jump():
 
 
 func handle_dash():
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash2"):
 		velocity.x = velocity.x * 3
 		$AudioStreamPlayer2D.play()
 
