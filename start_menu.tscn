@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6yohmmdbox1k"]
+
+[node name="StartMenu" type="Node2D" unique_id=80150053]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1099993039]
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=239992791]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=343616443]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Suck the dick and then you win"
