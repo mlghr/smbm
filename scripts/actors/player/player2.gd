@@ -84,18 +84,20 @@ func handle_input():
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
 
+
 func handle_crouch():
 	if Input.is_action_just_pressed("crouch2") and is_on_ground and not is_stunned:
 		is_crouching = true
 		$CollisionShape2D.shape.height = 40
 		$CollisionShape2D.position = Vector2(0, 40)
 		$AnimatedSprite2D.play("Crouch")
-		
+
 	if Input.is_action_just_released("crouch2"):
 		is_crouching = false
 		$CollisionShape2D.shape.height = 65
 		$CollisionShape2D.position = Vector2(0, 28)
 		$AnimatedSprite2D.play("Stand")
+
 
 func handle_jump():
 	if Input.is_action_just_pressed("jump2") and is_on_ground and not is_stunned:
@@ -233,10 +235,8 @@ func handle_bump_stun(bump_direction):
 
 	if bump_direction == "left":
 		velocity.x = randi_range(90, 250)
-		print(velocity.x)
 	else:
 		velocity.x = randi_range(90, 250)
-		print(velocity.x)
 
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(0.5).timeout

@@ -33,7 +33,6 @@ func bump(player):
 	#bumping enemy
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for e in enemies:
-		print(e)
 		if global_position.distance_to(e.global_position) <= BUMP_RADIUS + 25:
 			e.handle_bump_stun()
 			print("bumped enemy")
