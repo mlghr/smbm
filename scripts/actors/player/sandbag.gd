@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 var speed = 350
 var jump_velocity = -905
 const gravity = 1500
@@ -38,7 +37,10 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	if bump_slide_time_left > 0.0:
 		bump_slide_time_left = max(0.0, bump_slide_time_left - delta)
-
+	handle_input()
+	handle_jump()
+	handle_dash()
+	handle_crouch()
 	move_and_slide()
 	is_on_ground = is_on_floor()
 	handle_collisions()
@@ -67,6 +69,49 @@ func apply_gravity(delta):
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
 
+
+func handle_input():
+	var direction = Input.get_axis("move_lef", "move_righ")
+	var control = NORMAL_CONTROL
+	if bump_slide_time_left > 0.0:
+		control = SLIDE_CONTROL
+
+	if not is_stunned:
+		velocity.x = lerp(velocity.x, direction * speed, control)
+
+		if direction < 0:
+			$AnimatedSprite2D.flip_h = false
+		elif direction > 0:
+			$AnimatedSprite2D.flip_h = true
+
+
+func handle_crouch():
+	if Input.is_action_just_pressed("crouc") and is_on_ground and not is_stunned:
+		is_crouching = true
+		$CollisionShape2D.shape.height = 40
+		$CollisionShape2D.position = Vector2(0, 40)
+		$AnimatedSprite2D.play("Crouch")
+
+	if Input.is_action_just_released("crouc"):
+		is_crouching = false
+		$CollisionShape2D.shape.height = 65
+		$CollisionShape2D.position = Vector2(0, 28)
+		$AnimatedSprite2D.play("Stand")
+
+
+func handle_jump():
+	if Input.is_action_just_pressed("jum") and is_on_ground and not is_stunned:
+		velocity.y = jump_velocity
+		$AudioStreamPlayer2D.play()
+
+	if Input.is_action_just_released("jum") and velocity.y < 0:
+		velocity.y *= jump_cut_multiplier
+
+
+func handle_dash():
+	if Input.is_action_just_pressed("das"):
+		velocity.x = velocity.x * 3
+		$AudioStreamPlayer2D.play()
 
 # -------------------------
 # animation

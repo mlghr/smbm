@@ -19,6 +19,9 @@ var skeleton_group: Array[CharacterBody2D] = []
 var slime_count: int = 0
 var slime_group: Array[CharacterBody2D] = []
 
+var sandbag_count: int = 0
+var sandbag_group: Array[CharacterBody2D] = []
+
 var block_count = 0
 
 # game states
@@ -127,11 +130,19 @@ func _input(event):
 	#Sandbag
 	#-----------------------------------------------------------------------
 	if event.is_action_pressed("sandbag"):
+		if sandbag_count > 0:
+			for bag in sandbag_group.duplicate():
+				if is_instance_valid(bag):
+					bag.queue_free()
+					sandbag_group.clear()
+					sandbag_count = 0
 		print("sandbag")
 		var sandbag = sandbag_scene.instantiate()
 		var point = spawn_points.pick_random()
 		sandbag.global_position = point.global_position
 		add_child(sandbag)
+		sandbag_count += 1
+		sandbag_group.append(sandbag)
 # -------------------------
 # timer
 # -------------------------
