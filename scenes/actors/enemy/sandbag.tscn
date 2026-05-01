@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://tu07kmjiy76d"]
+
+[ext_resource type="Script" uid="uid://b581twcbioxf8" path="res://scripts/actors/player/sandbag.gd" id="1_054ef"]
+[ext_resource type="Texture2D" uid="uid://cf1rq7expt5h" path="res://assets/Custom/Sandbag-Idle.png" id="2_3crxe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxavo"]
+atlas = ExtResource("2_3crxe")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nmblm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxavo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hp1cb"]
+radius = 20.0
+height = 65.0
+
+[node name="Sandbag" type="CharacterBody2D" unique_id=1806397040 groups=["player"]]
+script = ExtResource("1_054ef")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=917165304]
+position = Vector2(-1, -35)
+scale = Vector2(1.92, 2.08)
+sprite_frames = SubResource("SpriteFrames_nmblm")
+animation = &"Idle"
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=330489351]
+position = Vector2(-1, -35)
+scale = Vector2(1.92, 2.08)
+sprite_frames = SubResource("SpriteFrames_nmblm")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=410460204]
+shape = SubResource("CapsuleShape2D_hp1cb")
