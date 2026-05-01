@@ -61,7 +61,7 @@ func _process(_delta):
 
 func apply_gravity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 		if velocity.y > 0:
 			velocity.y = (velocity.y * velocity.y) / (velocity.y * .92)
 			pass
