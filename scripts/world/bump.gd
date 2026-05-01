@@ -14,7 +14,7 @@ func _ready():
 
 func bump(player):
 	block_midpoint = global_position.x
-	
+
 	if self.is_grumpy:
 		bump_grump(player)
 
@@ -46,24 +46,41 @@ func bump(player):
 		func():
 			is_bumping = false
 	)
+
+
 func set_grumpy():
-	self.is_grumpy = true;
+	self.is_grumpy = true
 	$Sprite2D.modulate = Color.RED
-	
+
+
+# create a tidal wave of destruction
 func bump_grump(player):
-	is_grumpy = false
-	var start_block = self.golbal_position.x
-	var row = self.get_parent().get_children()
-	var x_values = []
-	for b in row:
-		x_values.append(b.global_position.x)
-	x_values.sort()
-	print(x_values)
-	
-	
-	
-	# L R bump
-	# if null return
-	# else bump L R
-	
-	
+	var row = get_parent().get_children()
+
+	# sort blocks by x
+	row.sort_custom(
+		func(a, b):
+			return a.global_position.x < b.global_position.x
+	)
+
+	var start_index = row.find(self)
+
+	# spread right
+	for i in range(start_index + 1, row.size()):
+		var delay = (i - start_index) * 0.20
+		trigger_bump_with_delay(row[i], player, delay)
+
+	# spread left
+	for j in range(start_index - 1, -1, -1):
+		var delay = (start_index - j) * 0.20
+		trigger_bump_with_delay(row[j], player, delay)
+
+
+func trigger_bump_with_delay(block, player, delay):
+	var tween = create_tween()
+	tween.tween_interval(delay)
+	tween.tween_callback(
+		func():
+			if block.has_method("bump"):
+				block.bump(player)
+	)
