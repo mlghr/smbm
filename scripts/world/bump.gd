@@ -33,7 +33,7 @@ func bump(player):
 				else:
 					bump_direction = "left"
 				p.handle_bump_stun(bump_direction)
-	#bumping enemyw
+	#bumping enemy
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for e in enemies:
 		if global_position.distance_to(e.global_position) <= BUMP_RADIUS + 25:

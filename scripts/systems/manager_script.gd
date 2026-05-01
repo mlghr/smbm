@@ -2,9 +2,11 @@ extends Node2D
 
 @onready var skeleton_scene = preload("res://scenes/actors/enemy/skeleton.tscn")
 @onready var slime_scene = preload("res://scenes/actors/enemy/slime.tscn")
+@onready var sandbag_scene = preload("res://scenes/actors/enemy/sandbag.tscn")
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
 @onready var blocks = get_tree().get_nodes_in_group("blocks")
+
 
 # settings
 var spawn_on_start = false
@@ -96,24 +98,40 @@ func spawn_slime():
 
 
 func _input(event):
+	#-----------------------------------------------------------------------
+	#test spawn
+	#-----------------------------------------------------------------------
 	if event.is_action_pressed("test_spawn"): # press tab
 		spawn_skeleton()
 		spawn_slime()
+	#-----------------------------------------------------------------------
+	#spawn toggle
+	#-----------------------------------------------------------------------
 	if event.is_action_pressed("toggle_spawn"): # press escape
 		spawn_active = !spawn_active
+	#-----------------------------------------------------------------------
+	#Kill all enemies
+	#-----------------------------------------------------------------------
 	if event.is_action_pressed("kill_all_enemies"): # press backspace
 		for skeleton in skeleton_group.duplicate():
 			if is_instance_valid(skeleton):
 				skeleton.queue_free()
 		skeleton_group.clear()
 		skeleton_count = 0
-
 		for slime in slime_group.duplicate():
 			if is_instance_valid(slime):
 				slime.queue_free()
 		slime_group.clear()
 		slime_count = 0
-
+	#-----------------------------------------------------------------------
+	#Sandbag
+	#-----------------------------------------------------------------------
+	if event.is_action_pressed("sandbag"):
+		print("sandbag")
+		var sandbag = sandbag_scene.instantiate()
+		var point = spawn_points.pick_random()
+		sandbag.global_position = point.global_position
+		add_child(sandbag)
 # -------------------------
 # timer
 # -------------------------
