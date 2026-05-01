@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 var speed = 350
 var jump_velocity = -905
-var gravity = 1500
 var jump_cut_multiplier = 0.6
+const GRAVITY = 1500
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 420.0
@@ -21,14 +21,15 @@ var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 
+signal player_dead
+
 
 func _physics_process(delta):
 	if is_dead:
 		handle_death()
 		return
 
-	# Apply carry from a player underneath us from the previous frame.
-	# This lets the lower player move/jump freely while still carrying the upper one.
+	# Apply carry from a player underneath us from the previous frame
 	if carried_velocity != Vector2.ZERO:
 		global_position += carried_velocity * delta
 	carried_velocity = Vector2.ZERO
@@ -64,6 +65,7 @@ func apply_gravity(delta):
 		velocity.y += gravity * delta
 		if velocity.y > 0:
 			velocity.y = (velocity.y * velocity.y) / (velocity.y * .92)
+			pass
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
@@ -128,7 +130,6 @@ func update_animation():
 	if is_crouching:
 		$AnimatedSprite2D.play("Crouch_Idle")
 		return
-
 	else:
 		$AnimatedSprite2D.play("Idle")
 
@@ -161,6 +162,8 @@ func handle_collisions():
 		# enemy hit
 		if other.is_in_group("enemy"):
 			is_dead = true
+			print("EMIT player_dead")
+			emit_signal("player_dead")
 			return
 
 		# player interactions
@@ -182,7 +185,6 @@ func handle_push(collision, other):
 		# If the bottom player jumps up into us, keep us attached so we don't "pin" them.
 		if other.velocity.y < 0 and velocity.y >= 0:
 			velocity.y = other.velocity.y
-
 		return
 
 	# Someone is standing on us: explicitly pass our motion up to them.
@@ -219,7 +221,7 @@ func receive_carrier_motion(carrier_velocity, delta):
 	carried_velocity.x = carrier_velocity.x
 	# Match carrier horizontal motion so rider damping does not drag the bottom player.
 	# Keep player agency by blending in local input so they can walk/jump off.
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = Input.get_axis("move_left2", "move_right2")
 	velocity.x = carrier_velocity.x + direction * speed * 0.75
 	if carrier_velocity.y < 0:
 		global_position.y += carrier_velocity.y * delta
@@ -231,7 +233,7 @@ func receive_carrier_motion(carrier_velocity, delta):
 func handle_bump_stun(bump_direction):
 	is_on_ground = false
 	is_stunned = true
-	velocity.y = -300
+	velocity.y = -400
 	velocity.x = 0
 
 	if bump_direction == "left":
@@ -243,11 +245,10 @@ func handle_bump_stun(bump_direction):
 	await get_tree().create_timer(0.5).timeout
 	is_stunned = false
 
+
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------
-
-
 func handle_screen_wrap():
 	var left_bound = -540
 	var right_bound = 540

@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 var speed = 350
 var jump_velocity = -905
-const gravity = 1500
 var jump_cut_multiplier = 0.6
+const GRAVITY = 1500
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 420.0
@@ -21,14 +21,15 @@ var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 
+signal player_dead
+
 
 func _physics_process(delta):
 	if is_dead:
 		handle_death()
 		return
 
-	# Apply carry from a player underneath us from the previous frame.
-	# This lets the lower player move/jump freely while still carrying the upper one.
+	# Apply carry from a player underneath us from the previous frame
 	if carried_velocity != Vector2.ZERO:
 		global_position += carried_velocity * delta
 	carried_velocity = Vector2.ZERO
@@ -161,6 +162,8 @@ func handle_collisions():
 		# enemy hit
 		if other.is_in_group("enemy"):
 			is_dead = true
+			print("EMIT player_dead")
+			emit_signal("player_dead")
 			return
 
 		# player interactions

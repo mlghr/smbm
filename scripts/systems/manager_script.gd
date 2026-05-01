@@ -7,11 +7,10 @@ extends Node2D
 @onready var transfer_points = $TransferPoints.get_children()
 @onready var blocks = get_tree().get_nodes_in_group("blocks")
 
-
 # settings
-var spawn_on_start = false
-var spawn_interval = 3.0 # seconds
-var spawn_active = true # press escape to toggle skeletons spawning for debug purposes
+var spawn_on_start: bool = false
+var spawn_interval: float = 3.0
+var spawn_active: bool = true # press escape to toggle skeletons spawning for debug purposes
 
 var skeleton_count: int = 0
 var skeleton_group: Array[CharacterBody2D] = []
@@ -24,44 +23,84 @@ var sandbag_group: Array[CharacterBody2D] = []
 
 var block_count = 0
 
-# game states
-var game_over = false
+# game state
+var game_over: bool = false
 
 
-func _ready():
-	check_win_conditions()
-	#----------------------------
+func _ready() -> void:
+	get_tree().node_added.connect(_on_node_added)
+
+	connect_player_signals()
+
 	# grumpy bumpy start of game
-	#----------------------------
-
-	for b in blocks:
-		block_count = +1
-		#b.modulate = Color(0.188, 0.612, 0.984)
-	blocks[randi_range(0, 39)].set_grumpy()
-
 	block_count = blocks.size()
+
+	if blocks.size() > 0:
+		var index: int = randi_range(0, blocks.size() - 1)
+		if blocks[index].has_method("set_grumpy"):
+			blocks[index].set_grumpy()
+
 	print(block_count)
 
 	if spawn_on_start:
 		spawn_skeleton()
 		spawn_slime()
 
-	# optional: start timer automatically if available
 	if has_node("SpawnTimer"):
-		$SpawnTimer.wait_time = spawn_interval
-		$SpawnTimer.start()
+		var timer: Timer = $SpawnTimer
+		timer.wait_time = spawn_interval
+		timer.start()
+
+# -------------------------
+# signal handling
+# -------------------------
+
+
+func _on_node_added(node: Node) -> void:
+	if node.is_in_group("players") and node.has_signal("player_dead"):
+		node.player_dead.connect(_on_player_dead)
+
+
+func connect_player_signals() -> void:
+	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+
+	for p: Node in players:
+		if p.has_signal("player_dead"):
+			if not p.player_dead.is_connected(_on_player_dead):
+				p.player_dead.connect(_on_player_dead)
+
+
+func _on_player_dead() -> void:
+	check_win_conditions()
+
+# -------------------------
+# win condition
+# -------------------------
+
+
+func check_win_conditions() -> void:
+	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var alive_count: int = 0
+
+	for p: Node in players:
+		if p.is_dead:
+			alive_count += 1
+
+	if alive_count == 1 and not game_over:
+		game_over = true
+		print("Game Over!")
 
 # -------------------------
 # spawn logic
 # -------------------------
 
 
-func spawn_skeleton():
-	if spawn_points.is_empty() or spawn_active == false or skeleton_count >= 3:
+func spawn_skeleton() -> void:
+	if spawn_points.is_empty() or not spawn_active or skeleton_count >= 3:
 		return
 
-	var point = spawn_points.pick_random()
-	var skeleton = skeleton_scene.instantiate()
+	var point: Node2D = spawn_points.pick_random()
+	var skeleton: CharacterBody2D = skeleton_scene.instantiate()
 
 	skeleton.global_position = point.global_position
 
@@ -72,16 +111,16 @@ func spawn_skeleton():
 	# turn the sprite if going through the right transfer since default faces right
 	if point.name == "SpawnPointRight":
 		skeleton.direction = -1
-		var sprite = skeleton.get_node("AnimatedSprite2D")
+		var sprite: AnimatedSprite2D = skeleton.get_node("AnimatedSprite2D")
 		sprite.flip_h = true
 
 
-func spawn_slime():
-	if spawn_points.is_empty() or spawn_active == false or slime_count >= 3:
+func spawn_slime() -> void:
+	if spawn_points.is_empty() or not spawn_active or slime_count >= 3:
 		return
 
-	var point = spawn_points.pick_random()
-	var slime = slime_scene.instantiate()
+	var point: Node2D = spawn_points.pick_random()
+	var slime: CharacterBody2D = slime_scene.instantiate()
 
 	slime.global_position = point.global_position
 
@@ -89,14 +128,13 @@ func spawn_slime():
 	slime_count += 1
 	slime_group.append(slime)
 
-	# turn the sprite if going through the right transfer since default faces right
 	if point.name == "SpawnPointRight":
 		slime.direction = -1
-		var sprite = slime.get_node("AnimatedSprite2D")
+		var sprite: AnimatedSprite2D = slime.get_node("AnimatedSprite2D")
 		sprite.flip_h = true
 
 # -------------------------
-# input for testing
+# input
 # -------------------------
 
 
@@ -116,7 +154,7 @@ func _input(event):
 	#Kill all enemies
 	#-----------------------------------------------------------------------
 	if event.is_action_pressed("kill_all_enemies"): # press backspace
-		for skeleton in skeleton_group.duplicate():
+		for skeleton: CharacterBody2D in skeleton_group.duplicate():
 			if is_instance_valid(skeleton):
 				skeleton.queue_free()
 		skeleton_group.clear()
@@ -148,23 +186,6 @@ func _input(event):
 # -------------------------
 
 
-func _on_SpawnTimer_timeout():
+func _on_SpawnTimer_timeout() -> void:
 	spawn_skeleton()
 	spawn_slime()
-
-
-func check_win_conditions():
-	var one_player_alive = false
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
-	var player_count = players.size()
-
-	for p in players:
-		if p.is_dead:
-			player_count -= 1
-		if player_count == 1:
-			one_player_alive = true
-
-	if one_player_alive:
-		game_over = true
-
-	print("Game Over!")
