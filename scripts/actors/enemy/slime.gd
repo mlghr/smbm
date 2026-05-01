@@ -43,7 +43,7 @@ func _process(delta):
 
 func apply_gravity(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 
 
 func move_enemy():
