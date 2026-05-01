@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 350
 var jump_velocity = -905
-const gravity = 1500
+const GRAVITY = 1500
 var jump_cut_multiplier = 0.6
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
