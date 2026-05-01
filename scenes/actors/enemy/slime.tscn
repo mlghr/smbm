@@ -59,7 +59,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fd01c"]
-size = Vector2(4.6343737, 5.5682316)
+size = Vector2(3.2713227, 5.011409)
 
 [node name="Slime" type="CharacterBody2D" unique_id=1512919265 groups=["enemy"]]
 script = ExtResource("1_5jc4t")
@@ -85,7 +85,7 @@ shape = SubResource("RectangleShape2D_fd01c")
 [node name="Area2D" type="Area2D" parent="." unique_id=1770563430]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1381893542]
-position = Vector2(1.0000007, 29)
+position = Vector2(-1.0000006, 30.999998)
 rotation = 3.1415925
 scale = Vector2(14.672964, -7.1836085)
 shape = SubResource("RectangleShape2D_fd01c")
