@@ -17,27 +17,26 @@ var skeleton_group: Array[CharacterBody2D] = []
 var slime_count: int = 0
 var slime_group: Array[CharacterBody2D] = []
 
-
 var block_count = 0
+
+# game states
+var game_over = false
 
 
 func _ready():
+	check_win_conditions()
 	#----------------------------
 	# grumpy bumpy start of game
 	#----------------------------
-	
+
 	for b in blocks:
-		block_count =+ 1
+		block_count = +1
 		#b.modulate = Color(0.188, 0.612, 0.984)
 	blocks[randi_range(0, 39)].set_grumpy()
-	
 
-
-		
-		
 	block_count = blocks.size()
 	print(block_count)
-	
+
 	if spawn_on_start:
 		spawn_skeleton()
 		spawn_slime()
@@ -123,3 +122,20 @@ func _input(event):
 func _on_SpawnTimer_timeout():
 	spawn_skeleton()
 	spawn_slime()
+
+
+func check_win_conditions():
+	var one_player_alive = false
+	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var player_count = players.size()
+
+	for p in players:
+		if p.is_dead:
+			player_count -= 1
+		if player_count == 1:
+			one_player_alive = true
+
+	if one_player_alive:
+		game_over = true
+
+	print("Game Over!")
