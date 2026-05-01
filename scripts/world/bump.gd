@@ -53,7 +53,7 @@ func set_grumpy():
 	$Sprite2D.modulate = Color.RED
 
 
-# create a tidal wave of destruction
+# create a tidal wave of destruction when a player hits the grumpy bumpy
 func bump_grump(player):
 	var row = get_parent().get_children()
 

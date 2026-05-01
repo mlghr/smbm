@@ -107,9 +107,9 @@ func handle_stunned():
 	velocity = Vector2.ZERO
 	move_and_slide()
 
-	if not stun_played:
-		stun_played = true
-		$AnimatedSprite2D.play("Die")
+	#if not stun_played:
+	#stun_played = true
+	#$AnimatedSprite2D.play("Die")
 
 
 func handle_screen_wrap():
@@ -146,10 +146,6 @@ func handle_bump_stun():
 	is_stunned = true
 	velocity.y = -300
 	velocity.x = 0
-
-	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(0.5).timeout
-	is_stunned = false
 
 
 func teleport_to(target: Node2D):

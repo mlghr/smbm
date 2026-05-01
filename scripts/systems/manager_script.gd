@@ -40,8 +40,6 @@ func _ready() -> void:
 		if blocks[index].has_method("set_grumpy"):
 			blocks[index].set_grumpy()
 
-	print(block_count)
-
 	if spawn_on_start:
 		spawn_skeleton()
 		spawn_slime()
@@ -82,11 +80,15 @@ func check_win_conditions() -> void:
 	var players: Array[Node] = get_tree().get_nodes_in_group("players")
 	var alive_count: int = 0
 
+	print("Alive players:")
+	for p in players:
+		print(p.name, " dead=", p.is_dead)
+
 	for p: Node in players:
-		if p.is_dead:
+		if is_instance_valid(p) and not p.is_dead:
 			alive_count += 1
 
-	if alive_count == 1 and not game_over:
+	if alive_count <= 1 and not game_over:
 		game_over = true
 		print("Game Over!")
 
