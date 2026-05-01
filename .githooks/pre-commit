@@ -3,7 +3,12 @@ set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
 
-echo "Starting hook" > /tmp/hook.log
+binary=$(find "$HOME/.vscode/extensions" -maxdepth 3 -type f -path '*/dohe.godot-format*/binaries/gdscript-formatter' | head -n 1)
+if [[ -z "$binary" ]]; then
+  echo "Could not find dohe.godot-format gdscript-formatter binary in ~/.vscode/extensions" >&2
+  exit 1
+fi
+
 # Get staged .gd files and format them
 staged_gd_files=$(git diff --cached --name-only -- '*.gd' | grep -E '\.gd$' || true)
 if [[ -n "$staged_gd_files" ]]; then
@@ -17,4 +22,3 @@ if [[ -n "$staged_gd_files" ]]; then
     git add -- "$file"
   done <<< "$staged_gd_files"
 fi
-echo "After format and add" >> /tmp/hook.log
