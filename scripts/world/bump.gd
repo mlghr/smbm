@@ -20,7 +20,6 @@ func bump(player):
 		bump_grump(player)
 		self.is_grumpy = false
 		$Sprite2D.modulate = Color8(48, 156, 251)
-		
 
 	if is_bumping:
 		return
@@ -78,10 +77,7 @@ func bump_grump(player):
 	for j in range(start_index - 1, -1, -1):
 		var delay = (start_index - j) * 0.20
 		trigger_bump_with_delay(row[j], player, delay)
-		
-	
-	
-	
+
 	var block_count = current_blocks.size()
 	if current_blocks.size() > 0:
 		var index: int = randi_range(0, current_blocks.size() - 1)
