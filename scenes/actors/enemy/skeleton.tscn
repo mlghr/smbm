@@ -340,12 +340,12 @@ scale = Vector2(2.261, 2.261)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Walk"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=34382789]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
 position = Vector2(0, 20)
 shape = SubResource("CapsuleShape2D_ft6oh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
+[node name="Area2D" type="Area2D" parent="." unique_id=34382789]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
 position = Vector2(0, 20)
 shape = SubResource("CapsuleShape2D_ft6oh")
