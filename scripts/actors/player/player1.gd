@@ -25,9 +25,6 @@ signal player_dead
 
 
 func _physics_process(delta):
-	if is_dead:
-		handle_death()
-		return
 
 	# Apply carry from a player underneath us from the previous frame
 	if carried_velocity != Vector2.ZERO:
@@ -134,14 +131,8 @@ func update_animation():
 		$AnimatedSprite2D.play("Idle")
 
 
-func handle_death():
-	velocity = Vector2.ZERO
-	move_and_slide()
 
-	if not death_played:
-		death_played = true
-		$CollisionShape2D.disabled = true
-		$AnimatedSprite2D.play("Die")
+
 
 # -------------------------
 # collisions
@@ -161,9 +152,8 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			is_dead = true
-			print("EMIT player_dead")
-			die()
+			#is_dead = true
+			handle_death()
 			return
 
 		# player interactions
@@ -188,10 +178,10 @@ func handle_push(collision, other):
 		return
 
 	# Someone is standing on us: explicitly pass our motion up to them.
-	if normal.y > 0.9:
-		if other.has_method("receive_carrier_motion"):
-			other.receive_carrier_motion(velocity, get_physics_process_delta_time())
-		return
+	#if normal.y > 0.9:
+		#if other.has_method("receive_carrier_motion"):
+			#other.receive_carrier_motion(velocity, get_physics_process_delta_time())
+		#return
 
 	# side push
 	if abs(normal.x) > 0.9:
@@ -278,9 +268,17 @@ func handle_screen_wrap():
 		global_position.x -= width
 
 
-func die():
+func handle_death():
 	if is_dead:
 		return
+	velocity = Vector2.ZERO
+	move_and_slide()
+
+	if not death_played:
+		death_played = true
+		$CollisionShape2D.disabled = true
+		$AnimatedSprite2D.play("Die")
 
 	is_dead = true
 	player_dead.emit()
+	print("EMIT player_dead")

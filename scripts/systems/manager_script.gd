@@ -60,7 +60,7 @@ func _on_node_added(node: Node) -> void:
 
 
 func connect_player_signals() -> void:
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
+	var players: Array[Node] = get_tree().get_nodes_in_group("player")
 
 	for p: Node in players:
 		if p.has_signal("player_dead"):
@@ -89,8 +89,16 @@ func check_win_conditions() -> void:
 			alive_count += 1
 
 	if alive_count <= 1 and not game_over:
+		print(game_over)
 		game_over = true
 		print("Game Over!")
+		get_tree().paused = true
+		await get_tree().create_timer(2.0).timeout
+		get_tree().paused = false
+		get_tree().reload_current_scene()
+		print(game_over)
+		game_over = false
+		print(game_over)
 
 # -------------------------
 # spawn logic
