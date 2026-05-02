@@ -80,25 +80,17 @@ func check_win_conditions() -> void:
 	var players: Array[Node] = get_tree().get_nodes_in_group("players")
 	var alive_count: int = 0
 
-	print("Alive players:")
-	for p in players:
-		print(p.name, " dead=", p.is_dead)
-
 	for p: Node in players:
 		if is_instance_valid(p) and not p.is_dead:
 			alive_count += 1
 
 	if alive_count <= 1 and not game_over:
-		print(game_over)
 		game_over = true
-		print("Game Over!")
 		get_tree().paused = true
 		await get_tree().create_timer(2.0).timeout
 		get_tree().paused = false
 		get_tree().reload_current_scene()
-		print(game_over)
 		game_over = false
-		print(game_over)
 
 # -------------------------
 # spawn logic

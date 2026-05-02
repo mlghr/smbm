@@ -25,6 +25,9 @@ signal player_dead
 
 
 func _physics_process(delta):
+	if is_dead:
+		handle_death()
+		return
 
 	# Apply carry from a player underneath us from the previous frame
 	if carried_velocity != Vector2.ZERO:
@@ -131,8 +134,16 @@ func update_animation():
 		$AnimatedSprite2D.play("Idle")
 
 
+func handle_death():
+	velocity = Vector2.ZERO
+	move_and_slide()
 
+	if not is_dead:
+		is_dead = true
+		$CollisionShape2D.disabled = true
+		$AnimatedSprite2D.play("Die")
 
+	player_dead.emit()
 
 # -------------------------
 # collisions
@@ -152,7 +163,6 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			#is_dead = true
 			handle_death()
 			return
 
@@ -178,10 +188,10 @@ func handle_push(collision, other):
 		return
 
 	# Someone is standing on us: explicitly pass our motion up to them.
-	#if normal.y > 0.9:
-		#if other.has_method("receive_carrier_motion"):
-			#other.receive_carrier_motion(velocity, get_physics_process_delta_time())
-		#return
+	if normal.y > 0.9:
+		if other.has_method("receive_carrier_motion"):
+			other.receive_carrier_motion(velocity, get_physics_process_delta_time())
+		return
 
 	# side push
 	if abs(normal.x) > 0.9:
@@ -211,7 +221,7 @@ func receive_carrier_motion(carrier_velocity, delta):
 	carried_velocity.x = carrier_velocity.x
 	# Match carrier horizontal motion so rider damping does not drag the bottom player.
 	# Keep player agency by blending in local input so they can walk/jump off.
-	var direction = Input.get_axis("move_left2", "move_right2")
+	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = carrier_velocity.x + direction * speed * 0.75
 	if carrier_velocity.y < 0:
 		global_position.y += carrier_velocity.y * delta
@@ -266,19 +276,3 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
-
-
-func handle_death():
-	if is_dead:
-		return
-	velocity = Vector2.ZERO
-	move_and_slide()
-
-	if not death_played:
-		death_played = true
-		$CollisionShape2D.disabled = true
-		$AnimatedSprite2D.play("Die")
-
-	is_dead = true
-	player_dead.emit()
-	print("EMIT player_dead")

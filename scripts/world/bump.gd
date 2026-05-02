@@ -38,7 +38,6 @@ func bump(player):
 	for e in enemies:
 		if global_position.distance_to(e.global_position) <= BUMP_RADIUS + 25:
 			e.handle_bump_stun()
-			print("bumped enemy")
 
 	tween.tween_property(self, "position:y", original_y, 0.12)
 

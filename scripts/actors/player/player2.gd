@@ -138,10 +138,12 @@ func handle_death():
 	velocity = Vector2.ZERO
 	move_and_slide()
 
-	if not death_played:
-		death_played = true
+	if not is_dead:
+		is_dead = true
 		$CollisionShape2D.disabled = true
 		$AnimatedSprite2D.play("Die")
+
+	player_dead.emit()
 
 # -------------------------
 # collisions
@@ -161,9 +163,7 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			is_dead = true
-			print("EMIT player_dead")
-			die()
+			handle_death()
 			return
 
 		# player interactions
@@ -276,11 +276,3 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
-
-
-func die():
-	if is_dead:
-		return
-
-	is_dead = true
-	player_dead.emit()
