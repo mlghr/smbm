@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
-set -euo pipefail
+# #!/usr/bin/env bash
+# set -euo pipefail
 
-cd "$(git rev-parse --show-toplevel)"
+# cd "$(git rev-parse --show-toplevel)"
 
-git config core.hooksPath .githooks
+# git config core.hooksPath .githooks
 
-echo "Git hooks path set to .githooks"
+# echo "Git hooks path set to .githooks"
