@@ -38,7 +38,8 @@ func _ready() -> void:
 	if blocks.size() > 0:
 		var index: int = randi_range(0, blocks.size() - 1)
 		if blocks[index].has_method("set_grumpy"):
-			blocks[index].set_grumpy()
+			blocks[index].set_grumpy(blocks)
+			#print(blocks)
 
 	if spawn_on_start:
 		spawn_skeleton()

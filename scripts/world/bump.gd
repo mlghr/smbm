@@ -6,6 +6,7 @@ var BUMP_RADIUS = 95
 var block_midpoint = null
 var bump_direction = null # left or right
 var is_grumpy = false
+var current_blocks = []
 
 
 func _ready():
@@ -17,6 +18,9 @@ func bump(player):
 
 	if self.is_grumpy:
 		bump_grump(player)
+		self.is_grumpy = false
+		$Sprite2D.modulate = Color8(48, 156, 251)
+		
 
 	if is_bumping:
 		return
@@ -48,9 +52,10 @@ func bump(player):
 	)
 
 
-func set_grumpy():
+func set_grumpy(blocks):
 	self.is_grumpy = true
 	$Sprite2D.modulate = Color.RED
+	current_blocks = blocks
 
 
 # create a tidal wave of destruction when a player hits the grumpy bumpy
@@ -74,6 +79,15 @@ func bump_grump(player):
 	for j in range(start_index - 1, -1, -1):
 		var delay = (start_index - j) * 0.20
 		trigger_bump_with_delay(row[j], player, delay)
+		
+	
+	
+	
+	var block_count = current_blocks.size()
+	if current_blocks.size() > 0:
+		var index: int = randi_range(0, current_blocks.size() - 1)
+		if current_blocks[index].has_method("set_grumpy"):
+			current_blocks[index].set_grumpy(current_blocks)
 
 
 func trigger_bump_with_delay(block, player, delay):
