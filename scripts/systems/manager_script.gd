@@ -3,6 +3,7 @@ extends Node2D
 @onready var skeleton_scene = preload("res://scenes/actors/enemy/skeleton.tscn")
 @onready var slime_scene = preload("res://scenes/actors/enemy/slime.tscn")
 @onready var sandbag_scene = preload("res://scenes/actors/enemy/sandbag.tscn")
+@onready var win_screen = $WinScreen
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
 @onready var blocks = get_tree().get_nodes_in_group("blocks")
@@ -88,10 +89,7 @@ func check_win_conditions() -> void:
 	if alive_count <= 1 and not game_over:
 		game_over = true
 		get_tree().paused = true
-		await get_tree().create_timer(2.0).timeout
-		get_tree().paused = false
-		get_tree().reload_current_scene()
-		game_over = false
+		win_screen.visible = true
 
 # -------------------------
 # spawn logic
@@ -192,3 +190,8 @@ func _input(event):
 func _on_SpawnTimer_timeout() -> void:
 	spawn_skeleton()
 	spawn_slime()
+
+
+func start_next_round() -> void:
+	game_over = false
+	get_tree().reload_current_scene()

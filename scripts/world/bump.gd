@@ -78,7 +78,6 @@ func bump_grump(player):
 		var delay = (start_index - j) * 0.20
 		trigger_bump_with_delay(row[j], player, delay)
 
-	var block_count = current_blocks.size()
 	if current_blocks.size() > 0:
 		var index: int = randi_range(0, current_blocks.size() - 1)
 		if current_blocks[index].has_method("set_grumpy"):
