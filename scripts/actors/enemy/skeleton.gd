@@ -153,7 +153,7 @@ func handle_bump_stun():
 	velocity.x = 0
 
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(3).timeout
 	is_stunned = false
 
 
