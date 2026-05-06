@@ -23,6 +23,7 @@ var carried_velocity = Vector2.ZERO
 var coin_count = 0
 
 signal player_dead
+signal coin_victory
 
 
 func _physics_process(delta):
@@ -278,6 +279,13 @@ func handle_screen_wrap():
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
 func increment_coin_count():
+	print("INCING BITCH")
 	coin_count += 1
-	$AudioStreamPlayer2D.play()
+	$AudioStreamCoin2D.play()
+	if coin_count >= 5:
+		coin_victory.emit()
+		print("EMITTTING BITCH")
 	
+
+func get_coin_count() -> int:
+	return coin_count

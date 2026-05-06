@@ -99,7 +99,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="coin" type="RigidBody2D" unique_id=1163992872]
+[node name="coin" type="RigidBody2D" unique_id=1163992872 groups=["coin"]]
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_uxxfr")

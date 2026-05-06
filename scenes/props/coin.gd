@@ -6,6 +6,7 @@ const GRAVITY = 1000
 
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimatedSprite2D.play("Move")
@@ -67,6 +68,6 @@ func handle_screen_wrap():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		$AudioStreamPlayer2D.play()
-		print(body.coin_count)
 		body.increment_coin_count()
+		print(body.coin_count)
 		queue_free()
