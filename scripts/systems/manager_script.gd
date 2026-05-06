@@ -41,7 +41,6 @@ func _ready() -> void:
 		var index: int = randi_range(0, blocks.size() - 1)
 		if blocks[index].has_method("set_grumpy"):
 			blocks[index].set_grumpy(blocks)
-			#print(blocks)
 
 	if spawn_on_start:
 		spawn_skeleton()
@@ -55,8 +54,6 @@ func _ready() -> void:
 	for s in spawn_points:
 		if s.name != "SpawnPointRight" and s.name != "SpawnPointLeft":
 			spawn_points.erase(s)
-		
-	
 
 # -------------------------
 # signal handling
@@ -78,42 +75,29 @@ func connect_signals() -> void:
 		if p.has_signal("coin_victory"):
 			if not p.coin_victory.is_connected(_on_coin_victory):
 				p.coin_victory.connect(_on_coin_victory)
-				print("caught")
-	
 
-	
-
-
+# -------------------------
+# win conditions
+# -------------------------
 
 
 func _on_player_dead() -> void:
-	check_win_conditions()
-func _on_coin_victory() -> void:
-	handle_game_over()
-# -------------------------
-# win condition
-# -------------------------
-
-
-func check_win_conditions() -> void:
-	var players: Array[Node] = get_tree().get_nodes_in_group("players")
-	var coins: Array[Node] = get_tree().get_nodes_in_group("coin")
+	var players: Array[Node] = get_tree().get_nodes_in_group("coin")
 	var alive_count: int = 0
-	
 
 	for p: Node in players:
-		print(p.get_coin_count())
 		if is_instance_valid(p) and not p.is_dead:
 			alive_count += 1
 		if p.get_coin_count() >= 5 and not game_over:
-			
-			
 			handle_game_over()
 			#HEY THIS DOESNT TELL WHO WON YET YE YUPPIE
-		
+
 	if alive_count <= 1 and not game_over:
 		handle_game_over()
 
+
+func _on_coin_victory() -> void:
+	handle_game_over()
 
 # -------------------------
 # spawn logic
@@ -158,16 +142,15 @@ func spawn_slime() -> void:
 		var sprite: AnimatedSprite2D = slime.get_node("AnimatedSprite2D")
 		sprite.flip_h = true
 
+
 func spawn_coin() -> void:
 	var point: Node2D = spawn_points.pick_random()
 	var coin: RigidBody2D = coin_scene.instantiate()
 	coin.global_position = point.global_position
 	add_child(coin)
-	
+
 	if point.name == "SpawnPointRight":
 		coin.flip_direction()
-	
-
 
 # -------------------------
 # input
@@ -223,16 +206,17 @@ func _input(event):
 
 
 func _on_SpawnTimer_timeout() -> void:
-	spawn_skeleton()
+	#spawn_skeleton()
 	#spawn_slime()
-	#spawn_coin()
+	spawn_coin()
 
 
 func start_next_round() -> void:
 	game_over = false
 	get_tree().reload_current_scene()
-	
+
+
 func handle_game_over():
-		game_over = true
-		get_tree().paused = true
-		win_screen.visible = true
+	game_over = true
+	get_tree().paused = true
+	win_screen.visible = true
