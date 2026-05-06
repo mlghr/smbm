@@ -51,3 +51,4 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
     - Spawn coin on enemy kill
   - Last player standing
     - Check player_count state every frame. If player_count == 1, display win screen
+  - Tetris queue to see enemies
