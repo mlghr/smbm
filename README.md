@@ -31,24 +31,22 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
 
 ## Remaining Features for MVP
 
-- [ ] Fix player bump mechanic
+- [x] Fix player bump mechanic
 
-- Push distance
-- Slide feel
-- Dusty/movement animation
+- [x] Push distance
+- [ ] Slide feel
+- [ ] Dusty/movement animation
 
-- [ ] Enemy stun on block hit
+- [x] Enemy stun on block hit
+  - [ ] Animation
+  - [ ] Crumple/flip upside down
 
-- Animation
-- Crumple/flip upside down
-
-- [ ] Add win conditions
-  - Resource victory
-    - Create coin prop
-      - Give physics (velocity.x, gravity)
-    - Animate coin
-    - Sound effect when acquire coin
-    - Spawn coin on enemy kill
-  - Last player standing
-    - Check player_count state every frame. If player_count == 1, display win screen
-  - Tetris queue to see enemies
+- [x] Add win conditions
+  - [x] Resource victory
+    - [x] Create coin prop
+      - [x] Give physics (velocity.x, gravity)
+    - [x] Animate coin
+    - [x] Sound effect when acquire coin
+    - [ ] Spawn coin on enemy kill
+  - [x] Last player standing
+  - [ ] Tetris queue to see enemies
