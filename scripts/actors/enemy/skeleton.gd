@@ -55,7 +55,6 @@ func move_enemy():
 
 
 func handle_collisions():
-	
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var normal = collision.get_normal()

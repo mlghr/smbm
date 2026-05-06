@@ -278,14 +278,14 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
+
+
 func increment_coin_count():
-	print("INCING BITCH")
 	coin_count += 1
 	$AudioStreamCoin2D.play()
 	if coin_count >= 5:
 		coin_victory.emit()
-		print("EMITTTING BITCH")
-	
+
 
 func get_coin_count() -> int:
 	return coin_count
