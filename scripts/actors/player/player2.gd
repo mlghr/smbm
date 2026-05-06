@@ -23,6 +23,7 @@ var carried_velocity = Vector2.ZERO
 var coin_count = 0
 
 signal player_dead
+signal coin_victory
 
 
 func _physics_process(delta):
@@ -222,7 +223,7 @@ func receive_carrier_motion(carrier_velocity, delta):
 	carried_velocity.x = carrier_velocity.x
 	# Match carrier horizontal motion so rider damping does not drag the bottom player.
 	# Keep player agency by blending in local input so they can walk/jump off.
-	var direction = Input.get_axis("move_left2", "move_right2")
+	var direction = Input.get_axis("move_left", "move_right")
 	velocity.x = carrier_velocity.x + direction * speed * 0.75
 	if carrier_velocity.y < 0:
 		global_position.y += carrier_velocity.y * delta
@@ -277,3 +278,14 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
+
+
+func increment_coin_count():
+	coin_count += 1
+	$AudioStreamCoin2D.play()
+	if coin_count >= 5:
+		coin_victory.emit()
+
+
+func get_coin_count() -> int:
+	return coin_count
