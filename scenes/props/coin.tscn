@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://c1qta7sf0j3f4"]
+
+[ext_resource type="Script" uid="uid://dc327bodpdpd5" path="res://scenes/props/coin.gd" id="1_uxxfr"]
+[ext_resource type="Texture2D" uid="uid://bprlchijfdv04" path="res://assets/third_party/Platformer_Samples/sprites/coin.png" id="2_r8n3v"]
+[ext_resource type="AudioStream" uid="uid://dww2cuiv06n0g" path="res://assets/third_party/Platformer_Samples/sounds/coin.wav" id="3_r8n3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxxfr"]
+size = Vector2(50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7734d"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr5yf"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptf60"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n8k7"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld1h8"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3o45"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1wcr"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3wlg"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxyo3"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au0lq"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk47c"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skcmr"]
+atlas = ExtResource("2_r8n3v")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1751"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7734d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr5yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptf60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n8k7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld1h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3o45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1wcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3wlg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxyo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au0lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk47c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skcmr")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 10.0
+}]
+
+[node name="coin" type="RigidBody2D" unique_id=1163992872]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_uxxfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=278454795]
+shape = SubResource("RectangleShape2D_uxxfr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=362002340]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_u1751")
+animation = &"Move"
+frame = 10
+frame_progress = 0.024319274
+
+[node name="Area2D" type="Area2D" parent="." unique_id=280718005]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1022640548]
+shape = SubResource("RectangleShape2D_uxxfr")
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1608279778]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_u1751")
+animation = &"Move"
+frame = 10
+frame_progress = 0.024319274
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2112615850]
+stream = ExtResource("3_r8n3v")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://detk8n44dy8jg" path="res://assets/third_party/Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Stun.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://scenes/props/block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://assets/third_party/Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
-[ext_resource type="PackedScene" path="res://scenes/props/inert_block.tscn" id="13_57e15"]
+[ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/inert_block.tscn" id="13_57e15"]
 [ext_resource type="Script" uid="uid://cr3bvg5pbnslv" path="res://scenes/levels/win_screen.gd" id="15_3uw3q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
@@ -623,6 +623,7 @@ autostart = true
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(363, -91)
+collision_layer = 2
 script = ExtResource("2_yyrx1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
@@ -648,6 +649,7 @@ shape = SubResource("CapsuleShape2D_yech5")
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
 position = Vector2(-372, -93)
+collision_layer = 2
 script = ExtResource("1_wycyw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
