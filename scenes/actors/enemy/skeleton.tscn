@@ -326,6 +326,8 @@ radius = 44.49
 height = 108.27
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=1076001208 groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
 safe_margin = 0.8
 script = ExtResource("1_uaaco")
 

@@ -20,6 +20,7 @@ var is_crouching = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
+var coin_count = 0
 
 signal player_dead
 
@@ -276,3 +277,7 @@ func handle_screen_wrap():
 		global_position.x += width
 	elif global_position.x > right_bound + sprite_width:
 		global_position.x -= width
+func increment_coin_count():
+	coin_count += 1
+	$AudioStreamPlayer2D.play()
+	

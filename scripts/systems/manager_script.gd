@@ -3,6 +3,7 @@ extends Node2D
 @onready var skeleton_scene = preload("res://scenes/actors/enemy/skeleton.tscn")
 @onready var slime_scene = preload("res://scenes/actors/enemy/slime.tscn")
 @onready var sandbag_scene = preload("res://scenes/actors/enemy/sandbag.tscn")
+@onready var coin_scene = preload("res://scenes/props/coin.tscn")
 @onready var win_screen = $WinScreen
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
@@ -45,6 +46,7 @@ func _ready() -> void:
 	if spawn_on_start:
 		spawn_skeleton()
 		spawn_slime()
+		spawn_coin()
 
 	if has_node("SpawnTimer"):
 		var timer: Timer = $SpawnTimer
@@ -134,6 +136,13 @@ func spawn_slime() -> void:
 		var sprite: AnimatedSprite2D = slime.get_node("AnimatedSprite2D")
 		sprite.flip_h = true
 
+func spawn_coin() -> void:
+	var point: Node2D = spawn_points.pick_random()
+	var coin: RigidBody2D = coin_scene.instantiate()
+	coin.global_position = point.global_position
+	add_child(coin)
+
+
 # -------------------------
 # input
 # -------------------------
@@ -188,8 +197,9 @@ func _input(event):
 
 
 func _on_SpawnTimer_timeout() -> void:
-	spawn_skeleton()
-	spawn_slime()
+	#spawn_skeleton()
+	#spawn_slime()
+	spawn_coin()
 
 
 func start_next_round() -> void:

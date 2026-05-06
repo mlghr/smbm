@@ -20,6 +20,7 @@ var is_crouching = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
+var coin_count = 0
 
 signal player_dead
 
