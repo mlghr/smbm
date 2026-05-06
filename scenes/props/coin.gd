@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const SPEED = 200
+var speed = 200
 const GRAVITY = 1000
 
 
@@ -20,9 +20,10 @@ func _process(delta: float) -> void:
 func _physics_process(delta):
 	apply_gravity(delta)
 	handle_screen_wrap()
+	move()
 	
 func move():
-	linear_velocity.x = SPEED
+	linear_velocity.x = speed
 
 	
 func update_animation():
@@ -71,3 +72,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		body.increment_coin_count()
 		print(body.coin_count)
 		queue_free()
+		
+func flip_direction():
+	speed = linear_velocity.x * -1

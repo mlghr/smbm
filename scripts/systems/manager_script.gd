@@ -52,6 +52,11 @@ func _ready() -> void:
 		var timer: Timer = $SpawnTimer
 		timer.wait_time = spawn_interval
 		timer.start()
+	for s in spawn_points:
+		if s.name != "SpawnPointRight" and s.name != "SpawnPointLeft":
+			spawn_points.erase(s)
+		
+	
 
 # -------------------------
 # signal handling
@@ -158,6 +163,10 @@ func spawn_coin() -> void:
 	var coin: RigidBody2D = coin_scene.instantiate()
 	coin.global_position = point.global_position
 	add_child(coin)
+	
+	if point.name == "SpawnPointRight":
+		coin.flip_direction()
+	
 
 
 # -------------------------
@@ -214,9 +223,9 @@ func _input(event):
 
 
 func _on_SpawnTimer_timeout() -> void:
-	#spawn_skeleton()
+	spawn_skeleton()
 	#spawn_slime()
-	spawn_coin()
+	#spawn_coin()
 
 
 func start_next_round() -> void:

@@ -55,6 +55,7 @@ func move_enemy():
 
 
 func handle_collisions():
+	
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var normal = collision.get_normal()
@@ -153,7 +154,7 @@ func handle_bump_stun():
 	velocity.x = 0
 
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(5).timeout
 	is_stunned = false
 
 

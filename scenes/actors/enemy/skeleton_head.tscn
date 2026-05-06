@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://gsckwtx5jyjt"]
+
+[ext_resource type="Texture2D" uid="uid://bmko8xlnb43vy" path="res://assets/Custom/skeleton_head_roll.png" id="1_pxvq7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yg4xt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfla5"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m80r"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o544s"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhwir"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eqbm"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8kec"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0618y"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixbyc"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfhyh"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvx5q"]
+atlas = ExtResource("1_pxvq7")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cmgvp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfla5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m80r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o544s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhwir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eqbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8kec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0618y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixbyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfhyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvx5q")
+}],
+"loop": true,
+"name": &"roll",
+"speed": 10.0
+}]
+
+[node name="SkeletonHead" type="Node2D" unique_id=415870506]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1457019859]
+shape = SubResource("CircleShape2D_yg4xt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1010979415]
+position = Vector2(2, -25)
+sprite_frames = SubResource("SpriteFrames_cmgvp")
+animation = &"roll"
+frame_progress = 0.52856404
