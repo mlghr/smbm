@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dww2cuiv06n0g" path="res://assets/third_party/Platformer_Samples/sounds/coin.wav" id="3_r8n3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8n3v"]
+radius = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7734d"]
 atlas = ExtResource("2_r8n3v")
@@ -98,8 +99,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7734d"]
-
 [node name="coin" type="RigidBody2D" unique_id=1163992872 groups=["coin"]]
 collision_layer = 8
 collision_mask = 3
@@ -110,7 +109,7 @@ script = ExtResource("1_uxxfr")
 shape = SubResource("CircleShape2D_r8n3v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=362002340]
-scale = Vector2(2, 2)
+scale = Vector2(3.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_u1751")
 animation = &"Move"
 frame = 10
@@ -120,17 +119,17 @@ frame_progress = 0.024319274
 collision_layer = 8
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1022640548]
-shape = SubResource("CircleShape2D_7734d")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=549567109]
+shape = SubResource("CircleShape2D_r8n3v")
 
-[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1608279778]
-scale = Vector2(2, 2)
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2112615850]
+stream = ExtResource("3_r8n3v")
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=654091378]
+scale = Vector2(3.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_u1751")
 animation = &"Move"
 frame = 10
 frame_progress = 0.024319274
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2112615850]
-stream = ExtResource("3_r8n3v")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
