@@ -12,7 +12,6 @@ var stun_played = false
 var is_on_ground = true
 var skeleton_head_scene = preload("res://scenes/actors/enemy/skeleton_head.tscn")
 
-
 # distances for player tracking
 var dx = 0
 var dy = 0
@@ -165,7 +164,6 @@ func handle_bump_stun():
 	$AnimatedSprite2D.play("Die")
 	await get_tree().create_timer(5).timeout
 	is_stunned = false
-	
 
 
 func teleport_to(target: Node2D):
