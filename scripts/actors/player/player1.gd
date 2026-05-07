@@ -165,6 +165,7 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
+			print("player script")
 			handle_death()
 			return
 

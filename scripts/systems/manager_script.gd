@@ -206,9 +206,9 @@ func _input(event):
 
 
 func _on_SpawnTimer_timeout() -> void:
-	#spawn_skeleton()
+	spawn_skeleton()
 	#spawn_slime()
-	spawn_coin()
+	#spawn_coin()
 
 
 func start_next_round() -> void:

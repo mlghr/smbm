@@ -10,6 +10,8 @@ var closest_distance = INF
 var is_stunned = false
 var stun_played = false
 var is_on_ground = true
+var skeleton_head_scene = preload("res://scenes/actors/enemy/skeleton_head.tscn")
+
 
 # distances for player tracking
 var dx = 0
@@ -19,10 +21,9 @@ var dy = 0
 func _physics_process(delta):
 	if is_stunned:
 		handle_stunned()
-		return
-
-	apply_gravity(delta)
-	move_enemy()
+	else:
+		apply_gravity(delta)
+		move_enemy()
 	move_and_slide()
 	handle_collisions()
 	handle_screen_wrap()
@@ -66,9 +67,16 @@ func handle_collisions():
 			$AnimatedSprite2D.flip_h = !$AnimatedSprite2D.flip_h
 
 		if other.is_in_group("player"):
-			other.is_dead = true
-			is_stunned = true
-			$CollisionShape2D.disabled = true
+			if not is_stunned:
+				print("enemy script")
+				other.is_dead = true
+			elif is_stunned:
+				print("HELLO")
+				var skull = skeleton_head_scene.instantiate()
+				skull.global_position = global_position
+				get_parent().add_child(skull)
+				queue_free()
+			#$CollisionShape2D.disabled = true
 
 # -------------------------
 # player tracking
@@ -99,6 +107,8 @@ func find_closest_player():
 
 
 func update_animation():
+	if is_stunned:
+		return
 	# use x + y proximity instead of circular distance
 	if closest_player and !closest_player.is_dead and dx < 200 and dy < 80:
 		if $AnimatedSprite2D.animation != "Attack":
@@ -152,9 +162,10 @@ func handle_bump_stun():
 	velocity.y = -300
 	velocity.x = 0
 
-	$AnimatedSprite2D.play("Stun")
+	$AnimatedSprite2D.play("Die")
 	await get_tree().create_timer(5).timeout
 	is_stunned = false
+	
 
 
 func teleport_to(target: Node2D):

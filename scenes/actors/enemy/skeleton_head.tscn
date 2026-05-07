@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://gsckwtx5jyjt"]
 
 [ext_resource type="Texture2D" uid="uid://bmko8xlnb43vy" path="res://assets/Custom/skeleton_head_roll.png" id="1_pxvq7"]
+[ext_resource type="Script" uid="uid://drb404gfu0ilj" path="res://scenes/actors/enemy/skeleton_head.gd" id="1_sfla5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yg4xt"]
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfla5"]
 atlas = ExtResource("1_pxvq7")
@@ -87,13 +89,21 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="SkeletonHead" type="Node2D" unique_id=415870506]
+[node name="SkeletonHead" type="RigidBody2D" unique_id=2119407196]
+script = ExtResource("1_sfla5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1457019859]
+position = Vector2(0, 70)
 shape = SubResource("CircleShape2D_yg4xt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1010979415]
-position = Vector2(2, -25)
+position = Vector2(4, 15)
+scale = Vector2(2.009, 2.261)
 sprite_frames = SubResource("SpriteFrames_cmgvp")
 animation = &"roll"
-frame_progress = 0.52856404
+
+[node name="WrapSprite2D2" type="AnimatedSprite2D" parent="." unique_id=700001829]
+position = Vector2(4, 15)
+scale = Vector2(2.009, 2.261)
+sprite_frames = SubResource("SpriteFrames_cmgvp")
+animation = &"roll"
