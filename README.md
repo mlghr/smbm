@@ -50,3 +50,9 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
     - [ ] Spawn coin on enemy kill
   - [x] Last player standing
   - [ ] Tetris queue to see enemies
+
+- [ ] Skull damage
+  - [ ] Remove enemy stun
+  - [ ] Pop enemies up
+
+- [ ] Select Menu before level starts
