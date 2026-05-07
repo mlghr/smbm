@@ -1029,7 +1029,6 @@ position = Vector2(364, -97)
 scale = Vector2(1.9200025, 2.0800014)
 tile_set = SubResource("TileSet_nycbh")
 format = 2
-layer_0/tile_data = PackedInt32Array(-262175, 0, 0, -262174, 0, 0, -262173, 0, 0, -262172, 0, 0, -262171, 0, 0, -262170, 0, 0, -262169, 0, 0, -262168, 0, 0, -262167, 0, 0, -262166, 0, 0, -262165, 0, 0, -262164, 0, 0, -262163, 0, 0, -262162, 0, 0, -262161, 0, 0, -262152, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, 131053, 458752, 5, 131066, 458752, 5, -655370, 458752, 5, -655378, 458752, 5)
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]

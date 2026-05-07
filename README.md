@@ -51,8 +51,10 @@ Avoid creating duplicate gameplay scenes/scripts at repo root.
   - [x] Last player standing
   - [ ] Tetris queue to see enemies
 
-- [ ] Skull damage
+- [ ] Skull behavior
+  - [ ] Damage
   - [ ] Remove enemy stun
   - [ ] Pop enemies up
+  - [ ] When two skulls collide, have them cancel out
 
 - [ ] Select Menu before level starts
