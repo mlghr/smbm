@@ -102,7 +102,7 @@ scale = Vector2(2.009, 2.261)
 sprite_frames = SubResource("SpriteFrames_cmgvp")
 animation = &"roll"
 
-[node name="WrapSprite2D2" type="AnimatedSprite2D" parent="." unique_id=700001829]
+[node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=700001829]
 position = Vector2(4, 15)
 scale = Vector2(2.009, 2.261)
 sprite_frames = SubResource("SpriteFrames_cmgvp")
