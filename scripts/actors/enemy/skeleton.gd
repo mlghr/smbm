@@ -74,6 +74,9 @@ func handle_collisions():
 				var skull = skeleton_head_scene.instantiate()
 				skull.global_position = global_position
 				get_parent().add_child(skull)
+				# set skull direction based on player stomp
+				if other.global_position.x > global_position.x:
+					skull.direction = -1
 				queue_free()
 			#$CollisionShape2D.disabled = true
 
