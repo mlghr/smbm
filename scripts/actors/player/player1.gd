@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed = 350
-var jump_velocity = -905
+var speed = 100
+var jump_velocity = -350
 var jump_cut_multiplier = 0.6
-const GRAVITY = 1500
+const GRAVITY = 775
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 420.0
@@ -66,7 +66,7 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 		if velocity.y > 0:
-			velocity.y = (velocity.y * velocity.y) / (velocity.y * .92)
+			#velocity.y = aa(velocity.y * velocity.y) / (velocity.y * .92)
 			pass
 
 	if is_on_floor() and velocity.y > 0:
@@ -126,7 +126,7 @@ func update_animation():
 		$AnimatedSprite2D.play("Stun")
 		return
 
-	if is_on_floor() and abs(velocity.x) > 100:
+	if is_on_floor() and abs(velocity.x) > 85:
 		$AnimatedSprite2D.play("Run")
 		return
 	if is_crouching:
@@ -165,7 +165,6 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			print("player script")
 			handle_death()
 			return
 
@@ -253,8 +252,8 @@ func handle_bump_stun(bump_direction):
 # screen wrap, allows peeking
 # -------------------------
 func handle_screen_wrap():
-	var left_bound = -540
-	var right_bound = 540
+	var left_bound = -480
+	var right_bound = 480
 	var width = right_bound - left_bound
 
 	var sprite_width = 60

@@ -15,6 +15,10 @@ run/main_scene="res://scenes/levels/battle_mode_level.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://d2ojgvrx60udb"
+
 [display]
 
 window/size/viewport_width=1920

@@ -34,8 +34,8 @@ func apply_gravity(delta):
 
 
 func handle_screen_wrap():
-	var left_bound = -540
-	var right_bound = 540
+	var left_bound = -400
+	var right_bound = 400
 	var width = right_bound - left_bound
 
 	var sprite_width = 60

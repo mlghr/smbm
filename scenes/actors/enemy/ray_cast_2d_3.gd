@@ -11,8 +11,6 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print("rotation: ", global_rotation)
-	print("parent rotation: ", -get_parent().rotation)
 	rotation = -get_parent().rotation
 
 	if get_collider() != null:

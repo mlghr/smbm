@@ -1,10 +1,9 @@
 extends RigidBody2D
 
 const GRAVITY = 1500
-var speed = 225
+var speed = 350
 var direction = 1
 var is_stomped = false
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -65,7 +64,6 @@ func handle_screen_wrap():
 
 
 func handle_head_stomp():
-	print("head stomp")
 	is_stomped = true
 	linear_velocity.x = 0
 

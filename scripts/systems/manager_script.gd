@@ -11,7 +11,7 @@ extends Node2D
 
 # settings
 var spawn_on_start: bool = false
-var spawn_interval: float = 3.0
+var spawn_interval: float = 7.0
 var spawn_active: bool = true # press escape to toggle skeletons spawning for debug purposes
 
 var skeleton_count: int = 0
@@ -24,6 +24,7 @@ var sandbag_count: int = 0
 var sandbag_group: Array[CharacterBody2D] = []
 
 var block_count = 0
+var total_enemy_count = 0
 
 # game state
 var game_over: bool = false
@@ -108,6 +109,7 @@ func spawn_skeleton() -> void:
 	if spawn_points.is_empty() or not spawn_active or skeleton_count >= 3:
 		return
 
+	
 	var point: Node2D = spawn_points.pick_random()
 	var skeleton: CharacterBody2D = skeleton_scene.instantiate()
 
@@ -115,6 +117,7 @@ func spawn_skeleton() -> void:
 
 	add_child(skeleton)
 	skeleton_count += 1
+	total_enemy_count += 1
 	skeleton_group.append(skeleton)
 
 	# turn the sprite if going through the right transfer since default faces right
@@ -127,7 +130,8 @@ func spawn_skeleton() -> void:
 func spawn_slime() -> void:
 	if spawn_points.is_empty() or not spawn_active or slime_count >= 3:
 		return
-
+	
+	total_enemy_count += 1
 	var point: Node2D = spawn_points.pick_random()
 	var slime: CharacterBody2D = slime_scene.instantiate()
 
@@ -206,9 +210,13 @@ func _input(event):
 
 
 func _on_SpawnTimer_timeout() -> void:
-	spawn_skeleton()
-	#spawn_slime()
-	#spawn_coin()
+	if total_enemy_count == 5:
+		return
+	else:
+		spawn_skeleton()
+		spawn_slime()
+	
+	print('total enemies: ', total_enemy_count)
 
 
 func start_next_round() -> void:
