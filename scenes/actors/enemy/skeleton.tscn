@@ -322,8 +322,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft6oh"]
-radius = 44.49
-height = 108.27
+radius = 7.87
+height = 19.152
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=1076001208 groups=["enemy"]]
 collision_layer = 4
@@ -332,22 +332,21 @@ safe_margin = 0.8
 script = ExtResource("1_uaaco")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336369097]
-position = Vector2(-13, 0)
-scale = Vector2(2.0085523, 2.2612581)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Walk"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1283754499]
-scale = Vector2(2.261, 2.261)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
-position = Vector2(0, 20)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_ft6oh")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=34382789]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
-position = Vector2(0, 20)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_ft6oh")

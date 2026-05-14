@@ -71,27 +71,27 @@ collision_mask = 7
 script = ExtResource("1_5jc4t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=498443705]
-scale = Vector2(3.5518398, 4.043774)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_5b0gg")
 animation = &"Walk"
 frame_progress = 0.118774004
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=931896035]
-scale = Vector2(3.552, 4.044)
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_5b0gg")
 animation = &"Walk"
 frame_progress = 0.118774004
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=360947749]
-position = Vector2(1.0000007, 29)
+position = Vector2(0.19708, 5.02)
 rotation = 3.1415925
-scale = Vector2(14.672964, -7.1836085)
+scale = Vector2(2.892, -1.243)
 shape = SubResource("CapsuleShape2D_fd01c")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1770563430]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1381893542]
-position = Vector2(-1.0000006, 30.999998)
+position = Vector2(-0.19708, 5.366)
 rotation = 3.1415925
-scale = Vector2(14.672964, -7.1836085)
+scale = Vector2(2.892, -1.243)
 shape = SubResource("RectangleShape2D_fd01c")

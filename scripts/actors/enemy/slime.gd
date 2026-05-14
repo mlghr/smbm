@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # at 300 speed he hits wall, aggresive speed?
-const SPEED = 200
+const SPEED = 37.5
 const GRAVITY = 1500
 var direction = 1
 

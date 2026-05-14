@@ -20,6 +20,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_walls"]
+size = Vector2(16, 400)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_57e15"]
 atlas = ExtResource("5_mrb0h")
 region = Rect2(0, 0, 80, 64)
@@ -757,6 +760,18 @@ shape = SubResource("CircleShape2D_0un5b")
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
 autostart = true
+
+[node name="WallLeft" type="StaticBody2D" parent="." unique_id=410001001 groups=["walls"]]
+position = Vector2(-152, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft" unique_id=410001002]
+shape = SubResource("RectangleShape2D_walls")
+
+[node name="WallRight" type="StaticBody2D" parent="." unique_id=410002001 groups=["walls"]]
+position = Vector2(152, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight" unique_id=410002002]
+shape = SubResource("RectangleShape2D_walls")
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(88, -26)

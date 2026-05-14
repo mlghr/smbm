@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://dah0x4afyydjt" path="res://scenes/actors/enemy/ray_cast_left.gd" id="6_g8kec"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yg4xt"]
-radius = 15.0
+radius = 2.655
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4m80r"]
 atlas = ExtResource("1_pxvq7")
@@ -98,48 +98,48 @@ lock_rotation = true
 script = ExtResource("1_sfla5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1457019859]
-position = Vector2(0, 70)
+position = Vector2(3.292, 24.735)
 shape = SubResource("CircleShape2D_yg4xt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1010979415]
 position = Vector2(4, 15)
-scale = Vector2(2.009, 2.261)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_cmgvp")
 animation = &"Roll"
 frame_progress = 0.9777081
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=700001829]
 position = Vector2(4, 15)
-scale = Vector2(2.009, 2.261)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_cmgvp")
 animation = &"Roll"
 frame = 1
 frame_progress = 0.7484941
 
 [node name="RayCastUp" type="RayCast2D" parent="." unique_id=1010610489]
-position = Vector2(0, 70)
+position = Vector2(3.292, 24.735)
 rotation = -3.1415925
-scale = Vector2(23.566505, 0.31518316)
-target_position = Vector2(1.6796876e-06, 60.74771)
+scale = Vector2(4.171, 0.0558)
+target_position = Vector2(2.97e-07, 10.752)
 collision_mask = 7
 script = ExtResource("3_o544s")
 
 [node name="RayCastRight" type="RayCast2D" parent="." unique_id=1958185700]
-position = Vector2(0, 70)
+position = Vector2(3.292, 24.735)
 rotation = 4.712389
-scale = Vector2(2.031466, 0.34569207)
+scale = Vector2(0.3596, 0.0612)
 collision_mask = 7
 script = ExtResource("4_hhwir")
 
 [node name="RayCastDown" type="RayCast2D" parent="." unique_id=151453469]
-position = Vector2(0, 70)
-scale = Vector2(2.031466, 0.34569207)
+position = Vector2(3.292, 24.735)
+scale = Vector2(0.3596, 0.0612)
 collision_mask = 7
 script = ExtResource("5_4eqbm")
 
 [node name="RayCastLeft" type="RayCast2D" parent="." unique_id=666318069]
-position = Vector2(0, 70)
+position = Vector2(3.292, 24.735)
 rotation = 1.5707964
-scale = Vector2(2.031466, 0.34569207)
+scale = Vector2(0.3596, 0.0612)
 collision_mask = 7
 script = ExtResource("6_g8kec")
