@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed = 350
-var jump_velocity = -905
+var speed = 75
+var jump_velocity = -344
 var jump_cut_multiplier = 0.6
-const GRAVITY = 1500
+const GRAVITY = 775
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 420.0
@@ -66,7 +66,7 @@ func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 		if velocity.y > 0:
-			velocity.y = (velocity.y * velocity.y) / (velocity.y * .92)
+			#velocity.y = aa(velocity.y * velocity.y) / (velocity.y * .92)
 			pass
 
 	if is_on_floor() and velocity.y > 0:
@@ -126,7 +126,7 @@ func update_animation():
 		$AnimatedSprite2D.play("Stun")
 		return
 
-	if is_on_floor() and abs(velocity.x) > 100:
+	if is_on_floor() and abs(velocity.x) > speed - 15:
 		$AnimatedSprite2D.play("Run")
 		return
 	if is_crouching:
@@ -215,23 +215,8 @@ func apply_player_bump(push_dir):
 	last_player_bump_time = Time.get_ticks_msec() / 1000.0
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
-
-
-func receive_carrier_motion(carrier_velocity, delta):
-	# Immediate follow keeps stacked colliders from pinning the carrier.
-	global_position.x += carrier_velocity.x * delta
-	carried_velocity.x = carrier_velocity.x
-	# Match carrier horizontal motion so rider damping does not drag the bottom player.
-	# Keep player agency by blending in local input so they can walk/jump off.
-	var direction = Input.get_axis("move_left", "move_right")
-	velocity.x = carrier_velocity.x + direction * speed * 0.75
-	if carrier_velocity.y < 0:
-		global_position.y += carrier_velocity.y * delta
-		carried_velocity.y = carrier_velocity.y
-		if velocity.y >= carrier_velocity.y:
-			velocity.y = carrier_velocity.y
-
-
+	
+	
 func handle_bump_stun(bump_direction):
 	is_on_ground = false
 	is_stunned = true
@@ -239,9 +224,9 @@ func handle_bump_stun(bump_direction):
 	velocity.x = 0
 
 	if bump_direction == "left":
-		velocity.x = randi_range(90, 250)
+		velocity.x = randi_range(30, 60)
 	else:
-		velocity.x = randi_range(90, 250)
+		velocity.x = randi_range(30, 60)
 
 	$AnimatedSprite2D.play("Stun")
 	await get_tree().create_timer(0.5).timeout
@@ -252,8 +237,8 @@ func handle_bump_stun(bump_direction):
 # screen wrap, allows peeking
 # -------------------------
 func handle_screen_wrap():
-	var left_bound = -540
-	var right_bound = 540
+	var left_bound = -480
+	var right_bound = 480
 	var width = right_bound - left_bound
 
 	var sprite_width = 60

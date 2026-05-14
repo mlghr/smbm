@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cgw1br63sxp8y"]
+[gd_scene format=4 uid="uid://cgw1br63sxp8y"]
 
 [ext_resource type="Script" uid="uid://d1ktsos6rffgp" path="res://scripts/systems/manager_script.gd" id="1_1x66t"]
 [ext_resource type="Script" uid="uid://bk23c15bgtoyp" path="res://scripts/actors/player/player2.gd" id="1_wycyw"]
@@ -14,12 +14,11 @@
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://scenes/props/block.tscn" id="9_uon0r"]
 [ext_resource type="AudioStream" uid="uid://b3f40ljul6v6v" path="res://assets/third_party/Platformer_Samples/music/time_for_adventure.mp3" id="11_0un5b"]
 [ext_resource type="AudioStream" uid="uid://dww2cuiv06n0g" path="res://assets/third_party/Platformer_Samples/sounds/coin.wav" id="11_3uw3q"]
-[ext_resource type="PackedScene" path="res://scenes/props/inert_block.tscn" id="13_57e15"]
 [ext_resource type="Script" uid="uid://cr3bvg5pbnslv" path="res://scenes/levels/win_screen.gd" id="15_3uw3q"]
 [ext_resource type="Texture2D" uid="uid://tnabt6mvu5nm" path="res://assets/third_party/Platformer_Samples/sprites/world_tileset.png" id="16_3uw3q"]
+[ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/base_platform.tscn" id="17_nev3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
-radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57e15"]
 atlas = ExtResource("5_mrb0h")
@@ -554,36 +553,13 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yech5"]
-radius = 20.0
-height = 65.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eoaat"]
-radius = 20.0
-height = 65.0
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yech5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrooa"]
-size = Vector2(1594, 60)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_yyrx1"]
-size = Vector2(1600, 60)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_eoaat"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoaat"]
-size = Vector2(20, 1000)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uon0r"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0un5b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nev3j"]
 
 [sub_resource type="Theme" id="Theme_57e15"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b30rr"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nev3j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3uw3q"]
 texture = ExtResource("16_3uw3q")
 0:0/0 = 0
 1:0/0 = 0
@@ -631,6 +607,9 @@ texture = ExtResource("16_3uw3q")
 9:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
 5:4/0 = 0
 6:4/0 = 0
 7:4/0 = 0
@@ -638,22 +617,32 @@ texture = ExtResource("16_3uw3q")
 9:4/0 = 0
 0:5/0 = 0
 1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
 5:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
 8:5/0 = 0
 1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
 5:6/0 = 0
 6:6/0 = 0
 7:6/0 = 0
 8:6/0 = 0
 0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
 5:7/0 = 0
 6:7/0 = 0
 7:7/0 = 0
 8:7/0 = 0
 0:8/0 = 0
 1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
 4:8/0 = 0
 5:8/0 = 0
 6:8/0 = 0
@@ -699,31 +688,51 @@ texture = ExtResource("16_3uw3q")
 1:15/0 = 0
 2:15/0 = 0
 3:15/0 = 0
-1:7/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-3:7/0 = 0
-2:4/size_in_atlas = Vector2i(3, 3)
-2:4/0 = 0
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3uw3q"]
+resource_name = "BasePlatform"
+scenes/1/scene = ExtResource("17_nev3j")
 
 [sub_resource type="TileSet" id="TileSet_nycbh"]
-sources/0 = SubResource("TileSetAtlasSource_nev3j")
+sources/0 = SubResource("TileSetAtlasSource_3uw3q")
+sources/2 = SubResource("TileSetScenesCollectionSource_3uw3q")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_6lkky"]
+resource_name = "Block"
+scenes/1/scene = ExtResource("9_uon0r")
+
+[sub_resource type="TileSet" id="TileSet_b04q7"]
+sources/0 = SubResource("TileSetScenesCollectionSource_6lkky")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_nycbh"]
+resource_name = "Block"
+scenes/1/scene = ExtResource("9_uon0r")
+
+[sub_resource type="TileSet" id="TileSet_kq05o"]
+sources/0 = SubResource("TileSetScenesCollectionSource_nycbh")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_nev3j"]
+resource_name = "Block"
+scenes/1/scene = ExtResource("9_uon0r")
+
+[sub_resource type="TileSet" id="TileSet_6lkky"]
+sources/0 = SubResource("TileSetScenesCollectionSource_nev3j")
 
 [node name="Node2D" type="Node2D" unique_id=318383229]
 script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
-position = Vector2(0, -360)
-zoom = Vector2(1.78, 1.38)
+position = Vector2(0, -122)
+zoom = Vector2(7.5, 4)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
 position = Vector2(0, -853)
 
 [node name="SpawnPointLeft" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(-450, 150)
+position = Vector2(-104, 645)
 
 [node name="SpawnPointRight" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(450, 158)
+position = Vector2(104, 645)
 
 [node name="SpawnPointSandbag" type="Node2D" parent="SpawnPoints" unique_id=496867923]
 position = Vector2(-325, 500)
@@ -732,14 +741,14 @@ position = Vector2(-325, 500)
 position = Vector2(0, -853)
 
 [node name="TransferPointLeft" type="Area2D" parent="TransferPoints" unique_id=976885269 groups=["transfer_points"]]
-position = Vector2(-446, 760)
+position = Vector2(-96, 837)
 script = ExtResource("2_51r86")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointLeft" unique_id=1038083063]
 shape = SubResource("CircleShape2D_0un5b")
 
 [node name="TransferPointRight" type="Area2D" parent="TransferPoints" unique_id=580964577 groups=["transfer_points"]]
-position = Vector2(442, 760)
+position = Vector2(96, 837)
 script = ExtResource("3_0un5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointRight" unique_id=1037004946]
@@ -750,21 +759,19 @@ wait_time = 3.0
 autostart = true
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
-position = Vector2(363, -91)
+position = Vector2(88, -26)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_yyrx1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
-position = Vector2(1, -6)
-scale = Vector2(1.9200025, 2.0800014)
+[node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=666072550]
+scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Crouch"
 
-[node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=544028563]
-position = Vector2(1, -6)
-scale = Vector2(1.92, 2.08)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
+scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Idle"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=126059197]
 position = Vector2(-363, -413)
@@ -773,226 +780,45 @@ volume_db = -15.0
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1390356966]
-position = Vector2(0, 28)
-shape = SubResource("CapsuleShape2D_yech5")
+position = Vector2(0, 12)
+scale = Vector2(0.6482071, 1.2719222)
+shape = SubResource("RectangleShape2D_nev3j")
 
 [node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=2017002440]
 stream = ExtResource("11_3uw3q")
 
-[node name="Player2" type="CharacterBody2D" parent="." unique_id=740318060 groups=["player"]]
-position = Vector2(-372, -93)
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=271447179 groups=["player"]]
+position = Vector2(-82, -26)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_wycyw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=1322968120]
-position = Vector2(1, -6)
-scale = Vector2(1.9200025, 2.0800014)
+[node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=1989716803]
+scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
 
-[node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=556946459]
-position = Vector2(1, -6)
-scale = Vector2(1.773, 2.08)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=666171949]
+scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Idle"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1340814021]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1974466114]
 position = Vector2(-363, -413)
 stream = ExtResource("7_0un5b")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=41822332]
-position = Vector2(0, 28)
-shape = SubResource("CapsuleShape2D_eoaat")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=689024560]
+position = Vector2(0, 12)
+scale = Vector2(0.6482071, 1.2719222)
+shape = SubResource("RectangleShape2D_nev3j")
 
-[node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=61424481]
+[node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=500182312]
 stream = ExtResource("11_3uw3q")
-
-[node name="BasePlatform" type="StaticBody2D" parent="." unique_id=1240255700]
-position = Vector2(8, 0)
-physics_material_override = SubResource("PhysicsMaterial_yech5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BasePlatform" unique_id=2117801831]
-position = Vector2(11, 0)
-shape = SubResource("RectangleShape2D_mrooa")
-
-[node name="Sprite2D" type="Sprite2D" parent="BasePlatform" unique_id=1818659791]
-modulate = Color(0.1882353, 0.6117647, 0.9843137, 1)
-position = Vector2(3.2499478, 0)
-scale = Vector2(1.0040625, 1)
-texture = SubResource("PlaceholderTexture2D_yyrx1")
-
-[node name="LeftWall" type="StaticBody2D" parent="." unique_id=1471239991]
-position = Vector2(-800, -400)
-scale = Vector2(0.99999994, 1)
-physics_material_override = SubResource("PhysicsMaterial_eoaat")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall" unique_id=1405387256]
-shape = SubResource("RectangleShape2D_eoaat")
-
-[node name="Sprite2D" type="Sprite2D" parent="LeftWall" unique_id=1225860565]
-
-[node name="RightWall" type="StaticBody2D" parent="." unique_id=1111959600]
-position = Vector2(800, -400)
-physics_material_override = SubResource("PhysicsMaterial_uon0r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall" unique_id=1453671217]
-shape = SubResource("RectangleShape2D_eoaat")
-
-[node name="Sprite2D" type="Sprite2D" parent="RightWall" unique_id=661173839]
-
-[node name="TopRow" type="StaticBody2D" parent="." unique_id=188120156]
-position = Vector2(-150, -600)
-physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="Block1" parent="TopRow" unique_id=1671074503 instance=ExtResource("9_uon0r")]
-position = Vector2(-120, 0)
-
-[node name="Block2" parent="TopRow" unique_id=1394850703 instance=ExtResource("9_uon0r")]
-position = Vector2(-60, 0)
-
-[node name="Block3" parent="TopRow" unique_id=1429378405 instance=ExtResource("9_uon0r")]
-
-[node name="Block4" parent="TopRow" unique_id=73984971 instance=ExtResource("9_uon0r")]
-position = Vector2(-180, 0)
-
-[node name="Block5" parent="TopRow" unique_id=1619153182 instance=ExtResource("9_uon0r")]
-position = Vector2(-240, 0)
-
-[node name="Block6" parent="TopRow" unique_id=358733716 instance=ExtResource("9_uon0r")]
-position = Vector2(-300, 0)
-
-[node name="Block7" parent="TopRow" unique_id=2045939569 instance=ExtResource("9_uon0r")]
-position = Vector2(-360, 0)
-
-[node name="inert_block" parent="TopRow" unique_id=185624255 instance=ExtResource("13_57e15")]
-position = Vector2(-420, 0)
-
-[node name="Block8" parent="TopRow" unique_id=353197658 instance=ExtResource("9_uon0r")]
-position = Vector2(300, 0)
-
-[node name="Block9" parent="TopRow" unique_id=610559692 instance=ExtResource("9_uon0r")]
-position = Vector2(360, 0)
-
-[node name="Block10" parent="TopRow" unique_id=812332163 instance=ExtResource("9_uon0r")]
-position = Vector2(480, 0)
-
-[node name="Block11" parent="TopRow" unique_id=1971512583 instance=ExtResource("9_uon0r")]
-position = Vector2(540, 0)
-
-[node name="Block12" parent="TopRow" unique_id=718830720 instance=ExtResource("9_uon0r")]
-position = Vector2(600, 0)
-
-[node name="Block13" parent="TopRow" unique_id=347656003 instance=ExtResource("9_uon0r")]
-position = Vector2(660, 0)
-
-[node name="inert_block2" parent="TopRow" unique_id=1557199568 instance=ExtResource("13_57e15")]
-position = Vector2(720, 0)
-
-[node name="Block14" parent="TopRow" unique_id=108526550 instance=ExtResource("9_uon0r")]
-position = Vector2(420, 0)
-
-[node name="MiddleRow" type="StaticBody2D" parent="." unique_id=119142186]
-position = Vector2(0, -400)
-physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="inert_block2" parent="MiddleRow" unique_id=1202361196 instance=ExtResource("13_57e15")]
-position = Vector2(-570, 0)
-
-[node name="Block1" parent="MiddleRow" unique_id=1732023892 instance=ExtResource("9_uon0r")]
-position = Vector2(-90, 0)
-
-[node name="Block6" parent="MiddleRow" unique_id=398793171 instance=ExtResource("9_uon0r")]
-position = Vector2(-30, 0)
-
-[node name="Block4" parent="MiddleRow" unique_id=45624421 instance=ExtResource("9_uon0r")]
-position = Vector2(30, 0)
-
-[node name="Block5" parent="MiddleRow" unique_id=1589314970 instance=ExtResource("9_uon0r")]
-position = Vector2(90, 0)
-
-[node name="Block3" parent="MiddleRow" unique_id=2065272587 instance=ExtResource("9_uon0r")]
-position = Vector2(150, 0)
-
-[node name="Block7" parent="MiddleRow" unique_id=1604192554 instance=ExtResource("9_uon0r")]
-position = Vector2(210, 0)
-
-[node name="Block10" parent="MiddleRow" unique_id=1546870743 instance=ExtResource("9_uon0r")]
-position = Vector2(-210, 0)
-
-[node name="Block11" parent="MiddleRow" unique_id=2108391923 instance=ExtResource("9_uon0r")]
-position = Vector2(-150, 0)
-
-[node name="Block13" parent="MiddleRow" unique_id=715351200 instance=ExtResource("9_uon0r")]
-position = Vector2(-510, 0)
-
-[node name="Block14" parent="MiddleRow" unique_id=1432904902 instance=ExtResource("9_uon0r")]
-position = Vector2(-450, 0)
-
-[node name="Block15" parent="MiddleRow" unique_id=1177165406 instance=ExtResource("9_uon0r")]
-position = Vector2(450, 0)
-
-[node name="Block16" parent="MiddleRow" unique_id=1867673705 instance=ExtResource("9_uon0r")]
-position = Vector2(510, 0)
-
-[node name="inert_block" parent="MiddleRow" unique_id=152213990 instance=ExtResource("13_57e15")]
-position = Vector2(570, 0)
-
-[node name="LowRow" type="StaticBody2D" parent="." unique_id=2053860559]
-position = Vector2(-150, -190)
-physics_material_override = SubResource("PhysicsMaterial_0un5b")
-
-[node name="Block1" parent="LowRow" unique_id=1015326016 instance=ExtResource("9_uon0r")]
-position = Vector2(-120, 0)
-
-[node name="Block2" parent="LowRow" unique_id=2114385300 instance=ExtResource("9_uon0r")]
-position = Vector2(-60, 0)
-
-[node name="Block3" parent="LowRow" unique_id=190039930 instance=ExtResource("9_uon0r")]
-
-[node name="Block4" parent="LowRow" unique_id=1590485198 instance=ExtResource("9_uon0r")]
-position = Vector2(-180, 0)
-
-[node name="Block5" parent="LowRow" unique_id=2038801213 instance=ExtResource("9_uon0r")]
-position = Vector2(-240, 0)
-
-[node name="Block6" parent="LowRow" unique_id=328897623 instance=ExtResource("9_uon0r")]
-position = Vector2(-300, 0)
-
-[node name="Block7" parent="LowRow" unique_id=293789497 instance=ExtResource("9_uon0r")]
-position = Vector2(-360, 0)
-
-[node name="inert_block" parent="LowRow" unique_id=927907649 instance=ExtResource("13_57e15")]
-position = Vector2(-420, 0)
-
-[node name="Block8" parent="LowRow" unique_id=953512946 instance=ExtResource("9_uon0r")]
-position = Vector2(360, 0)
-
-[node name="Block9" parent="LowRow" unique_id=2046257487 instance=ExtResource("9_uon0r")]
-position = Vector2(420, 0)
-
-[node name="Block10" parent="LowRow" unique_id=1918971294 instance=ExtResource("9_uon0r")]
-position = Vector2(480, 0)
-
-[node name="Block11" parent="LowRow" unique_id=1554086678 instance=ExtResource("9_uon0r")]
-position = Vector2(540, 0)
-
-[node name="Block12" parent="LowRow" unique_id=1214186064 instance=ExtResource("9_uon0r")]
-position = Vector2(600, 0)
-
-[node name="Block13" parent="LowRow" unique_id=1352367559 instance=ExtResource("9_uon0r")]
-position = Vector2(660, 0)
-
-[node name="inert_block2" parent="LowRow" unique_id=1121664231 instance=ExtResource("13_57e15")]
-position = Vector2(720, 0)
-
-[node name="Block14" parent="LowRow" unique_id=2141383111 instance=ExtResource("9_uon0r")]
-position = Vector2(300, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
 position = Vector2(0, -504)
 stream = ExtResource("11_0un5b")
-volume_db = -3.0
 
 [node name="WinScreen" type="Control" parent="." unique_id=1129110395]
 visible = false
@@ -1024,11 +850,24 @@ offset_right = 77.0
 offset_bottom = 31.0
 text = "Play Again"
 
-[node name="TileMap" type="TileMap" parent="." unique_id=1440600107]
-position = Vector2(364, -97)
-scale = Vector2(1.9200025, 2.0800014)
+[node name="BasePlatformTileMapLayer" type="TileMapLayer" parent="." unique_id=1318253681]
+tile_map_data = PackedByteArray("AADw/wAAAgAAAAAAAQDx/wAAAgAAAAAAAQDy/wAAAgAAAAAAAQDz/wAAAgAAAAAAAQD0/wAAAgAAAAAAAQD1/wAAAgAAAAAAAQD2/wAAAgAAAAAAAQD3/wAAAgAAAAAAAQD4/wAAAgAAAAAAAQD5/wAAAgAAAAAAAQD6/wAAAgAAAAAAAQD7/wAAAgAAAAAAAQD8/wAAAgAAAAAAAQD9/wAAAgAAAAAAAQD+/wAAAgAAAAAAAQD//wAAAgAAAAAAAQAAAAAAAgAAAAAAAQABAAAAAgAAAAAAAQACAAAAAgAAAAAAAQADAAAAAgAAAAAAAQAEAAAAAgAAAAAAAQAFAAAAAgAAAAAAAQAGAAAAAgAAAAAAAQAHAAAAAgAAAAAAAQAIAAAAAgAAAAAAAQAJAAAAAgAAAAAAAQAKAAAAAgAAAAAAAQALAAAAAgAAAAAAAQAMAAAAAgAAAAAAAQANAAAAAgAAAAAAAQAOAAAAAgAAAAAAAQAPAAAAAgAAAAAAAQA=")
 tile_set = SubResource("TileSet_nycbh")
-format = 2
+
+[node name="TopBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=475851567]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAD9//b/AAAAAAAAAQD8//b/AAAAAAAAAQD7//b/AAAAAAAAAQD6//b/AAAAAAAAAQD5//b/AAAAAAAAAQD4//b/AAAAAAAAAQAHAPb/AAAAAAAAAQAGAPb/AAAAAAAAAQAFAPb/AAAAAAAAAQAEAPb/AAAAAAAAAQADAPb/AAAAAAAAAQACAPb/AAAAAAAAAQA=")
+tile_set = SubResource("TileSet_b04q7")
+
+[node name="MiddleBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=334549513]
+position = Vector2(0, -8)
+tile_map_data = PackedByteArray("AAD4//r/AAAAAAAAAQD5//r/AAAAAAAAAQAGAPr/AAAAAAAAAQAHAPr/AAAAAAAAAQD8//n/AAAAAAAAAQD9//n/AAAAAAAAAQD+//n/AAAAAAAAAQD///n/AAAAAAAAAQAAAPn/AAAAAAAAAQABAPn/AAAAAAAAAQACAPn/AAAAAAAAAQADAPn/AAAAAAAAAQA=")
+tile_set = SubResource("TileSet_kq05o")
+
+[node name="BottomBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=2084931982]
+position = Vector2(0, -8)
+tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD8//3/AAAAAAAAAQD7//3/AAAAAAAAAQD6//3/AAAAAAAAAQD5//3/AAAAAAAAAQD4//3/AAAAAAAAAQACAP3/AAAAAAAAAQADAP3/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAHAP3/AAAAAAAAAQA=")
+tile_set = SubResource("TileSet_6lkky")
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]

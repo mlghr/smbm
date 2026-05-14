@@ -67,10 +67,8 @@ func handle_collisions():
 
 		if other.is_in_group("player"):
 			if not is_stunned:
-				print("enemy script")
 				other.is_dead = true
 			elif is_stunned:
-				print("HELLO")
 				var skull = skeleton_head_scene.instantiate()
 				skull.global_position = global_position
 				get_parent().add_child(skull)
