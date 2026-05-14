@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/base_platform.tscn" id="17_nev3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
-radius = 40.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57e15"]
 atlas = ExtResource("5_mrb0h")
@@ -723,17 +722,17 @@ sources/0 = SubResource("TileSetScenesCollectionSource_nev3j")
 script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
-position = Vector2(0, -90)
-zoom = Vector2(7.5, 5)
+position = Vector2(0, -122)
+zoom = Vector2(7.5, 4)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
 position = Vector2(0, -853)
 
 [node name="SpawnPointLeft" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(-450, 150)
+position = Vector2(-104, 645)
 
 [node name="SpawnPointRight" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(450, 158)
+position = Vector2(104, 645)
 
 [node name="SpawnPointSandbag" type="Node2D" parent="SpawnPoints" unique_id=496867923]
 position = Vector2(-325, 500)
@@ -742,14 +741,14 @@ position = Vector2(-325, 500)
 position = Vector2(0, -853)
 
 [node name="TransferPointLeft" type="Area2D" parent="TransferPoints" unique_id=976885269 groups=["transfer_points"]]
-position = Vector2(-446, 760)
+position = Vector2(-96, 837)
 script = ExtResource("2_51r86")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointLeft" unique_id=1038083063]
 shape = SubResource("CircleShape2D_0un5b")
 
 [node name="TransferPointRight" type="Area2D" parent="TransferPoints" unique_id=580964577 groups=["transfer_points"]]
-position = Vector2(442, 760)
+position = Vector2(96, 837)
 script = ExtResource("3_0un5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointRight" unique_id=1037004946]
@@ -758,35 +757,6 @@ shape = SubResource("CircleShape2D_0un5b")
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
 wait_time = 3.0
 autostart = true
-
-[node name="Player2" type="CharacterBody2D" parent="." unique_id=271447179 groups=["player"]]
-position = Vector2(-82, -26)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("1_wycyw")
-
-[node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=1989716803]
-scale = Vector2(0.5, 0.8)
-sprite_frames = SubResource("SpriteFrames_0un5b")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=666171949]
-scale = Vector2(0.5, 0.8)
-sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Idle"
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1974466114]
-position = Vector2(-363, -413)
-stream = ExtResource("7_0un5b")
-volume_db = -15.0
-bus = &"SFX"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=689024560]
-position = Vector2(0, 12)
-scale = Vector2(0.6482071, 1.2719222)
-shape = SubResource("RectangleShape2D_nev3j")
-
-[node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=500182312]
-stream = ExtResource("11_3uw3q")
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=848053509 groups=["player"]]
 position = Vector2(88, -26)
@@ -815,6 +785,35 @@ scale = Vector2(0.6482071, 1.2719222)
 shape = SubResource("RectangleShape2D_nev3j")
 
 [node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=2017002440]
+stream = ExtResource("11_3uw3q")
+
+[node name="Player2" type="CharacterBody2D" parent="." unique_id=271447179 groups=["player"]]
+position = Vector2(-82, -26)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_wycyw")
+
+[node name="WrapSprite" type="AnimatedSprite2D" parent="Player2" unique_id=1989716803]
+scale = Vector2(0.5, 0.8)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=666171949]
+scale = Vector2(0.5, 0.8)
+sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=1974466114]
+position = Vector2(-363, -413)
+stream = ExtResource("7_0un5b")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=689024560]
+position = Vector2(0, 12)
+scale = Vector2(0.6482071, 1.2719222)
+shape = SubResource("RectangleShape2D_nev3j")
+
+[node name="AudioStreamCoin2D" type="AudioStreamPlayer2D" parent="Player2" unique_id=500182312]
 stream = ExtResource("11_3uw3q")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
@@ -856,7 +855,7 @@ tile_map_data = PackedByteArray("AADw/wAAAgAAAAAAAQDx/wAAAgAAAAAAAQDy/wAAAgAAAAA
 tile_set = SubResource("TileSet_nycbh")
 
 [node name="TopBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=475851567]
-position = Vector2(0, -16)
+position = Vector2(0, -32)
 tile_map_data = PackedByteArray("AAD9//b/AAAAAAAAAQD8//b/AAAAAAAAAQD7//b/AAAAAAAAAQD6//b/AAAAAAAAAQD5//b/AAAAAAAAAQD4//b/AAAAAAAAAQAHAPb/AAAAAAAAAQAGAPb/AAAAAAAAAQAFAPb/AAAAAAAAAQAEAPb/AAAAAAAAAQADAPb/AAAAAAAAAQACAPb/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_b04q7")
 
