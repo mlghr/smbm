@@ -6,10 +6,11 @@ var jump_cut_multiplier = 0.6
 const GRAVITY = 775
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
-const PLAYER_BUMP_FORCE = 420.0
+const PLAYER_BUMP_FORCE = 120.0
 const PLAYER_BUMP_COOLDOWN = 0.15
 const PLAYER_BUMP_SLIDE_TIME = 0.25
 
+var bump_combo = 0
 var standing_on_body = false
 var death_played = false
 var is_dead = false
@@ -24,6 +25,7 @@ var coin_count = 0
 
 signal player_dead
 signal coin_victory
+
 
 
 func _physics_process(delta):
@@ -89,16 +91,15 @@ func handle_input():
 
 
 func handle_crouch():
+
 	if Input.is_action_just_pressed("crouch") and is_on_ground and not is_stunned:
 		is_crouching = true
-		$CollisionShape2D.shape.height = 40
-		$CollisionShape2D.position = Vector2(0, 40)
+		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
 
 	if Input.is_action_just_released("crouch"):
 		is_crouching = false
-		$CollisionShape2D.shape.height = 65
-		$CollisionShape2D.position = Vector2(0, 28)
+		$CollisionStanding.disabled = false
 		$AnimatedSprite2D.play("Stand")
 
 
@@ -219,29 +220,35 @@ func apply_player_bump(push_dir):
 
 func handle_bump_stun(bump_direction):
 	is_on_ground = false
-	is_stunned = true
-	velocity.y = -400
-	velocity.x = 0
-
-	if bump_direction == "left":
-		velocity.x = randi_range(30, 60)
+	
+	if is_stunned:
+		bump_combo += 1
 	else:
-		velocity.x = randi_range(30, 60)
+		is_stunned = true
+		bump_combo = 1
+	velocity.y = -180
+	velocity.x = 0
+	print(bump_combo)
+	if bump_direction == "left":
+		velocity.x = -1 * (randi_range(12, 36))
+	else:
+		velocity.x = randi_range(12, 36)
 
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	is_stunned = false
+	bump_combo = 0
 
 
 # -------------------------
 # screen wrap, allows peeking
 # -------------------------
 func handle_screen_wrap():
-	var left_bound = -480
-	var right_bound = 480
+	var left_bound = -128
+	var right_bound = 128
 	var width = right_bound - left_bound
 
-	var sprite_width = 60
+	var sprite_width = 16
 
 	# hide ghost by default
 	$WrapSprite.visible = false

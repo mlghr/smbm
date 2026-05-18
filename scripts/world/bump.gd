@@ -2,7 +2,7 @@ extends StaticBody2D
 
 var is_bumping = false
 var original_y = 0
-var BUMP_RADIUS = 95
+var BUMP_RADIUS = 35
 var block_midpoint = null
 var bump_direction = null # left or right
 var is_grumpy = false
@@ -25,12 +25,13 @@ func bump(player):
 		return
 	is_bumping = true
 	var tween = create_tween()
-	tween.tween_property(self, "position:y", original_y - 20, 0.08)
+	tween.tween_property(self, "position:y", original_y - 8, 0.08)
 	#bumping player
 	var players = get_tree().get_nodes_in_group("player")
 	for p in players:
 		if not is_same(player, p) and p.has_method("handle_bump_stun"):
-			if global_position.distance_to(p.global_position) <= BUMP_RADIUS:
+			if global_position.distance_to(p.global_position) <= BUMP_RADIUS and (p.global_position.x >= block_midpoint - 16 or p.global_position.x <= block_midpoint + 16) and p.global_position.y < global_position.y:
+				
 				if p.global_position.x >= block_midpoint:
 					bump_direction = "right"
 				else:
