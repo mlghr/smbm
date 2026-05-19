@@ -731,10 +731,10 @@ zoom = Vector2(7.5, 4)
 position = Vector2(0, -853)
 
 [node name="SpawnPointLeft" type="Node2D" parent="SpawnPoints" unique_id=652347040]
-position = Vector2(-104, 645)
+position = Vector2(-104, 630)
 
 [node name="SpawnPointRight" type="Node2D" parent="SpawnPoints" unique_id=922515098]
-position = Vector2(104, 645)
+position = Vector2(104, 630)
 
 [node name="SpawnPointSandbag" type="Node2D" parent="SpawnPoints" unique_id=496867923]
 position = Vector2(-325, 500)
@@ -867,18 +867,18 @@ tile_map_data = PackedByteArray("AADw/wAAAgAAAAAAAQDx/wAAAgAAAAAAAQDy/wAAAgAAAAA
 tile_set = SubResource("TileSet_nycbh")
 
 [node name="TopBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=475851567]
-position = Vector2(0, -32)
-tile_map_data = PackedByteArray("AAACAPf/AAAAAAAAAQADAPf/AAAAAAAAAQAEAPf/AAAAAAAAAQAFAPf/AAAAAAAAAQAGAPf/AAAAAAAAAQAHAPf/AAAAAAAAAQD9//f/AAAAAAAAAQD8//f/AAAAAAAAAQD7//f/AAAAAAAAAQD6//f/AAAAAAAAAQD5//f/AAAAAAAAAQD4//f/AAAAAAAAAQA=")
+position = Vector2(0, -64)
+tile_map_data = PackedByteArray("AAACAPf/AAAAAAAAAQADAPf/AAAAAAAAAQAEAPf/AAAAAAAAAQAFAPf/AAAAAAAAAQAGAPf/AAAAAAAAAQAHAPf/AAAAAAAAAQD9//f/AAAAAAAAAQD8//f/AAAAAAAAAQD7//f/AAAAAAAAAQD6//f/AAAAAAAAAQD5//f/AAAAAAAAAQD4//f/AAAAAAAAAQD3//f/AAAAAAAAAQAIAPf/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_b04q7")
 
 [node name="MiddleBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=334549513]
-position = Vector2(0, -8)
-tile_map_data = PackedByteArray("AAD4//r/AAAAAAAAAQD5//r/AAAAAAAAAQAGAPr/AAAAAAAAAQAHAPr/AAAAAAAAAQD8//n/AAAAAAAAAQD9//n/AAAAAAAAAQD+//n/AAAAAAAAAQD///n/AAAAAAAAAQAAAPn/AAAAAAAAAQABAPn/AAAAAAAAAQACAPn/AAAAAAAAAQADAPn/AAAAAAAAAQA=")
+position = Vector2(0, -33)
+tile_map_data = PackedByteArray("AAD4//r/AAAAAAAAAQD5//r/AAAAAAAAAQAGAPr/AAAAAAAAAQAHAPr/AAAAAAAAAQD8//n/AAAAAAAAAQD9//n/AAAAAAAAAQD+//n/AAAAAAAAAQD///n/AAAAAAAAAQAAAPn/AAAAAAAAAQABAPn/AAAAAAAAAQACAPn/AAAAAAAAAQADAPn/AAAAAAAAAQD3//r/AAAAAAAAAQAIAPr/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_kq05o")
 
 [node name="BottomBlockTileMapLayer" type="TileMapLayer" parent="." unique_id=2084931982]
-position = Vector2(0, -8)
-tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD8//3/AAAAAAAAAQD7//3/AAAAAAAAAQD6//3/AAAAAAAAAQD5//3/AAAAAAAAAQD4//3/AAAAAAAAAQACAP3/AAAAAAAAAQADAP3/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAHAP3/AAAAAAAAAQA=")
+position = Vector2(0, -16)
+tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD8//3/AAAAAAAAAQD7//3/AAAAAAAAAQD6//3/AAAAAAAAAQD5//3/AAAAAAAAAQD4//3/AAAAAAAAAQACAP3/AAAAAAAAAQADAP3/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAHAP3/AAAAAAAAAQD3//3/AAAAAAAAAQAIAP3/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_6lkky")
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]

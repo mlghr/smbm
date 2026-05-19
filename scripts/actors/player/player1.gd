@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed = 75
-var jump_velocity = -350
+var speed = 100
+var jump_velocity = -375
 var jump_cut_multiplier = 0.6
-const GRAVITY = 775
+const GRAVITY = 600
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 120.0
@@ -67,9 +67,9 @@ func _process(_delta):
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-		if velocity.y > 0:
-			#velocity.y = aa(velocity.y * velocity.y) / (velocity.y * .92)
-			pass
+		#if velocity.y > 0:
+			#velocity.y = (velocity.y * velocity.y) / (velocity.y * 1.03)
+			#pass
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0

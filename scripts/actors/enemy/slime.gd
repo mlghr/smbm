@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # at 300 speed he hits wall, aggresive speed?
-const SPEED = 200
-const GRAVITY = 1500
+const SPEED = 50
+const GRAVITY = 500
 var direction = 1
 
 var closest_player = null
@@ -113,11 +113,11 @@ func handle_stunned():
 
 
 func handle_screen_wrap():
-	var left_bound = -540
-	var right_bound = 540
+	var left_bound = -128
+	var right_bound = 128
 	var width = right_bound - left_bound
 
-	var sprite_width = 60
+	var sprite_width = 16
 
 	# hide ghost by default
 	$WrapSprite.visible = false
