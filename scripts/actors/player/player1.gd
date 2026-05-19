@@ -127,7 +127,7 @@ func update_animation():
 		$AnimatedSprite2D.play("Stun")
 		return
 
-	if is_on_floor() and abs(velocity.x) > speed - 15:
+	if abs(velocity.x) > speed - 15:
 		$AnimatedSprite2D.play("Run")
 		return
 	if is_crouching:

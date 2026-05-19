@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 const GRAVITY = 1500
-var speed = 350
+var speed = 150
 var direction = 1
 var is_stomped = false
 
@@ -35,11 +35,11 @@ func handle_collisions():
 
 
 func handle_screen_wrap():
-	var left_bound = -540
-	var right_bound = 540
+	var left_bound = -128
+	var right_bound = 128
 	var width = right_bound - left_bound
 
-	var sprite_width = 60
+	var sprite_width = 16
 
 	# hide ghost by default
 	#$WrapSprite.visible = false
