@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var combo_timer = $ComboTimer
+
 var speed = 80
 var jump_velocity = -375
 var jump_cut_multiplier = 0.6
@@ -222,10 +224,19 @@ func handle_bump_stun(bump_direction):
 	is_on_ground = false
 	
 	if is_stunned:
+		print("stunned, continuing combo")
 		bump_combo += 1
+		# keep combo going, reset timer
+		combo_timer.start()
+		
 	else:
+		print("stunned, starting combo")
 		is_stunned = true
 		bump_combo = 1
+		# 1.5 sec
+		combo_timer.start()
+		
+		
 	velocity.y = -180
 	velocity.x = 0
 	print(bump_combo)
@@ -233,11 +244,8 @@ func handle_bump_stun(bump_direction):
 		velocity.x = -1 * (randi_range(12, 36))
 	else:
 		velocity.x = randi_range(12, 36)
-
+	
 	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(1).timeout
-	is_stunned = false
-	bump_combo = 0
 
 
 # -------------------------
@@ -281,3 +289,8 @@ func increment_coin_count():
 
 func get_coin_count() -> int:
 	return coin_count
+
+
+func _on_combo_timer_timeout() -> void:
+	is_stunned = false
+	bump_combo = 0

@@ -794,6 +794,9 @@ position = Vector2(0, 19)
 scale = Vector2(0.6482071, 1.2719222)
 shape = SubResource("RectangleShape2D_nev3j")
 
+[node name="ComboTimer" type="Timer" parent="Player1" unique_id=1344130968]
+wait_time = 1.5
+
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=271447179 groups=["player"]]
 position = Vector2(-82, -26)
 collision_layer = 2
@@ -884,4 +887,5 @@ tile_set = SubResource("TileSet_6lkky")
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="Player1/ComboTimer" to="Player1" method="_on_combo_timer_timeout"]
 [connection signal="pressed" from="WinScreen/Button" to="WinScreen" method="_on_pressed"]
