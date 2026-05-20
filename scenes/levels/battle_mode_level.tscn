@@ -743,6 +743,8 @@ position = Vector2(-325, 500)
 position = Vector2(0, -853)
 
 [node name="TransferPointLeft" type="Area2D" parent="TransferPoints" unique_id=976885269 groups=["transfer_points"]]
+light_mask = 4
+visibility_layer = 4
 position = Vector2(-96, 837)
 script = ExtResource("2_51r86")
 
@@ -750,6 +752,8 @@ script = ExtResource("2_51r86")
 shape = SubResource("CircleShape2D_0un5b")
 
 [node name="TransferPointRight" type="Area2D" parent="TransferPoints" unique_id=580964577 groups=["transfer_points"]]
+light_mask = 4
+visibility_layer = 4
 position = Vector2(96, 837)
 script = ExtResource("3_0un5b")
 
