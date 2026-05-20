@@ -40,7 +40,7 @@ func bump(player):
 	#bumping enemy
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for e in enemies:
-		if global_position.distance_to(e.global_position) <= BUMP_RADIUS + 25:
+		if global_position.distance_to(e.global_position) <= BUMP_RADIUS and (e.global_position.x >= block_midpoint - 16 or e.global_position.x <= block_midpoint + 16) and e.global_position.y < global_position.y:
 			e.handle_bump_stun()
 
 	tween.tween_property(self, "position:y", original_y, 0.12)

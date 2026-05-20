@@ -214,7 +214,7 @@ func _on_SpawnTimer_timeout() -> void:
 		return
 	else:
 		spawn_skeleton()
-		spawn_slime()
+		#spawn_slime()
 	
 	print('total enemies: ', total_enemy_count)
 

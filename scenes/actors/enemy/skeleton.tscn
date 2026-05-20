@@ -322,11 +322,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ft6oh"]
-radius = 16.0
-height = 38.0
+radius = 8.0
+height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tfg1d"]
-size = Vector2(18, 29)
+size = Vector2(10, 23)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=1076001208 groups=["enemy"]]
 collision_layer = 4
@@ -335,21 +335,23 @@ safe_margin = 0.8
 script = ExtResource("1_uaaco")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=336369097]
-position = Vector2(-13, 0)
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Walk"
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=1283754499]
-position = Vector2(-12, 0)
+position = Vector2(0, 2)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_x6jny")
 animation = &"Walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513426273]
-position = Vector2(-16, 15)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_ft6oh")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=34382789]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
-position = Vector2(-16, 18)
+position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_tfg1d")
