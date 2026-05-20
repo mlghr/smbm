@@ -26,6 +26,7 @@ var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 var coin_count = 0
+var color = "_Red"
 
 signal player_dead
 signal coin_victory
@@ -135,9 +136,9 @@ func use_invincibility_flash():
 	else:
 		modulate = Color.WHITE
 
-func set_animation(animation_name: String):
+func set_animation(animation_name: String, color: String):
 	if $AnimatedSprite2D.animation != animation_name:
-		$AnimatedSprite2D.play(animation_name)
+		$AnimatedSprite2D.play(animation_name + color)
 
 
 func update_animation():
@@ -147,20 +148,20 @@ func update_animation():
 			#
 		#case "Crouch_Idle":
 	if is_stunned:
-		set_animation("Stun")
+		set_animation("Stun", color)
 		return
 
 	if is_crouching:
-		set_animation("Crouch_Idle")
+		set_animation("Crouch_Idle", color)
 		return
 
 	if abs(velocity.x) > speed - 15 and is_on_floor():
-		set_animation("Run")
+		set_animation("Run", color)
 		return
 	if not is_on_floor():
-		set_animation("Airborn")
+		set_animation("Airborn", color)
 		return
-	set_animation("Idle")
+	set_animation("Idle", color)
 
 
 func handle_death():
