@@ -759,6 +759,8 @@ position = Vector2(0, -853)
 light_mask = 4
 visibility_layer = 4
 position = Vector2(-96, 837)
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("2_51r86")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointLeft" unique_id=1038083063]
@@ -770,6 +772,8 @@ shape = SubResource("CircleShape2D_0un5b")
 light_mask = 4
 visibility_layer = 4
 position = Vector2(96, 837)
+collision_layer = 8
+collision_mask = 4
 script = ExtResource("3_0un5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointRight" unique_id=1037004946]

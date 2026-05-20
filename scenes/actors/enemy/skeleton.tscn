@@ -325,12 +325,9 @@ animations = [{
 radius = 8.0
 height = 24.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfg1d"]
-size = Vector2(10, 23)
-
 [node name="Skeleton" type="CharacterBody2D" unique_id=1076001208 groups=["enemy"]]
 collision_layer = 4
-collision_mask = 7
+collision_mask = 15
 safe_margin = 0.8
 script = ExtResource("1_uaaco")
 
@@ -352,6 +349,6 @@ shape = SubResource("CapsuleShape2D_ft6oh")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=34382789]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1642519227]
-position = Vector2(-1, 5)
-shape = SubResource("RectangleShape2D_tfg1d")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=645060237]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_ft6oh")
