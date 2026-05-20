@@ -125,20 +125,38 @@ func handle_dash():
 # animation
 # -------------------------
 
-
+func use_invincibility_modulation(animation):
+	$AnimatedSprite2D.play(animation)
+	if (Engine.get_process_frames() / 20) % 2 == 0:
+		modulate = Color.DARK_GRAY
+	else:
+		modulate = Color.WHITE
 func update_animation():
+	modulate = Color.WHITE
 	if is_stunned:
-		$AnimatedSprite2D.play("Stun")
-		return
+		if is_invincible:
+			use_invincibility_modulation("stun")
+		else:
+			$AnimatedSprite2D.play("Stun")
+			return
 
 	if abs(velocity.x) > speed - 15:
-		$AnimatedSprite2D.play("Run")
-		return
+		if is_invincible:
+			use_invincibility_modulation("Run")
+		else:
+			$AnimatedSprite2D.play("Run")
+			return
 	if is_crouching:
-		$AnimatedSprite2D.play("Crouch_Idle")
-		return
+		if is_invincible:
+			use_invincibility_modulation("Crouch_Idle")
+		else:
+			$AnimatedSprite2D.play("Crouch_Idle")
+			return
 	else:
-		$AnimatedSprite2D.play("Idle")
+		if is_invincible:
+			use_invincibility_modulation("Idle")
+		else:
+			$AnimatedSprite2D.play("Idle")
 
 
 func handle_death():
@@ -183,6 +201,7 @@ func handle_damage():
 	health = health - 1
 	print("Player 1 current health: ", health)
 	handle_invincibility()
+	#slowdown
 	if health <= 0:
 		is_dead = true
 
@@ -190,10 +209,11 @@ func handle_invincibility():
 	set_collision_mask_value(2, false)
 	print("inv started")
 	is_invincible = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	set_collision_mask_value(2, true)
 	print("inv ended")
 	is_invincible = false
+	#flashing"
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()
