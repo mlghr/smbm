@@ -56,8 +56,8 @@ func _physics_process(delta):
 	handle_screen_wrap()
 	update_animation()
 
-
 func _process(_delta):
+	use_invincibility_flash()
 	# keep wrap sprite in sync
 	$WrapSprite.animation = $AnimatedSprite2D.animation
 	$WrapSprite.frame = $AnimatedSprite2D.frame
@@ -125,38 +125,40 @@ func handle_dash():
 # animation
 # -------------------------
 
-func use_invincibility_modulation(animation):
-	$AnimatedSprite2D.play(animation)
-	if (Engine.get_process_frames() / 20) % 2 == 0:
+func use_invincibility_flash():
+	if not is_invincible:
+		modulate = Color.WHITE
+		return
+
+	if (Engine.get_process_frames() / 5) % 2 == 0:
 		modulate = Color.DARK_GRAY
 	else:
 		modulate = Color.WHITE
+
+func set_animation(animation_name: String):
+	if $AnimatedSprite2D.animation != animation_name:
+		$AnimatedSprite2D.play(animation_name)
+
+
 func update_animation():
-	modulate = Color.WHITE
+	
+	#switch($AnimatedSprite2D.animation)
+		#case "Stun":
+			#
+		#case "Crouch_Idle":
 	if is_stunned:
-		if is_invincible:
-			use_invincibility_modulation("stun")
-		else:
-			$AnimatedSprite2D.play("Stun")
-			return
+		set_animation("Stun")
+		return
+
+	if is_crouching:
+		set_animation("Crouch_Idle")
+		return
 
 	if abs(velocity.x) > speed - 15:
-		if is_invincible:
-			use_invincibility_modulation("Run")
-		else:
-			$AnimatedSprite2D.play("Run")
-			return
-	if is_crouching:
-		if is_invincible:
-			use_invincibility_modulation("Crouch_Idle")
-		else:
-			$AnimatedSprite2D.play("Crouch_Idle")
-			return
-	else:
-		if is_invincible:
-			use_invincibility_modulation("Idle")
-		else:
-			$AnimatedSprite2D.play("Idle")
+		set_animation("Run")
+		return
+
+	set_animation("Idle")
 
 
 func handle_death():
