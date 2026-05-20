@@ -112,7 +112,7 @@ func update_animation():
 	if is_stunned:
 		return
 	# use x + y proximity instead of circular distance
-	if closest_player and !closest_player.is_dead and dx < 200 and dy < 80:
+	if closest_player and !closest_player.is_dead and dx < 30 and dy < 8:
 		if $AnimatedSprite2D.animation != "Attack":
 			$AnimatedSprite2D.play("Attack")
 		return

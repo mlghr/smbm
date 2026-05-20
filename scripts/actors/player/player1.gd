@@ -154,10 +154,12 @@ func update_animation():
 		set_animation("Crouch_Idle")
 		return
 
-	if abs(velocity.x) > speed - 15:
+	if abs(velocity.x) > speed - 15 and is_on_floor():
 		set_animation("Run")
 		return
-
+	if not is_on_floor():
+		set_animation("Airborn")
+		return
 	set_animation("Idle")
 
 

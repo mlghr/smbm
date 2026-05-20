@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dyf6nam2wjedu" path="res://scripts/actors/player/player1.gd" id="2_yyrx1"]
 [ext_resource type="Script" uid="uid://yy4h304wpbs4" path="res://scripts/world/transfer_point_right.gd" id="3_0un5b"]
 [ext_resource type="Texture2D" uid="uid://b4pm3y6b05ben" path="res://assets/Custom/Mushroom-Crouch.png" id="5_mrb0h"]
+[ext_resource type="Texture2D" uid="uid://fx2cgehn1mhx" path="res://assets/Custom/Mushroom-jump-frame.png" id="5_nycbh"]
 [ext_resource type="AudioStream" uid="uid://8xcfjmtf0xxq" path="res://assets/audio/platformer_jumping/jump_10.wav" id="7_0un5b"]
 [ext_resource type="Texture2D" uid="uid://detk8n44dy8jg" path="res://assets/third_party/Forest_Monsters/Mushroom/Mushroom with VFX/Mushroom-Stun.png" id="8_hevgv"]
 [ext_resource type="PackedScene" uid="uid://do7vngfuokk5" path="res://scenes/props/block.tscn" id="9_uon0r"]
@@ -19,6 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/base_platform.tscn" id="17_nev3j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puleg"]
+atlas = ExtResource("5_nycbh")
+region = Rect2(80, 0, 80, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57e15"]
 atlas = ExtResource("5_mrb0h")
@@ -302,6 +307,14 @@ region = Rect2(480, 0, 80, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0un5b"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puleg")
+}],
+"loop": true,
+"name": &"Airborn",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_57e15")
@@ -749,6 +762,8 @@ position = Vector2(-96, 837)
 script = ExtResource("2_51r86")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointLeft" unique_id=1038083063]
+light_mask = 4
+visibility_layer = 4
 shape = SubResource("CircleShape2D_0un5b")
 
 [node name="TransferPointRight" type="Area2D" parent="TransferPoints" unique_id=580964577 groups=["transfer_points"]]
@@ -758,6 +773,8 @@ position = Vector2(96, 837)
 script = ExtResource("3_0un5b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransferPoints/TransferPointRight" unique_id=1037004946]
+light_mask = 4
+visibility_layer = 4
 shape = SubResource("CircleShape2D_0un5b")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=459897354]
@@ -773,11 +790,12 @@ script = ExtResource("2_yyrx1")
 [node name="WrapSprite" type="AnimatedSprite2D" parent="Player1" unique_id=666072550]
 scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
+animation = &"Airborn"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
 scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Idle"
+animation = &"Airborn"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=126059197]
 position = Vector2(-363, -413)
