@@ -15,11 +15,13 @@ const PLAYER_BUMP_SLIDE_TIME = 0.25
 var bump_combo = 0
 var standing_on_body = false
 var death_played = false
+var health = 3
 var is_dead = false
 # allows manual changing of state for stuns
 var is_on_ground = true
 var is_stunned = false
 var is_crouching = false
+var is_invincible = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -168,13 +170,30 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			handle_death()
+			handle_damage()
 			return
 
 		# player interactions
 		if other.is_in_group("player"):
 			handle_push(collision, other)
+			
+func handle_damage():
+	if is_dead or is_invincible:
+		return
+	health = health - 1
+	print("Player 1 current health: ", health)
+	handle_invincibility()
+	if health <= 0:
+		is_dead = true
 
+func handle_invincibility():
+	set_collision_mask_value(2, false)
+	print("inv started")
+	is_invincible = true
+	await get_tree().create_timer(3).timeout
+	set_collision_mask_value(2, true)
+	print("inv ended")
+	is_invincible = false
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()

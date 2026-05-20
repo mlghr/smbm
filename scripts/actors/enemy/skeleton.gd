@@ -67,7 +67,9 @@ func handle_collisions():
 
 		if other.is_in_group("player"):
 			if not is_stunned:
-				other.is_dead = true
+				if other.is_dead == true:
+					return
+				other.handle_damage()
 			elif is_stunned:
 				var skull = skeleton_head_scene.instantiate()
 				skull.global_position = global_position
@@ -120,7 +122,7 @@ func update_animation():
 
 func handle_stunned():
 	velocity = Vector2.ZERO
-	move_and_slide()
+	#move_and_slide()
 
 	if not stun_played:
 		stun_played = true
