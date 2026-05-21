@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s7wh41baouvd"
-path="res://.godot/imported/slime_trail.png-5e0f637dbf5e76c3da0e8fd817d5646b.ctex"
+path="res://.godot/imported/slime_trail.png-53ac49096f6ef43a2b23a0527b3a387a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Custom/slime_trail.png"
-dest_files=["res://.godot/imported/slime_trail.png-5e0f637dbf5e76c3da0e8fd817d5646b.ctex"]
+source_file="res://assets/Custom/Slime/slime_trail.png"
+dest_files=["res://.godot/imported/slime_trail.png-53ac49096f6ef43a2b23a0527b3a387a.ctex"]
 
 [params]
 

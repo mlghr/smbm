@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fx2cgehn1mhx"
-path="res://.godot/imported/Mushroom-jump-frame.png-9dabf24c534e094afcfeca6373bce8d1.ctex"
+uid="uid://bmko8xlnb43vy"
+path="res://.godot/imported/skeleton_head_roll.png-f7e67c155540a14e0b9be91dafb60f5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Custom/Mushroom-jump-frame.png"
-dest_files=["res://.godot/imported/Mushroom-jump-frame.png-9dabf24c534e094afcfeca6373bce8d1.ctex"]
+source_file="res://assets/Custom/Skelleton/skeleton_head_roll.png"
+dest_files=["res://.godot/imported/skeleton_head_roll.png-f7e67c155540a14e0b9be91dafb60f5a.ctex"]
 
 [params]
 

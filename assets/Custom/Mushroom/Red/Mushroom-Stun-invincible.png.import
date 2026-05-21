@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmko8xlnb43vy"
-path="res://.godot/imported/skeleton_head_roll.png-ddbe2be87525873c253df2b4d910c075.ctex"
+uid="uid://c4ctti5ulr15t"
+path="res://.godot/imported/Mushroom-Stun-invincible.png-f32ed976cb5241c30029ab67f8e637fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Custom/skeleton_head_roll.png"
-dest_files=["res://.godot/imported/skeleton_head_roll.png-ddbe2be87525873c253df2b4d910c075.ctex"]
+source_file="res://assets/Custom/Mushroom/Red/Mushroom-Stun-invincible.png"
+dest_files=["res://.godot/imported/Mushroom-Stun-invincible.png-f32ed976cb5241c30029ab67f8e637fa.ctex"]
 
 [params]
 

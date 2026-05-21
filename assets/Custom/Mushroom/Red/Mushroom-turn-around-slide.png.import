@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4pm3y6b05ben"
-path="res://.godot/imported/Mushroom-Crouch.png-a64bf0b67037c749de671e9b2774e87c.ctex"
+uid="uid://cn8p8fb8nc0jr"
+path="res://.godot/imported/Mushroom-turn-around-slide.png-530595e86313b9aaa2e3ccd54471fc38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Custom/Mushroom-Crouch.png"
-dest_files=["res://.godot/imported/Mushroom-Crouch.png-a64bf0b67037c749de671e9b2774e87c.ctex"]
+source_file="res://assets/Custom/Mushroom/Red/Mushroom-turn-around-slide.png"
+dest_files=["res://.godot/imported/Mushroom-turn-around-slide.png-530595e86313b9aaa2e3ccd54471fc38.ctex"]
 
 [params]
 

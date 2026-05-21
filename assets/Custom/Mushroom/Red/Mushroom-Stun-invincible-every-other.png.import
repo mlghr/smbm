@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm8b1k14tbcyh"
-path="res://.godot/imported/Mushroom-Idle-blue.png-585788f707ee3ee658690ea139f208e0.ctex"
+uid="uid://m8lcracwtosp"
+path="res://.godot/imported/Mushroom-Stun-invincible-every-other.png-eda9026ca6dd61a9fa7d565d9d9aced5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Custom/Mushroom-Idle-blue.png"
-dest_files=["res://.godot/imported/Mushroom-Idle-blue.png-585788f707ee3ee658690ea139f208e0.ctex"]
+source_file="res://assets/Custom/Mushroom/Red/Mushroom-Stun-invincible-every-other.png"
+dest_files=["res://.godot/imported/Mushroom-Stun-invincible-every-other.png-eda9026ca6dd61a9fa7d565d9d9aced5.ctex"]
 
 [params]
 
