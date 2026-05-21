@@ -26,7 +26,7 @@ var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 var coin_count = 0
-var color = "_Red"
+var color = "_Blue"
 
 signal player_dead
 signal coin_victory
