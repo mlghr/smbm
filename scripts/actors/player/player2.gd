@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
+@onready var combo_timer = $ComboTimer
+@onready var combo_label = $ComboLabel
+
 var speed = 80
-var jump_velocity = -344
+var jump_velocity = -375
 var jump_cut_multiplier = 0.6
-const GRAVITY = 775
+const GRAVITY = 600
 const NORMAL_CONTROL = 0.2
 const SLIDE_CONTROL = 0.04
 const PLAYER_BUMP_FORCE = 120.0
@@ -13,18 +16,23 @@ const PLAYER_BUMP_SLIDE_TIME = 0.25
 var bump_combo = 0
 var standing_on_body = false
 var death_played = false
+var health = 3
 var is_dead = false
-# allows manual changing of state for stuns
-var is_on_ground = true
+
+
 var is_stunned = false
 var is_crouching = false
+var is_invincible = false
+var has_dashed = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
 var coin_count = 0
+var color = "_Red"
 
 signal player_dead
 signal coin_victory
+
 
 
 func _physics_process(delta):
@@ -44,16 +52,17 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	handle_dash()
+	check_has_dashed()
 	handle_crouch()
 	move_and_slide()
-	is_on_ground = is_on_floor()
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
 
-
-
+func _ready():
+	$AnimatedSprite2D.flip_h = true
 func _process(_delta):
+	use_invincibility_flash()
 	# keep wrap sprite in sync
 	$WrapSprite.animation = $AnimatedSprite2D.animation
 	$WrapSprite.frame = $AnimatedSprite2D.frame
@@ -67,9 +76,9 @@ func _process(_delta):
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
-		if velocity.y > 0:
-			#velocity.y = aa(velocity.y * velocity.y) / (velocity.y * .92)
-			pass
+		#if velocity.y > 0:
+			#velocity.y = (velocity.y * velocity.y) / (velocity.y * 1.03)
+			#pass
 
 	if is_on_floor() and velocity.y > 0:
 		velocity.y = 0
@@ -88,11 +97,14 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
+	else:
+		#This block is causing stunned player to be able to DI, testing to see if its super cool
+		velocity.x = lerp(velocity.x, direction * (speed/5), control)
 
 
 func handle_crouch():
 
-	if Input.is_action_just_pressed("crouch2") and is_on_ground and not is_stunned:
+	if Input.is_action_just_pressed("crouch2") and is_on_floor() and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
@@ -104,7 +116,7 @@ func handle_crouch():
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump2") and is_on_ground and not is_stunned:
+	if Input.is_action_just_pressed("jump2") and is_on_floor() and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
@@ -113,28 +125,54 @@ func handle_jump():
 
 
 func handle_dash():
-	if Input.is_action_just_pressed("dash2"):
-		velocity.x = velocity.x * 3
+	if (Input.is_action_just_pressed("dash2") and not is_stunned and not has_dashed) or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+		if velocity.x > 0:
+			velocity.x = velocity.x + 125
+		elif velocity.x < 0:
+			velocity.x = velocity.x - 125
+		has_dashed = true
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
 # animation
 # -------------------------
 
+func use_invincibility_flash():
+	if not is_invincible:
+		modulate = Color.WHITE
+		return
+
+	if (Engine.get_process_frames() / 5) % 2 == 0:
+		modulate = Color.DARK_GRAY
+	else:
+		modulate = Color.WHITE
+
+func set_animation(animation_name: String, color: String):
+	if $AnimatedSprite2D.animation != animation_name:
+		$AnimatedSprite2D.play(animation_name + color)
+
 
 func update_animation():
+	
+	#switch($AnimatedSprite2D.animation)
+		#case "Stun":
+			#
+		#case "Crouch_Idle":
 	if is_stunned:
-		$AnimatedSprite2D.play("Stun")
+		set_animation("Stun", color)
 		return
 
-	if is_on_floor() and abs(velocity.x) > speed - 15:
-		$AnimatedSprite2D.play("Run")
-		return
 	if is_crouching:
-		$AnimatedSprite2D.play("Crouch_Idle")
+		set_animation("Crouch_Idle", color)
 		return
-	else:
-		$AnimatedSprite2D.play("Idle")
+
+	if abs(velocity.x) > speed - 15 and is_on_floor():
+		set_animation("Run", color)
+		return
+	if not is_on_floor():
+		set_animation("Airborn", color)
+		return
+	set_animation("Idle", color)
 
 
 func handle_death():
@@ -166,13 +204,32 @@ func handle_collisions():
 
 		# enemy hit
 		if other.is_in_group("enemy"):
-			handle_death()
+			handle_damage()
 			return
 
 		# player interactions
 		if other.is_in_group("player"):
 			handle_push(collision, other)
+			
+func handle_damage():
+	if is_dead or is_invincible:
+		return
+	health = health - 1
+	print("Player 1 current health: ", health)
+	handle_invincibility()
+	#slowdown
+	if health <= 0:
+		is_dead = true
 
+func handle_invincibility():
+	set_collision_mask_value(2, false)
+	print("inv started")
+	is_invincible = true
+	await get_tree().create_timer(2).timeout
+	set_collision_mask_value(2, true)
+	print("inv ended")
+	is_invincible = false
+	#flashing"
 
 func handle_push(collision, other):
 	var normal = collision.get_normal()
@@ -216,29 +273,43 @@ func apply_player_bump(push_dir):
 	last_player_bump_time = Time.get_ticks_msec() / 1000.0
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
-	
-	
+
+func check_has_dashed():
+	if is_on_floor():
+		has_dashed = false
+
 func handle_bump_stun(bump_direction):
-	is_on_ground = false
 	
 	if is_stunned:
+		print("stunned, continuing combo")
 		bump_combo += 1
+		# keep combo going, reset timer
+		combo_timer.start()
+		
 	else:
+		print("stunned, starting combo")
 		is_stunned = true
 		bump_combo = 1
+		# 1.5 sec
+		combo_timer.start()
+		
+		
 	velocity.y = -180
 	velocity.x = 0
 	print(bump_combo)
 	if bump_direction == "left":
-		velocity.x = -1 * (randi_range(12, 36))
+		velocity.x = -1 * (randi_range(100, 150))
 	else:
-		velocity.x = randi_range(12, 36)
-
-	$AnimatedSprite2D.play("Stun")
-	await get_tree().create_timer(1).timeout
-	is_stunned = false
-	bump_combo = 0
+		velocity.x = randi_range(100, 150)
 	
+	if bump_combo % 5 == 0:
+		combo_label.add_theme_color_override("font_color", Color.RED)
+		has_dashed = false
+	else:
+		combo_label.add_theme_color_override("font_color", Color.WHITE)
+		
+	combo_label.text = "Combo: " + str(bump_combo)
+	$AnimatedSprite2D.play("Stun")
 
 
 # -------------------------
@@ -282,3 +353,9 @@ func increment_coin_count():
 
 func get_coin_count() -> int:
 	return coin_count
+
+
+func _on_combo_timer_timeout() -> void:
+	is_stunned = false
+	bump_combo = 0
+	combo_label.text = ""

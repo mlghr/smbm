@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const GRAVITY = 1500
+const GRAVITY = 600
 var speed = 150
 var direction = 1
 var is_stomped = false

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var combo_timer = $ComboTimer
+@onready var combo_label = $ComboLabel
 
 var speed = 80
 var jump_velocity = -375
@@ -17,11 +18,12 @@ var standing_on_body = false
 var death_played = false
 var health = 3
 var is_dead = false
-# allows manual changing of state for stuns
-var is_on_ground = true
+
+
 var is_stunned = false
 var is_crouching = false
 var is_invincible = false
+var has_dashed = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -50,9 +52,9 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	handle_dash()
+	check_has_dashed()
 	handle_crouch()
 	move_and_slide()
-	is_on_ground = is_on_floor()
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
@@ -82,6 +84,8 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
+	#comment line bellow to use keyboard controls
+	direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
@@ -93,33 +97,40 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
+	else:
+		#This block is causing stunned player to be able to DI, testing to see if its super cool
+		velocity.x = lerp(velocity.x, direction * (speed/5), control)
 
 
 func handle_crouch():
 
-	if Input.is_action_just_pressed("crouch") and is_on_ground and not is_stunned:
+	if (Input.is_action_just_pressed("crouch") or Input.is_action_just_pressed("Joystick_down")) and is_on_floor() and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
 
-	if Input.is_action_just_released("crouch"):
+	if (Input.is_action_just_released("crouch") or Input.is_action_just_released("Joystick_down")):
 		is_crouching = false
 		$CollisionStanding.disabled = false
 		$AnimatedSprite2D.play("Stand")
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump") and is_on_ground and not is_stunned:
+	if (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("A_button")) and is_on_floor() and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
-	if Input.is_action_just_released("jump") and velocity.y < 0:
+	if (Input.is_action_just_released("jump") or Input.is_action_just_released("A_button")) and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
 
 func handle_dash():
-	if Input.is_action_just_pressed("dash"):
-		velocity.x = velocity.x * 3
+	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed) or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+		if velocity.x > 0:
+			velocity.x = velocity.x + 125
+		elif velocity.x < 0:
+			velocity.x = velocity.x - 125
+		has_dashed = true
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
@@ -263,9 +274,11 @@ func apply_player_bump(push_dir):
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
 
+func check_has_dashed():
+	if is_on_floor():
+		has_dashed = false
 
 func handle_bump_stun(bump_direction):
-	is_on_ground = false
 	
 	if is_stunned:
 		print("stunned, continuing combo")
@@ -285,10 +298,17 @@ func handle_bump_stun(bump_direction):
 	velocity.x = 0
 	print(bump_combo)
 	if bump_direction == "left":
-		velocity.x = -1 * (randi_range(12, 36))
+		velocity.x = -1 * (randi_range(100, 150))
 	else:
-		velocity.x = randi_range(12, 36)
+		velocity.x = randi_range(100, 150)
 	
+	if bump_combo % 5 == 0:
+		combo_label.add_theme_color_override("font_color", Color.RED)
+		has_dashed = false
+	else:
+		combo_label.add_theme_color_override("font_color", Color.WHITE)
+		
+	combo_label.text = "Combo: " + str(bump_combo)
 	$AnimatedSprite2D.play("Stun")
 
 
@@ -338,3 +358,4 @@ func get_coin_count() -> int:
 func _on_combo_timer_timeout() -> void:
 	is_stunned = false
 	bump_combo = 0
+	combo_label.text = ""
