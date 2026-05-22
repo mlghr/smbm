@@ -85,7 +85,8 @@ func apply_gravity(delta):
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
 	#comment line bellow to use keyboard controls
-	direction = Input.get_axis("Joystick_left", "Joystick_right")
+	if direction == 0:
+		direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
