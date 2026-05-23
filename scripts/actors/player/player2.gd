@@ -90,14 +90,14 @@ func handle_input():
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
 
-	if not is_stunned:
+	if not is_stunned and not is_crouching:
 		velocity.x = lerp(velocity.x, direction * speed, control)
 
 		if direction < 0:
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
-	else:
+	elif not is_crouching:
 		#This block is causing stunned player to be able to DI, testing to see if its super cool
 		velocity.x = lerp(velocity.x, direction * (speed/5), control)
 

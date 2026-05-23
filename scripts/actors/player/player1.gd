@@ -84,23 +84,24 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
-	#comment line bellow to use keyboard controls
 	if direction == 0:
 		direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
 
-	if not is_stunned:
+	if not is_stunned and not is_crouching:
 		velocity.x = lerp(velocity.x, direction * speed, control)
 
 		if direction < 0:
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
-	else:
-		#This block is causing stunned player to be able to DI, testing to see if its super cool
+	elif is_stunned:
+		#This block is causing stunned player to be able to DI, testing to see if its super coola
 		velocity.x = lerp(velocity.x, direction * (speed/5), control)
+	elif is_crouching and is_on_floor():
+		velocity.x = lerp(velocity.x, 0.0, 0.05)
 
 
 func handle_crouch():
