@@ -127,7 +127,7 @@ func handle_jump():
 
 
 func handle_dash():
-	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed) or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:

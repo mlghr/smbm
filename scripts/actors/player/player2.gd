@@ -58,7 +58,6 @@ func _physics_process(delta):
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
-
 func _ready():
 	$AnimatedSprite2D.flip_h = true
 func _process(_delta):
@@ -86,6 +85,8 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left2", "move_right2")
+	#if direction == 0:
+		#direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
@@ -97,26 +98,28 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = false
 		elif direction > 0:
 			$AnimatedSprite2D.flip_h = true
-	elif not is_crouching:
-		#This block is causing stunned player to be able to DI, testing to see if its super cool
+	elif is_stunned:
+		#This block is causing stunned player to be able to DI, testing to see if its super coola
 		velocity.x = lerp(velocity.x, direction * (speed/5), control)
+	elif is_crouching and is_on_floor():
+		velocity.x = lerp(velocity.x, 0.0, 0.05)
 
 
 func handle_crouch():
 
-	if Input.is_action_just_pressed("crouch2") and is_on_floor() and not is_stunned:
+	if (Input.is_action_just_pressed("crouch2")) and is_on_floor() and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
 
-	if Input.is_action_just_released("crouch2"):
+	if (Input.is_action_just_released("crouch2")):
 		is_crouching = false
 		$CollisionStanding.disabled = false
 		$AnimatedSprite2D.play("Stand")
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump2") and is_on_floor() and not is_stunned:
+	if Input.is_action_just_pressed("jump2") and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
@@ -125,7 +128,7 @@ func handle_jump():
 
 
 func handle_dash():
-	if (Input.is_action_just_pressed("dash2") and not is_stunned and not has_dashed) or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+	if ((Input.is_action_just_pressed("dash2")) and not is_stunned and not has_dashed) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash2")) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
