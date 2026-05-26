@@ -376,6 +376,8 @@ func increment_coin_count():
 	$AudioStreamCoin2D.play()
 	if coin_count >= 5:
 		update_animation()
+		$AudioStreamCoin2D.play()
+		await get_tree().create_timer(.4).timeout
 		coin_victory.emit()
 
 

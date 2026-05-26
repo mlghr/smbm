@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dww2cuiv06n0g" path="res://assets/third_party/Platformer_Samples/sounds/coin.wav" id="3_r8n3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8n3v"]
-radius = 24.0
+radius = 4.472136
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7734d"]
 atlas = ExtResource("2_r8n3v")
@@ -100,6 +100,7 @@ animations = [{
 }]
 
 [node name="coin" type="RigidBody2D" unique_id=1163992872 groups=["coin"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 8
 collision_mask = 3
 lock_rotation = true
@@ -109,7 +110,6 @@ script = ExtResource("1_uxxfr")
 shape = SubResource("CircleShape2D_r8n3v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=362002340]
-scale = Vector2(3.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_u1751")
 animation = &"Move"
 frame = 10
@@ -126,7 +126,6 @@ shape = SubResource("CircleShape2D_r8n3v")
 stream = ExtResource("3_r8n3v")
 
 [node name="WrapSprite" type="AnimatedSprite2D" parent="." unique_id=654091378]
-scale = Vector2(3.5, 4.5)
 sprite_frames = SubResource("SpriteFrames_u1751")
 animation = &"Move"
 frame = 10

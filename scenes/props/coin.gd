@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-var speed = 200
-const GRAVITY = 1000
+var speed = 75
+const GRAVITY = 600
 
 
 # Called when the node enters the scene tree for the first time.
@@ -34,11 +34,11 @@ func apply_gravity(delta):
 
 
 func handle_screen_wrap():
-	var left_bound = -400
-	var right_bound = 400
+	var left_bound = -128
+	var right_bound = 128
 	var width = right_bound - left_bound
 
-	var sprite_width = 60
+	var sprite_width = 16
 
 	# hide ghost by default
 	$WrapSprite.visible = false
