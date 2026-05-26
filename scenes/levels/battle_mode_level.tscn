@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/base_platform.tscn" id="17_nev3j"]
 [ext_resource type="Texture2D" uid="uid://kr6hoa17pcvo" path="res://assets/Custom/Health/health_player_one.png" id="25_8calg"]
 [ext_resource type="Texture2D" uid="uid://b410o74einsac" path="res://assets/Custom/Health/health_player_two.png" id="26_namkm"]
+[ext_resource type="Texture2D" uid="uid://d2bn3xj41r1y2" path="res://assets/Custom/Coin/coin_count.png" id="27_s0xqe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 
@@ -1167,6 +1168,132 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2etjb"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wf1gy"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieipr"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as77m"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjh1m"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjry7"]
+atlas = ExtResource("27_s0xqe")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hhwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2etjb")
+}],
+"loop": true,
+"name": &"Coins_Empty",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf1gy")
+}],
+"loop": true,
+"name": &"Coins_Five",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieipr")
+}],
+"loop": true,
+"name": &"Coins_Four",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as77m")
+}],
+"loop": true,
+"name": &"Coins_One",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjh1m")
+}],
+"loop": true,
+"name": &"Coins_Three",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjry7")
+}],
+"loop": true,
+"name": &"Coins_Two",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0xqe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2etjb")
+}],
+"loop": true,
+"name": &"Coins_Empty",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wf1gy")
+}],
+"loop": true,
+"name": &"Coins_Five",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieipr")
+}],
+"loop": true,
+"name": &"Coins_Four",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as77m")
+}],
+"loop": true,
+"name": &"Coins_One",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjh1m")
+}],
+"loop": true,
+"name": &"Coins_Three",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjry7")
+}],
+"loop": true,
+"name": &"Coins_Two",
+"speed": 1.0
+}]
+
 [node name="Node2D" type="Node2D" unique_id=318383229]
 script = ExtResource("1_1x66t")
 
@@ -1370,6 +1497,16 @@ animation = &"Player_One_Full"
 position = Vector2(-40, 22)
 sprite_frames = SubResource("SpriteFrames_q7q0o")
 animation = &"Player_Two_Full"
+
+[node name="Player1Coins" type="AnimatedSprite2D" parent="." unique_id=214599493]
+position = Vector2(70, 25)
+sprite_frames = SubResource("SpriteFrames_7hhwi")
+animation = &"Coins_Two"
+
+[node name="Player2Coins" type="AnimatedSprite2D" parent="." unique_id=1388853874]
+position = Vector2(-67, 25)
+sprite_frames = SubResource("SpriteFrames_s0xqe")
+animation = &"Coins_Two"
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]

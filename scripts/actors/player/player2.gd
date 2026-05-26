@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var combo_timer = $ComboTimer
 @onready var combo_label = $ComboLabel
 @onready var health_bar = $"../Player2Health"
+@onready var coin_bar = $"../Player2Coins"
 
 var speed = 80
 var jump_velocity = -375
@@ -168,6 +169,21 @@ func update_animation():
 		health_bar.play("Player_Two_One_HP")
 	else:
 		health_bar.play("Player_Two_Empty")
+		
+		#---------------------------------------------
+	# Coin updates
+	if coin_count > 4:
+		coin_bar.play("Coins_Five")
+	elif coin_count > 3:
+		coin_bar.play("Coins_Four")
+	elif coin_count > 2:
+		coin_bar.play("Coins_Three")
+	elif coin_count > 1:
+		coin_bar.play("Coins_Two")
+	elif coin_count > 0:
+		coin_bar.play("Coins_One")
+	else:
+		coin_bar.play("Coins_Empty")
 		
 	if is_stunned:
 		set_animation("Stun", color)
@@ -359,6 +375,7 @@ func increment_coin_count():
 	coin_count += 1
 	$AudioStreamCoin2D.play()
 	if coin_count >= 5:
+		update_animation()
 		coin_victory.emit()
 
 

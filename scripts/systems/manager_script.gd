@@ -167,8 +167,9 @@ func _input(event):
 	#test spawn
 	#-----------------------------------------------------------------------
 	if event.is_action_pressed("test_spawn"): # press tab
-		spawn_skeleton()
+		#spawn_skeleton()
 		#spawn_slime()
+		spawn_coin()
 	#-----------------------------------------------------------------------
 	#spawn toggle
 	#-----------------------------------------------------------------------
