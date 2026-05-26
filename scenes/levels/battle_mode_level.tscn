@@ -24,6 +24,8 @@
 [ext_resource type="Script" uid="uid://cr3bvg5pbnslv" path="res://scenes/levels/win_screen.gd" id="15_3uw3q"]
 [ext_resource type="Texture2D" uid="uid://tnabt6mvu5nm" path="res://assets/third_party/Platformer_Samples/sprites/world_tileset.png" id="16_3uw3q"]
 [ext_resource type="PackedScene" uid="uid://tgxe0ug2um8h" path="res://scenes/props/base_platform.tscn" id="17_nev3j"]
+[ext_resource type="Texture2D" uid="uid://kr6hoa17pcvo" path="res://assets/Custom/Health/health_player_one.png" id="25_8calg"]
+[ext_resource type="Texture2D" uid="uid://b410o74einsac" path="res://assets/Custom/Health/health_player_two.png" id="26_namkm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 
@@ -1063,12 +1065,114 @@ scenes/1/scene = ExtResource("9_uon0r")
 [sub_resource type="TileSet" id="TileSet_6lkky"]
 sources/0 = SubResource("TileSetScenesCollectionSource_nev3j")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7q0o"]
+atlas = ExtResource("25_8calg")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6hy7"]
+atlas = ExtResource("25_8calg")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4klte"]
+atlas = ExtResource("25_8calg")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3mgf"]
+atlas = ExtResource("25_8calg")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_au1n6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7q0o")
+}],
+"loop": true,
+"name": &"Player_One_Empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6hy7")
+}],
+"loop": true,
+"name": &"Player_One_Full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4klte")
+}],
+"loop": true,
+"name": &"Player_One_HP",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3mgf")
+}],
+"loop": true,
+"name": &"Player_One_Two_HP",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t07x"]
+atlas = ExtResource("26_namkm")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au1n6"]
+atlas = ExtResource("26_namkm")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdt3l"]
+atlas = ExtResource("26_namkm")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxdbj"]
+atlas = ExtResource("26_namkm")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q7q0o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t07x")
+}],
+"loop": true,
+"name": &"Player_Two_Empty",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au1n6")
+}],
+"loop": true,
+"name": &"Player_Two_Full",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdt3l")
+}],
+"loop": true,
+"name": &"Player_Two_One_HP",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxdbj")
+}],
+"loop": true,
+"name": &"Player_Two_Two_HP",
+"speed": 1.0
+}]
+
 [node name="Node2D" type="Node2D" unique_id=318383229]
 script = ExtResource("1_1x66t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1262862297]
 position = Vector2(0, -122)
-zoom = Vector2(7.5, 3.5)
+zoom = Vector2(7.5, 3.4)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=18972240]
 position = Vector2(0, -853)
@@ -1256,6 +1360,16 @@ tile_set = SubResource("TileSet_kq05o")
 position = Vector2(0, -16)
 tile_map_data = PackedByteArray("AAD9//3/AAAAAAAAAQD8//3/AAAAAAAAAQD7//3/AAAAAAAAAQD6//3/AAAAAAAAAQD5//3/AAAAAAAAAQD4//3/AAAAAAAAAQACAP3/AAAAAAAAAQADAP3/AAAAAAAAAQAEAP3/AAAAAAAAAQAFAP3/AAAAAAAAAQAGAP3/AAAAAAAAAQAHAP3/AAAAAAAAAQD3//3/AAAAAAAAAQAIAP3/AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_6lkky")
+
+[node name="Player1Health" type="AnimatedSprite2D" parent="." unique_id=1216891099]
+position = Vector2(40, 22)
+sprite_frames = SubResource("SpriteFrames_au1n6")
+animation = &"Player_One_Full"
+
+[node name="Player2Health" type="AnimatedSprite2D" parent="." unique_id=817622244]
+position = Vector2(-40, 22)
+sprite_frames = SubResource("SpriteFrames_q7q0o")
+animation = &"Player_Two_Full"
 
 [connection signal="body_entered" from="TransferPoints/TransferPointLeft" to="TransferPoints/TransferPointLeft" method="_on_body_entered"]
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]

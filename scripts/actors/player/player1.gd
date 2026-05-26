@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @onready var combo_timer = $ComboTimer
 @onready var combo_label = $ComboLabel
+@onready var health_bar = $"../Player1Health"
+
 
 var speed = 80
 var jump_velocity = -375
@@ -155,11 +157,17 @@ func set_animation(animation_name: String, color: String):
 
 
 func update_animation():
-	
-	#switch($AnimatedSprite2D.animation)
-		#case "Stun":
-			#
-		#case "Crouch_Idle":
+	#---------------------------------------------
+	# Health updates
+	if health > 2:
+		health_bar.play("Player_One_Full")
+	elif health > 1:
+		health_bar.play("Player_One_Two_HP")
+	elif health > 0:
+		health_bar.play("Player_One_HP")
+	else:
+		health_bar.play("Player_One_Empty")
+		
 	if is_stunned:
 		set_animation("Stun", color)
 		return
@@ -185,7 +193,7 @@ func handle_death():
 		is_dead = true
 		$CollisionShape2D.disabled = true
 		$AnimatedSprite2D.play("Die")
-
+	health_bar.play("Player_One_Empty")
 	player_dead.emit()
 
 # -------------------------

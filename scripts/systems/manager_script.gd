@@ -9,6 +9,7 @@ extends Node2D
 @onready var transfer_points = $TransferPoints.get_children()
 @onready var blocks = get_tree().get_nodes_in_group("blocks")
 
+
 # settings
 var spawn_on_start: bool = false
 var spawn_interval: float = 7.0
