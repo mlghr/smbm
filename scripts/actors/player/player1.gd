@@ -26,7 +26,7 @@ var is_dead = false
 var is_stunned = false
 var is_crouching = false
 var is_invincible = false
-var has_dashed = false
+var is_dashing = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -55,7 +55,7 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	handle_dash()
-	check_has_dashed()
+	check_is_dashing()
 	handle_crouch()
 	move_and_slide()
 	handle_collisions()
@@ -130,12 +130,15 @@ func handle_jump():
 
 
 func handle_dash():
-	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+	var combo_limit_reached = bump_combo % 5 == 0 and bump_combo != 0 
+	if (is_dashing or is_crouching):
+		return
+	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned) or (combo_limit_reached and Input.is_action_just_pressed ("dash")) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
 			velocity.x = velocity.x - 125
-		has_dashed = true
+		is_dashing = true
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
@@ -302,9 +305,9 @@ func apply_player_bump(push_dir):
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
 
-func check_has_dashed():
+func check_is_dashing():
 	if is_on_floor():
-		has_dashed = false
+		is_dashing = false
 
 func handle_bump_stun(bump_direction):
 	
@@ -332,7 +335,7 @@ func handle_bump_stun(bump_direction):
 	
 	if bump_combo % 5 == 0:
 		combo_label.add_theme_color_override("font_color", Color.RED)
-		has_dashed = false
+		is_dashing = false
 	else:
 		combo_label.add_theme_color_override("font_color", Color.WHITE)
 		
