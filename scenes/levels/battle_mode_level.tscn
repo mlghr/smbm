@@ -1360,7 +1360,7 @@ animation = &"Crouch_Blue"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=1945011201]
 scale = Vector2(0.5, 0.8)
 sprite_frames = SubResource("SpriteFrames_0un5b")
-animation = &"Airborn_Blue"
+animation = &"Idle_Blue"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player1" unique_id=126059197]
 position = Vector2(-363, -413)
@@ -1390,6 +1390,8 @@ offset_top = -16.0
 offset_right = 61.0
 offset_bottom = 7.0
 scale = Vector2(0.35, 0.35)
+
+[node name="DashTimer" type="Timer" parent="Player1" unique_id=500029531]
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=271447179 groups=["player"]]
 position = Vector2(-82, -26)
@@ -1434,6 +1436,8 @@ scale = Vector2(0.35, 0.35)
 
 [node name="ComboTimer" type="Timer" parent="Player2" unique_id=1219292897]
 wait_time = 1.5
+
+[node name="DashTimer" type="Timer" parent="Player2" unique_id=1128963613]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1474977843]
 position = Vector2(0, -504)
@@ -1512,5 +1516,7 @@ animation = &"Coins_Two"
 [connection signal="body_entered" from="TransferPoints/TransferPointRight" to="TransferPoints/TransferPointRight" method="_on_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="Player1/ComboTimer" to="Player1" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="Player1/DashTimer" to="Player1" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Player2/ComboTimer" to="Player2" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="Player2/DashTimer" to="Player2" method="_on_dash_timer_timeout"]
 [connection signal="pressed" from="WinScreen/Button" to="WinScreen" method="_on_pressed"]

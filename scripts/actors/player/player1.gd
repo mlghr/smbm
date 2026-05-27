@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var combo_timer = $ComboTimer
+@onready var dash_timer = $DashTimer
 @onready var combo_label = $ComboLabel
 @onready var health_bar = $"../Player1Health"
 @onready var coin_bar = $"../Player1Coins"
@@ -27,6 +28,7 @@ var is_stunned = false
 var is_crouching = false
 var is_invincible = false
 var has_dashed = false
+var dash_cooldown = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -130,12 +132,14 @@ func handle_jump():
 
 
 func handle_dash():
-	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash")) :
+	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned and not has_dashed and not dash_cooldown) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash") and not dash_cooldown) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
 			velocity.x = velocity.x - 125
 		has_dashed = true
+		dash_cooldown = true
+		dash_timer.start()
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
@@ -390,3 +394,7 @@ func _on_combo_timer_timeout() -> void:
 	is_stunned = false
 	bump_combo = 0
 	combo_label.text = ""
+
+
+func _on_dash_timer_timeout() -> void:
+	dash_cooldown = false
