@@ -27,7 +27,7 @@ var is_dead = false
 var is_stunned = false
 var is_crouching = false
 var is_invincible = false
-var is_dashing = false
+var has_dashed = false
 var dash_cooldown = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
@@ -37,6 +37,7 @@ var color = "_Blue"
 
 signal player_dead
 signal coin_victory
+
 
 
 func _physics_process(delta):
@@ -56,7 +57,7 @@ func _physics_process(delta):
 	handle_input()
 	handle_jump()
 	handle_dash()
-	check_is_dashing()
+	check_has_dashed()
 	handle_crouch()
 	move_and_slide()
 	handle_collisions()
@@ -69,6 +70,7 @@ func _process(_delta):
 	$WrapSprite.animation = $AnimatedSprite2D.animation
 	$WrapSprite.frame = $AnimatedSprite2D.frame
 	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h
+
 
 # -------------------------
 # core systems, inputs, etc.
@@ -88,8 +90,6 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left", "move_right")
-	if direction == 0:
-		direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
@@ -103,14 +103,14 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = true
 	elif is_stunned:
 		#This block is causing stunned player to be able to DI, testing to see if its super coola
-		velocity.x = lerp(velocity.x, direction * (speed / 5), control)
+		velocity.x = lerp(velocity.x, direction * (speed/5), control)
 	elif is_crouching and is_on_floor():
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
 
 
 func handle_crouch():
-	if (Input.is_action_just_pressed("crouch")
-		or Input.is_action_just_pressed("Joystick_down")) and is_on_floor() and not is_stunned:
+
+	if (Input.is_action_just_pressed("crouch")) and is_on_floor() and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
@@ -122,26 +122,21 @@ func handle_crouch():
 
 
 func handle_jump():
-	if (Input.is_action_just_pressed("jump")
-		or Input.is_action_just_pressed("A_button")) and is_on_floor() and not is_stunned:
+	if (Input.is_action_just_pressed("jump")) and is_on_floor() and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
-	if (Input.is_action_just_released("jump")
-		or Input.is_action_just_released("A_button")) and velocity.y < 0:
+	if (Input.is_action_just_released("jump") and velocity.y < 0):
 		velocity.y *= jump_cut_multiplier
 
 
 func handle_dash():
-	var combo_limit_reached = bump_combo % 5 == 0 and bump_combo != 0
-	if (is_dashing or is_crouching):
-		return
-	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned) or (combo_limit_reached and Input.is_action_just_pressed("dash") and not dash_cooldown):
+	if ((Input.is_action_just_pressed("dash")) and not is_stunned and not has_dashed and not dash_cooldown) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash") and not dash_cooldown) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
 			velocity.x = velocity.x - 125
-		is_dashing = true
+		has_dashed = true
 		dash_cooldown = true
 		dash_timer.start()
 		$AudioStreamPlayer2D.play()
@@ -193,6 +188,7 @@ func update_animation():
 		coin_bar.play("Coins_Empty")
 	
 	
+	
 	if is_stunned:
 		set_animation("Stun", color)
 		return
@@ -235,7 +231,7 @@ func handle_collisions():
 		# hit block from below
 		if normal.y > 0.9:
 			if other.has_method("bump"):
-				other.bump(self )
+				other.bump(self)
 
 		# enemy hit
 		if other.is_in_group("enemy"):
@@ -309,11 +305,12 @@ func apply_player_bump(push_dir):
 	bump_slide_time_left = PLAYER_BUMP_SLIDE_TIME
 	velocity.x = push_dir * PLAYER_BUMP_FORCE
 
-func check_is_dashing():
+func check_has_dashed():
 	if is_on_floor():
-		is_dashing = false
+		has_dashed = false
 
 func handle_bump_stun(bump_direction):
+	
 	if is_stunned:
 		print("stunned, continuing combo")
 		bump_combo += 1
@@ -338,7 +335,7 @@ func handle_bump_stun(bump_direction):
 	
 	if bump_combo % 5 == 0:
 		combo_label.add_theme_color_override("font_color", Color.RED)
-		is_dashing = false
+		has_dashed = false
 	else:
 		combo_label.add_theme_color_override("font_color", Color.WHITE)
 		

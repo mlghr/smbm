@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var combo_timer = $ComboTimer
 @onready var dash_timer = $DashTimer
 @onready var combo_label = $ComboLabel
-@onready var health_bar = $"../Player1Health"
+@onready var health_bar = $"../Player2Health"
 @onready var coin_bar = $"../Player2Coins"
 
 
