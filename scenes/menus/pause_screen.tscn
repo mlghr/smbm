@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://lvtihywr2jtb" path="res://scripts/menus/pause_screen.gd" id="1_pause"]
 
 [node name="PauseScreen" type="Control" unique_id=1090948066]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
