@@ -2,13 +2,14 @@ extends RigidBody2D
 
 var utility = Utility.new()
 
-var speed = 25
+var speed = 75
 const GRAVITY = 600
 
 signal item_picked_up
 
 # Called when the node enters the scene tree for the first time.
 func _process(delta: float) -> void:
+	$AnimatedSprite2D.play("default")
 	pass
 
 
