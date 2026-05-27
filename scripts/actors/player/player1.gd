@@ -28,7 +28,6 @@ var is_stunned = false
 var is_crouching = false
 var is_invincible = false
 var is_dashing = false
-var is_dashed = false
 var dash_cooldown = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
