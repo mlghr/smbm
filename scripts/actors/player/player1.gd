@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var combo_timer = $ComboTimer
+@onready var dash_timer = $DashTimer
 @onready var combo_label = $ComboLabel
 @onready var health_bar = $"../Player1Health"
 @onready var coin_bar = $"../Player1Coins"
@@ -27,6 +28,8 @@ var is_stunned = false
 var is_crouching = false
 var is_invincible = false
 var is_dashing = false
+var has_dashed = false
+var dash_cooldown = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -35,7 +38,6 @@ var color = "_Blue"
 
 signal player_dead
 signal coin_victory
-
 
 
 func _physics_process(delta):
@@ -102,14 +104,16 @@ func handle_input():
 			$AnimatedSprite2D.flip_h = true
 	elif is_stunned:
 		#This block is causing stunned player to be able to DI, testing to see if its super coola
-		velocity.x = lerp(velocity.x, direction * (speed/5), control)
+		velocity.x = lerp(velocity.x, direction * (speed / 5), control)
 	elif is_crouching and is_on_floor():
 		velocity.x = lerp(velocity.x, 0.0, 0.05)
 
 
 func handle_crouch():
-
-	if (Input.is_action_just_pressed("crouch") or Input.is_action_just_pressed("Joystick_down")) and is_on_floor() and not is_stunned:
+	if (Input.is_action_just_pressed("crouch")
+		or Input.is_action_just_pressed("Joystick_down"))
+		and is_on_floor()
+		and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
@@ -121,24 +125,34 @@ func handle_crouch():
 
 
 func handle_jump():
-	if (Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("A_button")) and is_on_floor() and not is_stunned:
+	if (Input.is_action_just_pressed("jump")
+		or Input.is_action_just_pressed("A_button"))
+		and is_on_floor()
+		and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
-	if (Input.is_action_just_released("jump") or Input.is_action_just_released("A_button")) and velocity.y < 0:
+	if (Input.is_action_just_released("jump")
+		or Input.is_action_just_released("A_button"))
+		and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
 
 func handle_dash():
-	var combo_limit_reached = bump_combo % 5 == 0 and bump_combo != 0 
+	var combo_limit_reached = bump_combo % 5 == 0 and bump_combo != 0
 	if (is_dashing or is_crouching):
 		return
-	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned) or (combo_limit_reached and Input.is_action_just_pressed ("dash")) :
+	if ((Input.is_action_just_pressed("dash")
+	or Input.is_action_just_pressed("X_button"))
+	and not is_stunned)
+	or (combo_limit_reached and Input.is_action_just_pressed("dash") and not dash_cooldown): :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
 			velocity.x = velocity.x - 125
 		is_dashing = true
+		dash_cooldown = true
+		dash_timer.start()
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
@@ -188,7 +202,6 @@ func update_animation():
 		coin_bar.play("Coins_Empty")
 	
 	
-	
 	if is_stunned:
 		set_animation("Stun", color)
 		return
@@ -231,7 +244,7 @@ func handle_collisions():
 		# hit block from below
 		if normal.y > 0.9:
 			if other.has_method("bump"):
-				other.bump(self)
+				other.bump(self )
 
 		# enemy hit
 		if other.is_in_group("enemy"):
@@ -310,7 +323,6 @@ func check_is_dashing():
 		is_dashing = false
 
 func handle_bump_stun(bump_direction):
-	
 	if is_stunned:
 		print("stunned, continuing combo")
 		bump_combo += 1
@@ -393,3 +405,7 @@ func _on_combo_timer_timeout() -> void:
 	is_stunned = false
 	bump_combo = 0
 	combo_label.text = ""
+
+
+func _on_dash_timer_timeout() -> void:
+	dash_cooldown = false

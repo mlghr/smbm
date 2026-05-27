@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
 @onready var combo_timer = $ComboTimer
+@onready var dash_timer = $DashTimer
 @onready var combo_label = $ComboLabel
-@onready var health_bar = $"../Player2Health"
+@onready var health_bar = $"../Player1Health"
 @onready var coin_bar = $"../Player2Coins"
+
 
 var speed = 80
 var jump_velocity = -375
@@ -26,6 +28,7 @@ var is_stunned = false
 var is_crouching = false
 var is_invincible = false
 var has_dashed = false
+var dash_cooldown = false
 var bump_slide_time_left = 0.0
 var last_player_bump_time = -10.0
 var carried_velocity = Vector2.ZERO
@@ -60,8 +63,7 @@ func _physics_process(delta):
 	handle_collisions()
 	handle_screen_wrap()
 	update_animation()
-func _ready():
-	$AnimatedSprite2D.flip_h = true
+
 func _process(_delta):
 	use_invincibility_flash()
 	# keep wrap sprite in sync
@@ -69,6 +71,8 @@ func _process(_delta):
 	$WrapSprite.frame = $AnimatedSprite2D.frame
 	$WrapSprite.flip_h = $AnimatedSprite2D.flip_h
 
+func _ready():
+	$AnimatedSprite2D.flip_h = true
 # -------------------------
 # core systems, inputs, etc.
 # -------------------------
@@ -87,8 +91,6 @@ func apply_gravity(delta):
 
 func handle_input():
 	var direction = Input.get_axis("move_left2", "move_right2")
-	#if direction == 0:
-		#direction = Input.get_axis("Joystick_left", "Joystick_right")
 	var control = NORMAL_CONTROL
 	if bump_slide_time_left > 0.0:
 		control = SLIDE_CONTROL
@@ -114,28 +116,30 @@ func handle_crouch():
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
 
-	if (Input.is_action_just_released("crouch2")):
+	if (Input.is_action_just_released("crouch2") or Input.is_action_just_released("Joystick_down")):
 		is_crouching = false
 		$CollisionStanding.disabled = false
 		$AnimatedSprite2D.play("Stand")
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump2") and not is_stunned:
+	if (Input.is_action_just_pressed("jump2")) and is_on_floor() and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
-	if Input.is_action_just_released("jump2") and velocity.y < 0:
+	if (Input.is_action_just_released("jump2") and velocity.y < 0):
 		velocity.y *= jump_cut_multiplier
 
 
 func handle_dash():
-	if ((Input.is_action_just_pressed("dash2")) and not is_stunned and not has_dashed) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash2")) :
+	if ((Input.is_action_just_pressed("dash2")) and not is_stunned and not has_dashed and not dash_cooldown) and not is_crouching or (bump_combo % 5 == 0 and bump_combo != 0 and Input.is_action_just_pressed("dash2") and not dash_cooldown) :
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
 			velocity.x = velocity.x - 125
 		has_dashed = true
+		dash_cooldown = true
+		dash_timer.start()
 		$AudioStreamPlayer2D.play()
 
 # -------------------------
@@ -158,19 +162,18 @@ func set_animation(animation_name: String, color: String):
 
 
 func update_animation():
-	
 	#---------------------------------------------
 	# Health updates
 	if health > 2:
-		health_bar.play("Player_Two_Full")
+		health_bar.play("Player_One_Full")
 	elif health > 1:
-		health_bar.play("Player_Two_Two_HP")
+		health_bar.play("Player_One_Two_HP")
 	elif health > 0:
-		health_bar.play("Player_Two_One_HP")
+		health_bar.play("Player_One_HP")
 	else:
-		health_bar.play("Player_Two_Empty")
-		
-		#---------------------------------------------
+		health_bar.play("Player_One_Empty")
+	
+	#---------------------------------------------
 	# Coin updates
 	if coin_count > 4:
 		coin_bar.play("Coins_Five")
@@ -184,7 +187,9 @@ func update_animation():
 		coin_bar.play("Coins_One")
 	else:
 		coin_bar.play("Coins_Empty")
-		
+	
+	
+	
 	if is_stunned:
 		set_animation("Stun", color)
 		return
@@ -210,7 +215,7 @@ func handle_death():
 		is_dead = true
 		$CollisionShape2D.disabled = true
 		$AnimatedSprite2D.play("Die")
-	health_bar.play("Player_Two_Empty")
+	health_bar.play("Player_One_Empty")
 	player_dead.emit()
 
 # -------------------------
@@ -389,3 +394,7 @@ func _on_combo_timer_timeout() -> void:
 	is_stunned = false
 	bump_combo = 0
 	combo_label.text = ""
+
+
+func _on_dash_timer_timeout() -> void:
+	dash_cooldown = false
