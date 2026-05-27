@@ -5,6 +5,7 @@ extends Node2D
 @onready var sandbag_scene = preload("res://scenes/actors/enemy/sandbag.tscn")
 @onready var coin_scene = preload("res://scenes/props/coin.tscn")
 @onready var win_screen = $WinScreen
+@onready var pause_screen = $PauseScreen
 @onready var spawn_points = $SpawnPoints.get_children()
 @onready var transfer_points = $TransferPoints.get_children()
 @onready var blocks = get_tree().get_nodes_in_group("blocks")
@@ -163,6 +164,14 @@ func spawn_coin() -> void:
 
 
 func _input(event):
+	#-----------------------------------------------------------------------
+	#pause toggle
+	#-----------------------------------------------------------------------
+	if event.is_action_pressed("ui_cancel") and not game_over:
+		get_tree().paused = !get_tree().paused
+		pause_screen.visible = get_tree().paused
+		get_viewport().set_input_as_handled()
+		return
 	#-----------------------------------------------------------------------
 	#test spawn
 	#-----------------------------------------------------------------------
