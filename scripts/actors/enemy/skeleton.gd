@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # at 300 speed he hits wall, aggresive speed?
-const SPEED = 50
+const SPEED = 35
 const GRAVITY = 600
 var direction = 1
 
@@ -18,10 +18,13 @@ var dy = 0
 
 
 func _physics_process(delta):
+	
+	apply_gravity(delta)
 	if is_stunned:
 		handle_stunned()
-	else:
 		apply_gravity(delta)
+	else:
+		
 		move_enemy()
 	move_and_slide()
 	handle_collisions()
@@ -42,8 +45,14 @@ func _process(delta):
 
 
 func apply_gravity(delta):
+	if is_stunned:
+		if velocity.x > 0:
+			velocity.x = velocity.x - 1
+		elif velocity.x < 0:
+			velocity.x = velocity.x + 1
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
+		
 
 
 func move_enemy():
@@ -121,8 +130,11 @@ func update_animation():
 
 
 func handle_stunned():
-	velocity = Vector2.ZERO
+	print("handle_stunned")
+	#velocity = Vector2.ZERO
 	#move_and_slide()
+
+	
 
 	if not stun_played:
 		stun_played = true
@@ -158,11 +170,15 @@ func handle_screen_wrap():
 		global_position.x -= width
 
 
-func handle_bump_stun():
+func handle_bump_stun(bump_direction):
+	print("handle_bump_stun")
 	is_on_ground = false
 	is_stunned = true
-	velocity.y = -300
-	velocity.x = 0
+	velocity.y = -200
+	if bump_direction == "left":
+		velocity.x = -70
+	else:
+		velocity.x = 70
 
 	$AnimatedSprite2D.play("Die")
 	await get_tree().create_timer(5).timeout

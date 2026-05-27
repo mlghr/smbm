@@ -30,7 +30,7 @@ func bump(player):
 	var players = get_tree().get_nodes_in_group("player")
 	for p in players:
 		if not is_same(player, p) and p.has_method("handle_bump_stun"):
-			if global_position.distance_to(p.global_position) <= BUMP_RADIUS and (p.global_position.x >= block_midpoint - 16 or p.global_position.x <= block_midpoint + 16) and p.global_position.y < global_position.y:
+			if global_position.distance_to(p.global_position) <= BUMP_RADIUS and (p.global_position.x >= block_midpoint - 14 or p.global_position.x <= block_midpoint + 14) and p.global_position.y < global_position.y:
 				
 				if p.global_position.x >= block_midpoint:
 					bump_direction = "right"
@@ -41,7 +41,11 @@ func bump(player):
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for e in enemies:
 		if global_position.distance_to(e.global_position) <= BUMP_RADIUS and (e.global_position.x >= block_midpoint - 16 or e.global_position.x <= block_midpoint + 16) and e.global_position.y < global_position.y:
-			e.handle_bump_stun()
+			if e.global_position.x >= block_midpoint:
+				bump_direction = "right"
+			else:
+				bump_direction = "left"
+			e.handle_bump_stun(bump_direction)
 
 	tween.tween_property(self, "position:y", original_y, 0.12)
 
