@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://kr6hoa17pcvo" path="res://assets/Custom/Health/health_player_one.png" id="25_8calg"]
 [ext_resource type="Texture2D" uid="uid://b410o74einsac" path="res://assets/Custom/Health/health_player_two.png" id="26_namkm"]
 [ext_resource type="Texture2D" uid="uid://d2bn3xj41r1y2" path="res://assets/Custom/Coin/coin_count.png" id="27_s0xqe"]
-[ext_resource type="PackedScene" path="res://scenes/menus/pause_screen.tscn" id="99_pause"]
+[ext_resource type="PackedScene" uid="uid://cjr21oclaore7" path="res://scenes/menus/pause_screen.tscn" id="99_pause"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0un5b"]
 
@@ -1510,7 +1510,6 @@ sprite_frames = SubResource("SpriteFrames_s0xqe")
 animation = &"Coins_Two"
 
 [node name="PauseScreen" parent="." unique_id=1532532265 instance=ExtResource("99_pause")]
-visible = true
 offset_top = -112.0
 offset_bottom = -112.0
 
