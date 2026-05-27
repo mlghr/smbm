@@ -111,9 +111,7 @@ func handle_input():
 
 func handle_crouch():
 	if (Input.is_action_just_pressed("crouch")
-		or Input.is_action_just_pressed("Joystick_down"))
-		and is_on_floor()
-		and not is_stunned:
+		or Input.is_action_just_pressed("Joystick_down")) and is_on_floor() and not is_stunned:
 		is_crouching = true
 		$CollisionStanding.disabled = true
 		$AnimatedSprite2D.play("Crouch")
@@ -126,15 +124,12 @@ func handle_crouch():
 
 func handle_jump():
 	if (Input.is_action_just_pressed("jump")
-		or Input.is_action_just_pressed("A_button"))
-		and is_on_floor()
-		and not is_stunned:
+		or Input.is_action_just_pressed("A_button")) and is_on_floor() and not is_stunned:
 		velocity.y = jump_velocity
 		$AudioStreamPlayer2D.play()
 
 	if (Input.is_action_just_released("jump")
-		or Input.is_action_just_released("A_button"))
-		and velocity.y < 0:
+		or Input.is_action_just_released("A_button")) and velocity.y < 0:
 		velocity.y *= jump_cut_multiplier
 
 
@@ -142,10 +137,7 @@ func handle_dash():
 	var combo_limit_reached = bump_combo % 5 == 0 and bump_combo != 0
 	if (is_dashing or is_crouching):
 		return
-	if ((Input.is_action_just_pressed("dash")
-	or Input.is_action_just_pressed("X_button"))
-	and not is_stunned)
-	or (combo_limit_reached and Input.is_action_just_pressed("dash") and not dash_cooldown): :
+	if ((Input.is_action_just_pressed("dash") or Input.is_action_just_pressed("X_button")) and not is_stunned) or (combo_limit_reached and Input.is_action_just_pressed("dash") and not dash_cooldown):
 		if velocity.x > 0:
 			velocity.x = velocity.x + 125
 		elif velocity.x < 0:
